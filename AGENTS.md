@@ -1,9 +1,16 @@
-<!-- BEGIN:nextjs-agent-rules -->
+# Contexto & Diretrizes do Portfólio
 
-## This is NOT the Next.js you know
+## 1. Inicialização Obrigatória
+- **Sempre** leia o arquivo `CONTEXTO.md` na raiz antes de iniciar qualquer planejamento ou modificação no código.
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+## 2. Ciclo de Vida da Feature (Atualização de Contexto)
+- **Ao finalizar qualquer tarefa ou feature:** Você deve atualizar a seção de *"Estado atual / o que falta"* e *"Pendências & decisões abertas"* do arquivo `CONTEXTO.md`.
+- Documente de forma objetiva o que acabou de ser implementado e qual é o próximo passo exato onde paramos.
 
-This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+## 3. Stack & Arquitetura Básica
+- Next.js (App Router) | React | TypeScript | Tailwind CSS | GSAP / Lenis.
+- Idioma padrão: pt-BR.
 
-<!-- END:nextjs-agent-rules -->
+## 4. Comandos de Verificação
+- Typecheck: `pnpm tsc --noEmit`
+- Linter: `pnpm lint`
