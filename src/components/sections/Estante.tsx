@@ -32,9 +32,9 @@ const VOLUMES: MangaVolume[] = [
     jpTitle: "전지적 독자 시점",
     author: "sing N song",
     accent: "bg-slate-900 text-cyan-400",
-    quote: "“Havia três maneiras de sobreviver em um mundo em ruínas.”",
+    quote: "“Toda grande história é construída a partir de pequenos fragmentos acumulados pelo caminho.”",
     review:
-      "Uma das minhas histórias favoritas: metalinguagem pura, estratégia e um protagonista que vence porque observa os detalhes e entende as regras do sistema melhor do que qualquer um. Tem tudo a ver com a forma como gosto de estudar e destrinchar problemas na computação.",
+      "Em ORV, o universo inteiro é movido por histórias: cada desafio superado vira um fragmento narrativo que mantém os personagens de pé para o próximo cenário. Enxergo a TI do mesmo jeito — cada área que exploro, cada incidente resolvido e cada projeto que tiro do papel não são apenas códigos isolados, mas capítulos que vão construindo a minha própria história na tecnologia..",
   },
   {
     id: "akira",
@@ -92,25 +92,24 @@ export default function Estante() {
                   key={item.id}
                   type="button"
                   onClick={() => setSelectedVol(item)}
-                  className={`group relative flex flex-col justify-between h-64 p-3.5 text-left border-4 border-black transition-transform duration-200 ${
-                    active
-                      ? "-translate-y-3 shadow-[8px_8px_0px_#000000] ring-2 ring-black"
-                      : "hover:-translate-y-2 shadow-[4px_4px_0px_#000000]"
-                  } ${item.accent}`}
+                  className={`group @container relative flex min-w-0 flex-col justify-between h-64 overflow-hidden p-3.5 text-left border-4 border-black transition-transform duration-200 ${active
+                    ? "-translate-y-3 shadow-[8px_8px_0px_#000000] ring-2 ring-black"
+                    : "hover:-translate-y-2 shadow-[4px_4px_0px_#000000]"
+                    } ${item.accent}`}
                 >
                   <div className="flex items-center justify-between text-[10px] font-mono font-bold border-b-2 border-current pb-1">
                     <span>{item.vol}</span>
                     <span>HQ</span>
                   </div>
 
-                  <div className="my-auto">
-                    <p className="text-xs font-bold opacity-80">{item.jpTitle}</p>
-                    <h3 className="font-display text-xl font-black uppercase leading-tight mt-1">
+                  <div className="my-auto min-w-0 w-full">
+                    <p className="truncate text-xs font-bold opacity-80">{item.jpTitle}</p>
+                    <h3 className="mt-1 font-sans text-[clamp(8.5px,12cqw,13px)] font-black uppercase leading-tight tracking-tight text-balance wrap-anywhere">
                       {item.title}
                     </h3>
                   </div>
 
-                  <div className="text-[10px] font-mono font-bold uppercase opacity-90">
+                  <div className="truncate text-[10px] font-mono font-bold uppercase opacity-90">
                     {item.author}
                   </div>
                 </button>
@@ -125,7 +124,7 @@ export default function Estante() {
         <div className="lg:col-span-5">
           <div className="relative bg-white border-4 border-black p-6 sm:p-8 shadow-[12px_12px_0px_#000000]">
             {/* Etiqueta de capítulo no canto */}
-            <div className="absolute -top-4 right-4 bg-yellow-300 border-3 border-black px-3 py-1 font-mono text-xs font-black uppercase shadow-[4px_4px_0px_#000]">
+            <div className="absolute -top-4 right-4 bg-yellow-300 border-[3px] border-black px-3 py-1 font-mono text-xs font-black uppercase shadow-[4px_4px_0px_#000]">
               {selectedVol.vol} {"// DESTAQUE"}
             </div>
 
@@ -137,7 +136,7 @@ export default function Estante() {
             </h3>
 
             {/* Balão de fala */}
-            <div className="mt-5 relative bg-neutral-100 border-3 border-black p-4 rounded-xl font-serif italic text-base text-black">
+            <div className="mt-5 relative bg-neutral-100 border-[3px] border-black p-4 rounded-xl font-serif italic text-base text-black">
               {selectedVol.quote}
             </div>
 
