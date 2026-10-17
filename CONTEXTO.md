@@ -131,7 +131,7 @@ Orquestrado em `src/app/page.tsx`.
 | 2 | Sobre (livro) | `sections/Sobre.tsx` | Glitch de tela | `transitions/Glitch.tsx` | Trincas + 4 cacos voando revelam o próximo mundo |
 | 3 | Projetos (cyberpunk) | `sections/Projetos.tsx` | Level Up | `transitions/LevelUp.tsx` | Barra de XP enche e explosão dourada abre a ficha |
 | 4 | Skills (RPG) | `sections/Skills.tsx` | Painel de HQ | `transitions/PainelHQ.tsx` | Painéis diagonais se abrem + onomatopeia "ドン!" |
-| 5 | Estante (mangá/HQ) | `sections/Estante.tsx` | CRT ligando | `transitions/CRT.tsx` | Feixe de elétrons verde abre a tela do arcade |
+| 5 | Estante (mangá/HQ) | `sections/Estante.tsx` | CRT ligando | `transitions/CRT.tsx` | Papel colapsa em linha de varredura; o raster do arcade se expande a partir dela |
 | 6 | Contato (arcade) | `sections/Contato.tsx` | — (fim) | — | Fim da jornada |
 
 ### Destaques de interação por seção
@@ -220,6 +220,15 @@ portfolio/
       de a folha aparecer e assenta de volta na nova página. Funciona no desktop (virada 3D)
       e no mobile (crossfade); no repouso sempre retorna à posição original, então as duas
       cópias de `Sobre` continuam idênticas (`Sobre.tsx`).
+- [x] **Transição CRT reescrita** (2026-10-16): o fade preto + retângulo verde deu
+      lugar a um power-cycle real. A Estante **colapsa** (`scaleY → 0.004`,
+      `brightness(2.4)`, `saturate(0.1)`) até virar uma linha, que faz o handoff para
+      um **feixe de fósforo de 2px** (branco → verde). O raster do Contato então
+      **expande da linha** (`scaleY 0.004 → 1`), com flash radial, scanlines de
+      assentamento e OSD `POWER ON — SIGNAL OK · 60Hz` (abaixo do header no desktop;
+      oculto no mobile, onde o header encosta no gabinete). A camada de entrada não faz
+      mais fade por cima do feixe nem usa `scale(0.96)`; o efeito continua reversível
+      no scrub (`CRT.tsx`).
 - [x] `tsc --noEmit` **limpo** e `eslint` **limpo**.
 
 ---
@@ -289,3 +298,9 @@ portfolio/
   sensação do Hero até o Contato.
 - **Marcador do livro:** validar no olho a intensidade do levante (hoje `y: -26`, `rotate: -3`)
   e o tempo (sobe em 0.16 / desce em 0.22) em `Sobre.tsx`; ajustar se parecer exagerado.
+- **Transição CRT:** validar no olho a transição Estante → Contato reescrita — duração do
+  colapso do papel (0.20), expansão do raster (0.40) e intensidade do flash (0.6). Se o
+  `scaleY` do Contato parecer elástico demais, trocar por `clipPath`
+  `inset(50% 0% 50% 0%) → inset(0%)`. Observação: a cópia da Estante renderizada dentro
+  do `CRT` tem estado próprio (default Vagabond), então uma edição selecionada antes da
+  transição pode "pular" no primeiro frame; mitigado iniciando o colapso em `t=0`.
