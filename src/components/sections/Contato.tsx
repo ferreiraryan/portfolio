@@ -38,7 +38,7 @@ export default function Contato() {
                 ★ INSERT COIN TO CONNECT ★
               </span>
               <h2 className="mt-2 text-3xl sm:text-5xl font-black tracking-tight text-white">
-                PLAYER 1 — INICIAR CONTATO
+                PLAYER 1 — VAMOS CONVERSAR?
               </h2>
             </div>
 
@@ -62,31 +62,31 @@ export default function Contato() {
               </p>
 
               <a
-                href="https://github.com/ryanferreira"
+                href="https://github.com/ferreiraryan"
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center justify-between p-3.5 rounded border border-emerald-500/40 bg-emerald-950/20 hover:bg-emerald-500/20 hover:border-emerald-300 transition"
               >
                 <span className="font-bold text-white">[1P] GITHUB</span>
-                <span className="text-xs text-emerald-300">/ryanferreira ↗</span>
+                <span className="text-xs text-emerald-300">/ferreiraryan ↗</span>
               </a>
 
               <a
-                href="https://linkedin.com/in/ryanferreira"
+                href="https://linkedin.com/in/ferryan"
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center justify-between p-3.5 rounded border border-cyan-500/40 bg-cyan-950/20 hover:bg-cyan-500/20 hover:border-cyan-300 text-cyan-300 transition"
               >
                 <span className="font-bold text-white">[2P] LINKEDIN</span>
-                <span className="text-xs">/in/ryanferreira ↗</span>
+                <span className="text-xs">/in/ferryan ↗</span>
               </a>
 
               <a
-                href="mailto:contato@ryanferreira.dev"
+                href="mailto:ryanferreira4883@gmail.com"
                 className="flex items-center justify-between p-3.5 rounded border border-fuchsia-500/40 bg-fuchsia-950/20 hover:bg-fuchsia-500/20 hover:border-fuchsia-300 text-fuchsia-300 transition"
               >
                 <span className="font-bold text-white">[3P] E-MAIL DIRETO</span>
-                <span className="text-xs">contato@ryanferreira.dev</span>
+                <span className="text-xs">ryanferreira4883@gmail.com</span>
               </a>
             </div>
 
@@ -98,10 +98,10 @@ export default function Contato() {
                     STAGE CLEAR! // MENSAGEM ENVIADA
                   </p>
                   <h3 className="mt-2 text-2xl font-bold text-white">
-                    GG, {playerName}! Missão registrada no servidor.
+                    GG, {playerName}! Mensagem registrada por aqui.
                   </h3>
                   <p className="mt-2 text-xs text-emerald-200">
-                    Ryan Ferreira responderá em breve para {playerEmail}.
+                    Valeu demais pelo contato! Vou ler tudo com calma e te respondo em breve pelo {playerEmail}.
                   </p>
                   <button
                     type="button"
@@ -113,7 +113,7 @@ export default function Contato() {
                     }}
                     className="mt-5 px-4 py-2 rounded bg-emerald-400 text-black font-bold text-xs uppercase"
                   >
-                    ENVIAR NOVA TRANSMISSÃO
+                    ENVIAR NOVA MENSAGEM
                   </button>
                 </div>
               ) : (
@@ -121,27 +121,27 @@ export default function Contato() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs uppercase tracking-wider text-emerald-300 mb-1">
-                        NICKNAME / NOME:
+                        NICKNAME / SEU NOME:
                       </label>
                       <input
                         type="text"
                         required
                         value={playerName}
                         onChange={(e) => setPlayerName(e.target.value)}
-                        placeholder="Ex.: Player One"
+                        placeholder="Ex.: Como posso te chamar?"
                         className="w-full rounded border border-emerald-500/40 bg-black/80 px-3.5 py-2.5 text-base text-white focus:border-emerald-300 focus:outline-none"
                       />
                     </div>
                     <div>
                       <label className="block text-xs uppercase tracking-wider text-emerald-300 mb-1">
-                        E-MAIL DE RESPOSTA:
+                        E-MAIL PARA RESPOSTA:
                       </label>
                       <input
                         type="email"
                         required
                         value={playerEmail}
                         onChange={(e) => setPlayerEmail(e.target.value)}
-                        placeholder="player@dominio.com"
+                        placeholder="seuemail@dominio.com"
                         className="w-full rounded border border-emerald-500/40 bg-black/80 px-3.5 py-2.5 text-base text-white focus:border-emerald-300 focus:outline-none"
                       />
                     </div>
@@ -149,14 +149,14 @@ export default function Contato() {
 
                   <div>
                     <label className="block text-xs uppercase tracking-wider text-emerald-300 mb-1">
-                      BRIEFING DA MISSÃO / PROJETO:
+                      SOBRE O QUE VAMOS CONVERSAR?
                     </label>
                     <textarea
                       rows={3}
                       required
                       value={playerQuest}
                       onChange={(e) => setPlayerQuest(e.target.value)}
-                      placeholder="Conte sobre o projeto, ideia ou oportunidade..."
+                      placeholder="Me conta sobre uma oportunidade na área de TI, uma ideia de projeto ou manda um oi pra trocarmos ideia sobre tecnologia..."
                       className="w-full rounded border border-emerald-500/40 bg-black/80 px-3.5 py-2.5 text-base text-white focus:border-emerald-300 focus:outline-none"
                     />
                   </div>

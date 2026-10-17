@@ -9,8 +9,9 @@ const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfa
 const jetbrains = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains" });
 
 export const metadata: Metadata = {
-  title: "Ryan Ferreira — Portfólio Cinematográfico",
-  description: "Código, histórias e mundos — tudo em um só scroll.",
+  title: "Ryan Ferreira — Tecnologia, Computação & Projetos",
+  description:
+    "Portfólio de Ryan Ferreira. Estudante de Ciência da Computação (PUC Minas) e Técnico em Informática (COTEMIG), explorando desenvolvimento de software, infraestrutura, dados, IoT, suporte e segurança.",
 };
 
 export default function RootLayout({

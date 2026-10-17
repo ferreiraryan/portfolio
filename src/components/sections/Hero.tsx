@@ -39,9 +39,9 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.1 }}
           className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full border border-white/10 bg-white/[0.03] text-[11px] font-mono uppercase tracking-[0.3em] text-neutral-400"
         >
-          <span>Portfólio Cinematográfico</span>
+          <span>Portfólio &amp; Jornada em TI</span>
           <span className="text-neutral-600">•</span>
-          <span>6 Mundos</span>
+          <span>Múltiplas Áreas</span>
         </motion.div>
 
         <motion.h1
@@ -59,9 +59,12 @@ export default function Hero() {
           transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
           className="mt-6 md:mt-8 max-w-2xl mx-auto text-base sm:text-xl md:text-2xl font-light text-neutral-400 leading-relaxed"
         >
-          <span className="text-white font-normal">Código</span>,{" "}
-          <span className="text-white font-normal">histórias</span> e{" "}
-          <span className="text-white font-normal">mundos</span> — tudo em um só scroll.
+          Movido pela curiosidade de entender como tudo funciona — do{" "}
+          <span className="text-white font-normal">hardware</span> e da{" "}
+          <span className="text-white font-normal">infraestrutura</span> ao{" "}
+          <span className="text-white font-normal">código</span>, aos{" "}
+          <span className="text-white font-normal">dados</span> e às{" "}
+          <span className="text-white font-normal">interfaces</span>.
         </motion.p>
       </div>
 

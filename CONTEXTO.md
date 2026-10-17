@@ -79,6 +79,11 @@ Constantes do dwell do livro (`Sobre.tsx`): `PAGE_DURATION = 1.0` e `LEAD = 0.2`
 (⇒ `DWELL_TOTAL = LEAD + 2 × PAGE_DURATION = 2.2`). O `ScrollTrigger` usa
 `scrub: 0.45` e o `Lenis` (`useLenis.ts`) usa `duration: 1.0`.
 
+O `Sobre` também faz o **ajuste de altura do livro** (fit-to-height): mede a altura
+natural do card, prende a caixa à maior altura medida naquela largura e escala o palco 3D
+(`transform: scale`) para ele caber entre o cabeçalho e o rodapé do palco pinado — assim o
+indicador de páginas e o rodapé nunca saem de tela e nenhuma página é cortada.
+
 ### Contexts — `src/lib/useTransitionTimeline.ts`
 
 | Hook | Função |
@@ -229,6 +234,36 @@ portfolio/
       oculto no mobile, onde o header encosta no gabinete). A camada de entrada não faz
       mais fade por cima do feixe nem usa `scale(0.96)`; o efeito continua reversível
       no scrub (`CRT.tsx`).
+- [x] **Conteúdo real aplicado (v2)** (2026-10-17): `CONTEUDO.md` com **175 dos 232 campos**
+      preenchidos e reaplicado aos 7 arquivos. Identidade final: **Ryan Ferreira — Tecnologia,
+      Computação & Projetos** (PUC Minas + COTEMIG; web/mobile/backend, infra Linux, dados,
+      IoT e suporte). Sobre reescrito em 3 capítulos (curiosidade & começo → caminhos
+      explorados → silício & histórias); Projetos com 4 cases reais (DevStore, Grene IoT,
+      Movie Queue, Visualisit) — o filtro `AI & ENGINE` voltou a ter item (Grene); Skills com
+      3 grimórios novos (Desenvolvimento, Infra/Linux/Suporte, Dados/IoT/Ciência); Estante
+      com One Piece, Omniscient Reader's Viewpoint, Neuromancer e Meditações; Contato com
+      textos mais conversacionais. Nome padronizado para **"Ryan Ferreira"** (sem "Barros").
+      1ª versão havia sido aplicada em 2026-10-16 (124 campos); esta substitui a anterior.
+      `tsc` e `eslint` limpos.
+- [x] **Livro sem corte e sem "pulo" de tamanho** (2026-10-17): o card tinha altura fixa
+      (`lg:h-[min(660px,calc(100dvh-200px))]` + `overflow-hidden`), então o texto mais longo
+      do v2 estourava a caixa e o fim da página direita (Nota de Margem + paginação) ficava
+      invisível. Agora (`Sobre.tsx`):
+      - a seção é `h-screen overflow-hidden` (era `min-h-screen`), garantindo que o
+        indicador de páginas e o rodapé nunca saiam do palco pinado;
+      - o card **não** tem altura no CSS: um `useIsomorphicLayoutEffect` mede a altura
+        natural do conteúdo e **prende a caixa à maior altura já medida naquela largura**
+        (métrica invalidada só quando a largura muda ou as fontes assentam). Isso é o que
+        impede o livro de mudar de tamanho quando a virada começa — a página direita troca
+        de capítulo no primeiro frame da virada (`Sobre.tsx:392`), e cada capítulo tem texto
+        de comprimento diferente (Cap. I 681/153 chars, II 601/121, III 648/113);
+      - o palco 3D inteiro é escalado (`transform: scale`, `transform-origin: top center`)
+        só o suficiente para caber entre o cabeçalho e o rodapé, com `margin-bottom`
+        negativo compensando a sobra de layout para o indicador continuar logo abaixo;
+      - `ResizeObserver` no slot e no palco + `document.fonts.ready` + `window.resize`
+        recalculam; abaixo de `lg` nada é escalado (páginas empilhadas seguem o fluxo).
+      O capítulo mais alto é o I, então a caixa nasce no tamanho certo desde o primeiro
+      paint; `justify-between` das páginas mantém Nota de Margem/paginação no pé da página.
 - [x] `tsc --noEmit` **limpo** e `eslint` **limpo**.
 
 ---
@@ -289,7 +324,13 @@ portfolio/
 
 - **Formulário:** qual estratégia de envio? (API route + Resend / Formspree / mailto)
 - **Mobile:** fallback sem pin ou layout alternativo abaixo de `md`?
-- **Dados reais:** trocar placeholders (projetos, links, e-mail) pelos reais?
+- **Dados reais:** ✅ **resolvido** (2026-10-17). `projetos.prj_04.liveUrl` agora aponta para
+  o repositório do Visualisit e o filtro `AI & ENGINE` voltou a ter item (Grene). Restam
+  ~57 campos do `CONTEUDO.md` em branco (rótulos de UI, transições, `footer_*`), mantidos como estão.
+- **Skills × header RPG:** `skills.header_right` segue "GUILDA DOS ENGENHEIROS • NÍVEL 99"
+  enquanto o nível do personagem virou "NV. MULTICLASSE" — decidir se alinha os dois.
+- **Conteúdo:** `CONTEUDO.md` passa a ser a fonte oficial dos textos — altere lá e peça
+  para aplicar; evita edição espalhada pelos componentes.
 - **SEO:** domínio final para `metadataBase` / `sitemap`.
 - **Pacing do scroll:** calibrar no olho o `HOLD_AFTER_EFFECT` (hoje `0.45`). Com esse
   valor, cada mundo não-livro (Projetos/Skills/Estante/Contato) fica visível por só
@@ -298,6 +339,13 @@ portfolio/
   sensação do Hero até o Contato.
 - **Marcador do livro:** validar no olho a intensidade do levante (hoje `y: -26`, `rotate: -3`)
   e o tempo (sobe em 0.16 / desce em 0.22) em `Sobre.tsx`; ajustar se parecer exagerado.
+- **Altura do livro (fit-to-height):** a caixa fica presa à **maior altura já medida** na
+  largura atual (hoje o Cap. I, o mais longo). Duas decisões abertas: (a) validar no olho em
+  alturas de janela diferentes — medido: 100dvh 1300px → escala 1.00; 820px → 0.83 (corpo de
+  19px → ~16px); 700px → 0.67 (~13px), e a mitigação seria reduzir padding/tipografia do livro
+  por `dvh` para a escala não cair tanto; (b) o caso raro de redimensionar a janela estando num
+  capítulo curto e depois virar para um mais alto ainda pode mudar a caixa uma vez — solução
+  definitiva seria pré-medir os 3 capítulos num passe oculto (`aria-hidden`) no mount.
 - **Transição CRT:** validar no olho a transição Estante → Contato reescrita — duração do
   colapso do papel (0.20), expansão do raster (0.40) e intensidade do flash (0.6). Se o
   `scaleY` do Contato parecer elástico demais, trocar por `clipPath`

@@ -11,82 +11,82 @@ interface SkillNode {
 }
 
 const SKILL_TREES: Record<string, SkillNode[]> = {
-  "Grimório Front-End": [
+  "Desenvolvimento & Apps": [
     {
-      name: "Next.js 16 & React 19",
-      level: 96,
-      rank: "MESTRE [S+]",
-      manaCost: "Passiva Contínua",
-      desc: "Server Components, App Router, Streaming SSR e arquitetura modular de alta performance.",
-    },
-    {
-      name: "TypeScript Estrito",
-      level: 94,
-      rank: "MESTRE [S]",
-      manaCost: "0 MP",
-      desc: "Tipagem avançada, generics, inferência segura de contratos de API e zero 'any'.",
-    },
-    {
-      name: "Tailwind CSS & Design Systems",
-      level: 98,
-      rank: "GRÃO-MESTRE [SS]",
-      manaCost: "10 MP",
-      desc: "Tokens semânticos, layouts responsivos fluidos e temas customizados multiverso.",
-    },
-  ],
-  "Artes de Animação": [
-    {
-      name: "GSAP & ScrollTrigger",
+      name: "Back-End & APIs (Java, Node & Python)",
       level: 92,
-      rank: "ARCANO [S]",
-      manaCost: "25 MP",
-      desc: "Timelines complexas, pin de seções, scrub milimétrico e cortes de tela sincronizados.",
+      rank: "VERSÁTIL [S]",
+      manaCost: "20 MP",
+      desc: "Construção de APIs REST com Spring Boot, Node.js (TypeScript) e FastAPI, aplicando autenticação JWT, TDD e foco em código seguro e organizado.",
     },
     {
-      name: "Lenis & Framer Motion",
-      level: 90,
-      rank: "ARCANO [A+]",
+      name: "Front-End & Web (React & TypeScript)",
+      level: 88,
+      rank: "AVANÇADO [A+]",
       manaCost: "15 MP",
-      desc: "Inércia suave de rolagem sincronizada ao ticker e transições declarativas de layout.",
+      desc: "Criação de interfaces web modernas, responsivas e PWAs que conversam de ponta a ponta com o backend mantendo consistência de tipos.",
     },
     {
-      name: "SVG Clip-Path & Shaders",
-      level: 86,
-      rank: "ESPECIALISTA [A]",
-      manaCost: "35 MP",
-      desc: "Máscaras vetoriais dinâmicas para efeitos de rasgo de papel, estilhaços e CRT.",
+      name: "Mobile & Tempo Real (Flutter & Firebase)",
+      level: 85,
+      rank: "EXPLORADOR [A]",
+      manaCost: "20 MP",
+      desc: "Desenvolvimento de aplicativos para Android e Web com sincronização instantânea no Cloud Firestore, autenticação de usuários e boa experiência de uso.",
     },
   ],
-  "Forja Back-End": [
+  "Infra, Linux & Suporte": [
     {
-      name: "Node.js & APIs REST/GraphQL",
-      level: 91,
-      rank: "MESTRE [S]",
-      manaCost: "20 MP",
-      desc: "Serviços escaláveis, autenticação segura, caching inteligente e baixa latência.",
+      name: "Linux (Arch), Redes & Segurança",
+      level: 94,
+      rank: "DOMÍNIO PRÁTICO [S+]",
+      manaCost: "Passiva Contínua",
+      desc: "Configuração e uso diário de Arch Linux, explorando o sistema operacional a fundo, redes TCP/IP, firewalls, hardening e boas práticas do OWASP Top 10.",
     },
     {
-      name: "PostgreSQL, Prisma & Redis",
-      level: 88,
-      rank: "VETERANO [A+]",
+      name: "Docker, Ambientes & Automação Bash",
+      level: 90,
+      rank: "ESPECIALISTA [S]",
       manaCost: "20 MP",
-      desc: "Modelagem relacional limpa, índices otimizados e filas assíncronas.",
+      desc: "Conteinerização para isolar aplicações e criação de scripts em Shell/Bash que automatizam tarefas repetitivas de infraestrutura e desenvolvimento.",
     },
     {
-      name: "Docker, CI/CD & Cloud",
-      level: 85,
-      rank: "VETERANO [A]",
+      name: "Suporte Técnico, Hardware & Pessoas",
+      level: 95,
+      rank: "VIVÊNCIA REAL [S+]",
+      manaCost: "10 MP",
+      desc: "Experiência prática no TRT-3 e na Prefeitura de Nova Lima resolvendo incidentes críticos, fazendo manutenção de hardware e redes e apoiando usuários e professores.",
+    },
+  ],
+  "Dados, IoT & Ciência": [
+    {
+      name: "Bancos de Dados & SQL",
+      level: 89,
+      rank: "CERTIFICADO [A+]",
+      manaCost: "15 MP",
+      desc: "Modelagem e administração de bancos de dados relacionais, com planejamento de índices, otimização de consultas e estratégias de recuperação.",
+    },
+    {
+      name: "IoT & Sistemas Embarcados (C/C++ & ESP32)",
+      level: 84,
+      rank: "INVENTOR [A]",
+      manaCost: "25 MP",
+      desc: "Programação próxima ao hardware para leitura de sensores em microcontroladores, cuidando de eficiência energética, memória e envio de dados na borda.",
+    },
+    {
+      name: "Algoritmos, Matemática & Base em IA",
+      level: 86,
+      rank: "ACADÊMICO [A]",
       manaCost: "30 MP",
-      desc: "Containers reprodutíveis, pipelines automatizados e deploy edge.",
+      desc: "Base em Ciência da Computação na PUC Minas unindo Estruturas de Dados, Cálculo, Álgebra Linear e Estatística para análise de dados e modelos de IA.",
     },
   ],
 };
 
 const BASE_ATTRIBUTES = [
-  { code: "INT", name: "Arquitetura & Lógica", val: 96 },
-  { code: "DEX", name: "UI Motion & Performance", val: 94 },
-  { code: "WIS", name: "Resolução de Problemas", val: 92 },
-  { code: "CHA", name: "Storytelling & UX", val: 95 },
+  { code: "INT", name: "Lógica, Dados & Ciência da Computação", val: 92 },
+  { code: "DEX", name: "Desenvolvimento Web, Mobile & APIs", val: 94 },
+  { code: "WIS", name: "Infraestrutura, Linux & Segurança", val: 93 },
+  { code: "CHA", name: "Suporte, Comunicação & Trabalho em Equipe", val: 95 },
 ];
 
 export default function Skills() {
@@ -112,10 +112,10 @@ export default function Skills() {
             <div>
               <div className="flex items-center justify-between">
                 <span className="px-2.5 py-0.5 rounded bg-amber-500/20 border border-amber-400/50 font-mono text-xs text-amber-200">
-                  CLASSE: ARQUITETO ARCANO
+                  CLASSE: EXPLORADOR DE TI &amp; COMPUTAÇÃO
                 </span>
                 <span className="font-mono text-xs text-amber-300 font-bold">
-                  NV. 99
+                  NV. MULTICLASSE
                 </span>
               </div>
 
@@ -127,7 +127,7 @@ export default function Skills() {
               <div className="mt-4 space-y-2 font-mono text-[13px]">
                 <div>
                   <div className="flex justify-between text-emerald-300 mb-1">
-                    <span>HP (ESTABILIDADE EM PRODUÇÃO)</span>
+                    <span>HP (RESILIÊNCIA &amp; DISPONIBILIDADE)</span>
                     <span className="tabular-nums">9999 / 9999</span>
                   </div>
                   <div className="h-3 w-full rounded bg-black/70 overflow-hidden border border-emerald-500/60">
@@ -137,8 +137,8 @@ export default function Skills() {
 
                 <div>
                   <div className="flex justify-between text-sky-300 mb-1">
-                    <span>MP (CRIATIVIDADE &amp; CAFEÍNA)</span>
-                    <span className="tabular-nums">850 / 850</span>
+                    <span>MP (CURIOSIDADE &amp; VONTADE DE APRENDER)</span>
+                    <span className="tabular-nums">999 / 999</span>
                   </div>
                   <div className="h-3 w-full rounded bg-black/70 overflow-hidden border border-sky-500/60">
                     <div className="h-full w-[94%] bg-gradient-to-r from-sky-600 to-cyan-300" />
@@ -179,7 +179,8 @@ export default function Skills() {
 
             <div className="mt-6 p-3 rounded bg-amber-950/40 border border-amber-500/30 font-mono text-[13px] text-[#F3E3C3]">
               <strong className="text-amber-400">EQUIPAMENTO ATUAL:</strong>{" "}
-              Next.js 16 Grimoire + Luvas de TypeScript + Botas de Scroll Suave (Lenis)
+              Arch Linux + Neovim + Docker + Bagagem da PUC Minas &amp; COTEMIG +
+              Curiosidade para explorar novas áreas
             </div>
           </div>
 
