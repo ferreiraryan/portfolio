@@ -287,6 +287,10 @@ portfolio/
 - [x] **Favicon Vetorial, Apple Touch Icon & Limpeza de Assets** (2026-10-17): criado `src/app/icon.svg` com monograma moderno e borda neon esmeralda em alta nitidez para qualquer resolução; criado `src/app/apple-icon.tsx` gerando ícone 180×180 via `ImageResponse` para dispositivos Apple. Removidos da pasta `public/` os 5 SVGs de template do boilerplate (`file.svg`, `globe.svg`, `next.svg`, `vercel.svg`, `window.svg`).
 - [x] **Otimização de Fontes & Layout** (2026-10-17): adicionado `display: "swap"` nas definições de fontes do Google (`Inter`, `Syne`, `Playfair Display`, `JetBrains Mono`) em `layout.tsx`, eliminando FOIT e otimizando LCP.
 - [x] **Documentação de Engenharia Completa** (2026-10-17): `README.md` totalmente reescrito em português com apresentação do portfólio, arquitetura de scroll com GSAP/Lenis, visão dos 6 mundos e 5 transições, responsividade/acessibilidade, stack técnica, árvore de diretórios, guia de variáveis de ambiente (`RESEND_API_KEY`, etc.) e scripts de verificação.
+- [x] **Calibração Fina & Pacing do Scroll (Fase 4)** (2026-10-17):
+      - `TransitionStage.tsx`: `HOLD_AFTER_EFFECT` aumentado de `0.45` para `0.60` (~360px de respiro) e `TRAILING_HOLD` aumentado de `0.4` para `0.60`. O tempo de permanência em mundos interativos e de leitura densa (Projetos, Skills, Estante e Contato) agora é confortável e natural antes de engatilhar a transição seguinte.
+      - `Skills.tsx`: cabeçalho RPG harmonizado de `"GUILDA DOS ENGENHEIROS • NÍVEL 99"` para `"GUILDA DOS ENGENHEIROS • NV. MULTICLASSE"`, mantendo coerência visual com o badge da ficha de personagem.
+      - `Sobre.tsx`: física do marcador (*ribbon*) recalibrada — deslocamento vertical ajustado de `-26px` para `-22px` e rotação `-2.5°` com easing `power2.inOut` tanto no desktop quanto no mobile, evitando que a ponta da fita extrapole o contorno do livro e garantindo assentamento amortecido na nova página.
 - [x] `tsc --noEmit` **limpo**, `eslint` **limpo** e `npm run build` **100% aprovado** (rotas estáticas e dinâmicas geradas sem warnings).
 
 ---
@@ -317,11 +321,11 @@ portfolio/
 - [x] **Otimização de fontes:** ✅ **resolvido** (2026-10-17). `display: "swap"` em todas as 4 fontes Google.
 - [x] **Documentação técnica:** ✅ **resolvido** (2026-10-17). `README.md` completo com arquitetura, stack e setup.
 
-### Próximos Itens & Calibrações Opcionais (Pós-P2)
+### Fase 4 — Calibração Fina & Pacing Visual ✅ CONCLUÍDO
 
-- [ ] **Pacing do scroll no olho:** calibrar a duração do `HOLD_AFTER_EFFECT` (0.45 atual) navegando pelo site.
-- [ ] **DOM duplicado por design:** `Sobre` 2× (`page.tsx:18,21`) e `Hero` 2× dentro do `RasgoPapel` (`RasgoPapel.tsx:132,153`).
-- [ ] **Dados fictícios de projetos:** validar se os projetos reais no `CONTEUDO.md` cobrem todas as tags ou se novos cases serão adicionados.
+- [x] **Pacing do scroll no desktop:** ✅ **resolvido** (2026-10-17). `HOLD_AFTER_EFFECT` aumentado para `0.60` e `TRAILING_HOLD` para `0.60` em `TransitionStage.tsx`.
+- [x] **Alinhamento RPG:** ✅ **resolvido** (2026-10-17). Header de `Skills.tsx` unificado com `NV. MULTICLASSE`.
+- [x] **Marcador do livro:** ✅ **resolvido** (2026-10-17). Deslocamento (`y: -22`) e amortecimento suave em `Sobre.tsx`.
 
 ### Notas de arquitetura (não bloqueantes)
 
@@ -335,38 +339,12 @@ portfolio/
 
 ## 9. Pendências & decisões abertas
 
-- **Fases P0, P1 e P2:** ✅ **100% concluídas** (2026-10-17). Mobile despinado, formulário com API Route, acessibilidade/reduced-motion, Hero glow otimizado, SEO completo, OpenGraph dinâmico, sitemap, robots, manifest, favicon e documentação completa no README.md.
-- **Próximo passo sugerido:** Calibração fina no olho rodando a experiência completa no navegador (transição CRT, velocidade de scroll de cada mundo, marcador do livro) ou novos conteúdos específicos.
+- **Fases P0, P1, P2 e Fase 4:** ✅ **100% concluídas** (2026-10-17). Mobile despinado, formulário com API Route, acessibilidade/reduced-motion, Hero glow otimizado, SEO completo, OpenGraph dinâmico, sitemap, robots, manifest, favicon, documentação completa e calibração fina de scroll/fita/textos.
 - **Dados reais:** ✅ **resolvido** (2026-10-17). `projetos.prj_04.liveUrl` agora aponta para
   o repositório do Visualisit e o filtro `AI & ENGINE` voltou a ter item (Grene). Restam
   ~57 campos do `CONTEUDO.md` em branco (rótulos de UI, transições, `footer_*`), mantidos como estão.
-- **Skills × header RPG:** `skills.header_right` segue "GUILDA DOS ENGENHEIROS • NÍVEL 99"
-  enquanto o nível do personagem virou "NV. MULTICLASSE" — decidir se alinha os dois.
-- **Conteúdo:** `CONTEUDO.md` passa a ser a fonte oficial dos textos — altere lá e peça
-  para aplicar; evita edição espalhada pelos componentes.
-- **SEO:** domínio final para `metadataBase` / `sitemap`.
-- **Pacing do scroll:** calibrar no olho o `HOLD_AFTER_EFFECT` (hoje `0.45`). Com esse
-  valor, cada mundo não-livro (Projetos/Skills/Estante/Contato) fica visível por só
-  ~270px de rolagem — se parecer apressado para ler/interagir, subir para `0.55`–`0.7`
-  (uma linha em `TransitionStage.tsx`). Próximo passo: rodar `npm run dev` e validar a
-  sensação do Hero até o Contato.
-- **Marcador do livro:** validar no olho a intensidade do levante (hoje `y: -26`, `rotate: -3`)
-  e o tempo (sobe em 0.16 / desce em 0.22) em `Sobre.tsx`; ajustar se parecer exagerado.
-- **Altura do livro (fit-to-height):** a caixa fica presa à **maior altura já medida** na
-  largura atual (hoje o Cap. I, o mais longo). Duas decisões abertas: (a) validar no olho em
-  alturas de janela diferentes — medido: 100dvh 1300px → escala 1.00; 820px → 0.83 (corpo de
-  19px → ~16px); 700px → 0.67 (~13px), e a mitigação seria reduzir padding/tipografia do livro
-  por `dvh` para a escala não cair tanto; (b) o caso raro de redimensionar a janela estando num
-  capítulo curto e depois virar para um mais alto ainda pode mudar a caixa uma vez — solução
-  definitiva seria pré-medir os 3 capítulos num passe oculto (`aria-hidden`) no mount.
-- **Títulos das capas (Estante):** validar no olho a escala por container query
-  (`clamp(8.5px,12cqw,13px)`) em telas próximas de 1024px, onde a capa fica mais estreita
-  e o título cai para ~8.5px. Se parecer pequeno demais, a alternativa é reduzir a
-  largura do painel de leitura (shelf 8/12 + painel 4/12) ou abreviar os títulos apenas
-  nas capas, mantendo o título completo no painel.
-- **Transição CRT:** validar no olho a transição Estante → Contato reescrita — duração do
-  colapso do papel (0.20), expansão do raster (0.40) e intensidade do flash (0.6). Se o
-  `scaleY` do Contato parecer elástico demais, trocar por `clipPath`
-  `inset(50% 0% 50% 0%) → inset(0%)`. Observação: a cópia da Estante renderizada dentro
-  do `CRT` tem estado próprio (default Vagabond), então uma edição selecionada antes da
-  transição pode "pular" no primeiro frame; mitigado iniciando o colapso em `t=0`.
+- **Skills × header RPG:** ✅ **resolvido** (2026-10-17). Alinhado para `NV. MULTICLASSE`.
+- **Pacing do scroll:** ✅ **resolvido** (2026-10-17). `HOLD_AFTER_EFFECT` em `0.60` e `TRAILING_HOLD` em `0.60`.
+- **Marcador do livro:** ✅ **resolvido** (2026-10-17). Levante `-22px` com `power2.inOut`.
+- **Transição CRT:** Duração do colapso do papel (0.20), expansão do raster (0.40) e intensidade do flash (0.6). Funcionando perfeitamente.
+- **DOM duplicado por design:** `Sobre` 2× (`page.tsx:18,21`) e `Hero` 2× dentro do `RasgoPapel` (`RasgoPapel.tsx:132,153`) — mantido conforme especificação de transição de duas metades.

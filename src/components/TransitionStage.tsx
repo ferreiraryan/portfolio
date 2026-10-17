@@ -19,11 +19,11 @@ gsap.registerPlugin(ScrollTrigger);
 /** Duração normalizada de cada efeito de transição (em "unidades" de timeline). */
 const EFFECT_DURATION = 1;
 /** Tempo de respiro (mundo parado) depois de cada efeito. */
-const HOLD_AFTER_EFFECT = 0.45;
+const HOLD_AFTER_EFFECT = 0.6;
 /** Pequeno respiro antes do primeiro efeito. */
 const LEAD_IN = 0.15;
 /** Respiro final para apreciar o último mundo antes de soltar o pin. */
-const TRAILING_HOLD = 0.4;
+const TRAILING_HOLD = 0.6;
 /** Quanto de scroll (px) cada unidade de timeline representa. */
 const PX_PER_UNIT = 600;
 

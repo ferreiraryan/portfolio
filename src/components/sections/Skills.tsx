@@ -101,7 +101,7 @@ export default function Skills() {
       {/* Header RPG */}
       <header className="flex flex-wrap items-center justify-between gap-2 border-b border-amber-500/30 pb-3 font-mono text-eyebrow uppercase tracking-[0.14em] text-amber-300 select-none">
         <span>04 // Universo RPG — Ficha de Personagem</span>
-        <span>GUILDA DOS ENGENHEIROS • NÍVEL 99</span>
+        <span>GUILDA DOS ENGENHEIROS • NV. MULTICLASSE</span>
       </header>
 
       {/* Container da Ficha */}

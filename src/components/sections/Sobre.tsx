@@ -478,12 +478,12 @@ export default function Sobre({ scrollPages = false }: SobreProps) {
           // por baixo, e desce de volta ao deitar — assentando na nova página.
           tl.to(
             bookmark,
-            { y: -26, rotate: -3, duration: 0.16, ease: "power2.out" },
+            { y: -22, rotate: -2.5, duration: 0.16, ease: "power2.out" },
             start - 0.06
           );
           tl.to(
             bookmark,
-            { y: 0, rotate: 0, duration: 0.22, ease: "power2.in" },
+            { y: 0, rotate: 0, duration: 0.22, ease: "power2.inOut" },
             end - 0.22
           );
         }
@@ -502,12 +502,12 @@ export default function Sobre({ scrollPages = false }: SobreProps) {
         if (bookmark) {
           tl.to(
             bookmark,
-            { y: -26, rotate: -3, duration: 0.16, ease: "power2.out" },
+            { y: -22, rotate: -2.5, duration: 0.16, ease: "power2.out" },
             mid - 0.24
           );
           tl.to(
             bookmark,
-            { y: 0, rotate: 0, duration: 0.22, ease: "power2.in" },
+            { y: 0, rotate: 0, duration: 0.22, ease: "power2.inOut" },
             mid + 0.02
           );
         }
