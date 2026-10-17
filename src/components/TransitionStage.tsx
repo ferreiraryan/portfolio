@@ -19,13 +19,13 @@ gsap.registerPlugin(ScrollTrigger);
 /** Duração normalizada de cada efeito de transição (em "unidades" de timeline). */
 const EFFECT_DURATION = 1;
 /** Tempo de respiro (mundo parado) depois de cada efeito. */
-const HOLD_AFTER_EFFECT = 0.85;
+const HOLD_AFTER_EFFECT = 0.45;
 /** Pequeno respiro antes do primeiro efeito. */
-const LEAD_IN = 0.3;
+const LEAD_IN = 0.15;
 /** Respiro final para apreciar o último mundo antes de soltar o pin. */
-const TRAILING_HOLD = 0.7;
+const TRAILING_HOLD = 0.4;
 /** Quanto de scroll (px) cada unidade de timeline representa. */
-const PX_PER_UNIT = 900;
+const PX_PER_UNIT = 600;
 
 /**
  * Palco único: todos os mundos/transições ficam empilhados e são orquestrados
@@ -135,7 +135,7 @@ export default function TransitionStage({ children }: { children: ReactNode }) {
         start: "top top",
         end: () => "+=" + Math.round(total * PX_PER_UNIT),
         pin: stage,
-        scrub: 0.85,
+        scrub: 0.45,
         anticipatePin: 1,
         invalidateOnRefresh: true,
         animation: master,
