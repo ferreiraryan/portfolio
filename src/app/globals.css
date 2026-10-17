@@ -1,5 +1,23 @@
 @import "tailwindcss";
 
+/*
+ * Liga as fontes do `next/font` (que já eram baixadas, mas nunca usadas) aos
+ * utilitários do Tailwind: Inter = corpo, Syne = display, Playfair = livro,
+ * JetBrains Mono = terminal/labels.
+ */
+@theme inline {
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-syne);
+  --font-serif: var(--font-playfair);
+  --font-mono: var(--font-jetbrains);
+
+  /* Escala tipográfica fluida: não encolhe demais em notebooks de 768px. */
+  --text-eyebrow: clamp(0.72rem, 0.12vw + 0.69rem, 0.8rem);
+  --text-eyebrow--line-height: 1.4;
+  --text-body: clamp(1rem, 0.35vw + 0.9rem, 1.125rem);
+  --text-body--line-height: 1.65;
+}
+
 :root {
   --background: #050505;
   --foreground: #f5f5f7;
@@ -37,9 +55,10 @@ html.lenis body {
 
 /* Scanlines sutis para o modo CRT / Arcade */
 .crt-scanlines {
-  background: linear-gradient(
+  background-color: #050508;
+  background-image: linear-gradient(
     rgba(18, 16, 16, 0) 50%,
-    rgba(0, 0, 0, 0.42) 50%
+    rgba(0, 0, 0, 0.22) 50%
   );
   background-size: 100% 4px;
 }

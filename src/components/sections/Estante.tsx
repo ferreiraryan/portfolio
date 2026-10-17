@@ -64,12 +64,12 @@ export default function Estante() {
   const [selectedVol, setSelectedVol] = useState<MangaVolume>(VOLUMES[0]);
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col justify-between p-5 sm:p-10 md:p-14 bg-[#F4F0EA] text-neutral-950 select-none">
+    <div className="relative flex min-h-screen w-full flex-col justify-between p-5 sm:p-10 md:p-14 bg-[#F4F0EA] text-neutral-950">
       {/* Retícula halftone sutil */}
       <div className="manga-halftone pointer-events-none absolute inset-0 opacity-[0.07]" />
 
       {/* Header HQ */}
-      <header className="relative z-10 flex flex-wrap items-center justify-between gap-2 border-b-4 border-black pb-3 text-xs font-mono font-bold uppercase tracking-[0.2em]">
+      <header className="relative z-10 flex flex-wrap items-center justify-between gap-2 border-b-4 border-black pb-3 text-xs font-mono font-bold uppercase tracking-[0.2em] select-none">
         <span className="bg-black text-white px-2.5 py-1">
           05 // Universo Mangá &amp; Quadrinhos — A Estante
         </span>
@@ -129,7 +129,7 @@ export default function Estante() {
               {selectedVol.vol} {"// DESTAQUE"}
             </div>
 
-            <p className="font-mono text-xs font-bold uppercase text-neutral-500">
+            <p className="font-mono text-xs font-bold uppercase text-neutral-700">
               {selectedVol.author} • {selectedVol.jpTitle}
             </p>
             <h3 className="mt-1 font-display text-3xl sm:text-4xl font-black uppercase text-black">
@@ -153,7 +153,7 @@ export default function Estante() {
         </div>
       </div>
 
-      <footer className="relative z-10 flex items-center justify-between text-xs font-mono font-bold uppercase tracking-[0.2em]">
+      <footer className="relative z-10 flex items-center justify-between text-xs font-mono font-bold uppercase tracking-[0.2em] select-none">
         <span>Fundo: Papel Off-White (#F4F0EA)</span>
         <span>Role para ligar o Tubo CRT (Arcade) ↓</span>
         <span>05 / 06</span>

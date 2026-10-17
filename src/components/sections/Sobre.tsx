@@ -30,7 +30,7 @@ const CHAPTERS = [
   },
   {
     number: "Capítulo III",
-    title: "Alemão do Código: Mundos",
+    title: "Além do Código: Mundos",
     quote: "“Jogos, mangás e literatura moldaram meu olhar para ritmo, contraste e impacto visual.”",
     dropCap: "Q",
     body: "uando não estou projetando aplicações web ou otimizando queries, estou explorando universos de RPG, colecionando edições de mangá ou estudando design de jogos retrô. Este portfólio reúne todas essas referências em uma única jornada contínua.",
@@ -96,12 +96,12 @@ function FolhearNav({
 }) {
   return (
     <div className="mt-8 border-t border-stone-300 pt-5">
-      <p className="mb-3 text-[11px] font-mono uppercase tracking-[0.2em] text-stone-500">
+      <p className="mb-3 text-eyebrow font-mono uppercase tracking-[0.14em] text-stone-700">
         Folhear Capítulos:
       </p>
       <div className="flex flex-wrap gap-2">
         {CHAPTERS.map((chap, idx) => {
-          const cls = `rounded-sm border px-3 py-1.5 text-xs font-mono uppercase tracking-wider transition ${
+          const cls = `inline-flex min-h-10 items-center justify-center rounded-sm border px-3 py-2 text-[13px] font-mono uppercase tracking-wider transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-700 focus-visible:ring-offset-2 focus-visible:ring-offset-[#EAE6DF] ${
             chapterIdx === idx
               ? "border-stone-900 bg-stone-900 text-stone-100"
               : "border-stone-400/60 bg-stone-200/70 text-stone-700 hover:bg-stone-300/80"
@@ -139,17 +139,17 @@ function LeftPage({
   goToChapter: (idx: number) => void;
 }) {
   return (
-    <div className="flex h-full flex-col justify-between p-7 sm:p-10 md:p-12">
+    <div className="flex h-full flex-col justify-between p-6 sm:p-9 lg:p-11">
       <div>
-        <div className="flex items-center justify-between text-xs font-mono uppercase tracking-[0.25em] text-stone-500">
+        <div className="flex items-center justify-between text-eyebrow font-mono uppercase tracking-[0.14em] text-stone-700">
           <span>{chapter.number}</span>
           <span>{chapter.metaLeft}</span>
         </div>
 
-        <h2 className="mt-4 font-serif text-3xl leading-tight font-normal text-stone-900 sm:text-4xl md:text-5xl">
+        <h2 className="mt-4 font-serif text-3xl leading-tight font-normal text-balance text-stone-900 sm:text-4xl md:text-5xl">
           {chapter.title}
         </h2>
-        <blockquote className="mt-6 border-l-2 border-stone-500 pl-4 font-serif text-lg italic leading-relaxed text-stone-700 sm:text-xl">
+        <blockquote className="mt-6 border-l-2 border-stone-500 pl-4 font-serif text-xl italic leading-relaxed text-stone-700 sm:text-2xl">
           {chapter.quote}
         </blockquote>
       </div>
@@ -176,21 +176,21 @@ function RightPage({
   goToChapter: (idx: number) => void;
 }) {
   return (
-    <div className="flex h-full flex-col justify-between p-7 sm:p-10 md:p-12">
+    <div className="flex h-full flex-col justify-between p-6 sm:p-9 lg:p-11">
       <div>
-        <p className="text-justify font-serif text-base leading-relaxed text-stone-800 sm:text-lg">
-          <span className="float-left pr-3 pt-1 font-serif text-5xl leading-none font-bold text-stone-900 sm:text-6xl">
+        <p className="text-justify hyphens-auto font-serif text-[1.0625rem] leading-[1.7] text-stone-800 sm:text-[1.1875rem]">
+          <span className="float-left pr-3 pt-1 font-serif text-[3.5rem] leading-none font-bold text-stone-900 sm:text-[4.5rem]">
             {chapter.dropCap}
           </span>
           {chapter.body}
         </p>
 
-        <div className="mt-8 border-l-2 border-stone-700 bg-stone-200/75 p-4 text-xs font-mono leading-relaxed text-stone-700">
+        <div className="mt-8 border-l-2 border-stone-700 bg-stone-200/75 p-4 font-mono text-[13px] leading-relaxed text-stone-700">
           {chapter.marginNote}
         </div>
       </div>
 
-      <div className="mt-8 flex items-center justify-between border-t border-stone-300 pt-4 text-xs font-mono text-stone-500">
+      <div className="mt-8 flex items-center justify-between border-t border-stone-300 pt-4 font-mono text-[13px] text-stone-700">
         <span>{chapter.metaRight}</span>
         <div className="flex items-center gap-2">
           {interactive ? (
@@ -198,14 +198,14 @@ function RightPage({
               <button
                 type="button"
                 onClick={() => goToChapter(chapterIdx - 1)}
-                className="border border-stone-400 px-2.5 py-1 text-stone-800 transition hover:bg-stone-300"
+                className="inline-flex min-h-10 items-center border border-stone-400 px-3 py-1.5 text-stone-800 transition hover:bg-stone-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-700 focus-visible:ring-offset-2 focus-visible:ring-offset-[#EDE9E3]"
               >
                 ← Anterior
               </button>
               <button
                 type="button"
                 onClick={() => goToChapter(chapterIdx + 1)}
-                className="bg-stone-900 px-2.5 py-1 text-stone-100 transition hover:bg-stone-800"
+                className="inline-flex min-h-10 items-center bg-stone-900 px-3 py-1.5 text-stone-100 transition hover:bg-stone-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-700 focus-visible:ring-offset-2 focus-visible:ring-offset-[#EDE9E3]"
               >
                 Próxima →
               </button>
@@ -214,13 +214,13 @@ function RightPage({
             <>
               <span
                 aria-hidden="true"
-                className="border border-stone-400 px-2.5 py-1 text-stone-800"
+                className="inline-flex min-h-10 items-center border border-stone-400 px-3 py-1.5 text-stone-800"
               >
                 ← Anterior
               </span>
               <span
                 aria-hidden="true"
-                className="bg-stone-900 px-2.5 py-1 text-stone-100"
+                className="inline-flex min-h-10 items-center bg-stone-900 px-3 py-1.5 text-stone-100"
               >
                 Próxima →
               </span>
@@ -403,21 +403,21 @@ export default function Sobre({ scrollPages = false }: SobreProps) {
   });
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col justify-between bg-[#D6D3CD] p-5 text-[#1E1D1A] select-none sm:p-10 md:p-16">
+    <div className="relative flex min-h-screen w-full flex-col justify-between bg-[#D6D3CD] p-5 text-[#1E1D1A] sm:p-8 lg:px-12 lg:py-8">
       {/* Cabeçalho editorial */}
-      <header className="flex items-center justify-between border-b border-stone-400/70 pb-3 text-[11px] font-mono uppercase tracking-[0.25em] text-stone-600">
+      <header className="flex items-center justify-between border-b border-stone-400/70 pb-3 font-mono text-eyebrow uppercase tracking-[0.14em] text-stone-700 select-none">
         <span>02 // Universo Livro — Sobre</span>
         <span>Edição de Colecionador • Ex-Libris Ryan Ferreira</span>
       </header>
 
       {/* Livro Aberto em Duas Páginas */}
-      <div className="mx-auto my-auto w-full max-w-5xl py-6">
+      <div className="mx-auto my-auto w-full max-w-6xl py-4">
         {/* Palco 3D do livro — sem overflow, para a folha girar livre. */}
         <div className="relative" style={{ perspective: 2000 }}>
           {/* Spread estático (recortado com borda e sombra) */}
           <div
             ref={cardRef}
-            className="relative grid grid-cols-1 overflow-hidden rounded-sm border border-stone-400/80 bg-[#EAE6DF] shadow-[0_28px_60px_rgba(30,29,26,0.22)] lg:h-[560px] lg:grid-cols-12"
+            className="relative grid grid-cols-1 overflow-hidden rounded-sm border border-stone-400/80 bg-[#EAE6DF] shadow-[0_28px_60px_rgba(30,29,26,0.22)] lg:h-[min(660px,calc(100dvh-200px))] lg:grid-cols-12"
           >
             {/* Sombra projetada pela folha enquanto vira */}
             <div
@@ -513,19 +513,37 @@ export default function Sobre({ scrollPages = false }: SobreProps) {
         </div>
 
         {/* Indicador de páginas folheadas pelo scroll */}
-        <div className="mt-4 flex items-center justify-center gap-2">
-          {CHAPTERS.map((chap, idx) => (
-            <span
-              key={chap.number}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                chapterIdx === idx ? "w-8 bg-stone-700" : "w-1.5 bg-stone-400/70"
-              }`}
-            />
-          ))}
+        <div className="mt-4 flex items-center justify-center gap-1">
+          {CHAPTERS.map((chap, idx) => {
+            const active = chapterIdx === idx;
+            const bar = `h-2 rounded-full transition-all duration-300 ${
+              active ? "w-10 bg-stone-700" : "w-2 bg-stone-500/70"
+            }`;
+            return scrollPages ? (
+              <button
+                key={chap.number}
+                type="button"
+                aria-label={`Ir para ${chap.number}`}
+                aria-current={active ? "true" : undefined}
+                onClick={() => goToChapter(idx)}
+                className="flex h-7 w-7 items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-700"
+              >
+                <span className={bar} />
+              </button>
+            ) : (
+              <span
+                key={chap.number}
+                aria-hidden="true"
+                className="flex h-7 w-7 items-center justify-center"
+              >
+                <span className={bar} />
+              </span>
+            );
+          })}
         </div>
       </div>
 
-      <footer className="flex items-center justify-between text-[11px] font-mono uppercase tracking-[0.2em] text-stone-600">
+      <footer className="flex items-center justify-between font-mono text-eyebrow uppercase tracking-[0.12em] text-stone-700 select-none">
         <span>Tipografia: Playfair Display</span>
         <span>
           {isLastChapter

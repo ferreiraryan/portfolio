@@ -24,7 +24,7 @@ export default function Hero() {
         backgroundImage: `radial-gradient(550px circle at ${mousePos.x}% ${mousePos.y}%, rgba(255,255,255,0.065), transparent 60%)`,
       }}
     >
-      <header className="flex items-center justify-between text-[11px] font-mono uppercase tracking-[0.28em] text-neutral-500">
+      <header className="flex items-center justify-between font-mono text-eyebrow uppercase tracking-[0.2em] text-neutral-400 select-none">
         <span>01 // Universo Neutro</span>
         <span className="flex items-center gap-2">
           <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -65,8 +65,8 @@ export default function Hero() {
         </motion.p>
       </div>
 
-      <footer className="flex items-center justify-between text-[11px] font-mono uppercase tracking-[0.22em] text-neutral-500">
-        <span>Next.js 14 • GSAP • Lenis</span>
+      <footer className="flex items-center justify-between font-mono text-eyebrow uppercase tracking-[0.2em] text-neutral-400 select-none">
+        <span>Next.js 16 • GSAP • Lenis</span>
         <div className="flex items-center gap-2 text-neutral-300">
           <span>Role para rasgar</span>
           <span className="inline-block animate-bounce">↓</span>
