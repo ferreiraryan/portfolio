@@ -45,11 +45,11 @@ type Chapter = (typeof CHAPTERS)[number];
 /** 2 viradas de página (Cap. I → II → III). */
 const TURNS = CHAPTERS.length - 1;
 /** Duração de cada virada (em "unidades" da timeline de scroll). */
-const PAGE_DURATION = 1.4;
+const PAGE_DURATION = 1.0;
 /** Fração da virada em que a folha realmente gira (o resto é assentamento). */
 const ROT = PAGE_DURATION * 0.86;
 /** Respiro com o Cap. I parado antes da primeira virada. */
-const LEAD = 0.3;
+const LEAD = 0.2;
 /** Duração total do dwell do livro. */
 const DWELL_TOTAL = LEAD + TURNS * PAGE_DURATION;
 /**
@@ -249,6 +249,7 @@ export default function Sobre({ scrollPages = false }: SobreProps) {
   const backFaceRef = useRef<HTMLDivElement>(null);
   const frontShadeRef = useRef<HTMLDivElement>(null);
   const backShadeRef = useRef<HTMLDivElement>(null);
+  const bookmarkRef = useRef<HTMLDivElement>(null);
 
   const goToDwell = useScrollToDwell();
   const goToChapter = useCallback(
@@ -275,11 +276,14 @@ export default function Sobre({ scrollPages = false }: SobreProps) {
       const backFace = backFaceRef.current;
       const front = frontShadeRef.current;
       const back = backShadeRef.current;
+      const bookmark = bookmarkRef.current;
 
       tl.set(sheet, { autoAlpha: 0, rotateY: 0, z: 0 }, 0);
       // Estado inicial: a frente (recto) aparece; o verso fica escondido.
       if (frontFace) tl.set(frontFace, { autoAlpha: 1 }, 0);
       if (backFace) tl.set(backFace, { autoAlpha: 0 }, 0);
+      // A fita começa em repouso sobre a página direita.
+      if (bookmark) tl.set(bookmark, { y: 0, rotate: 0 }, 0);
 
       for (let k = 0; k < TURNS; k++) {
         const start = LEAD + k * PAGE_DURATION;
@@ -329,15 +333,44 @@ export default function Sobre({ scrollPages = false }: SobreProps) {
           );
         }
 
+        if (bookmark) {
+          // A fita levanta um instante antes da folha aparecer, para ela passar
+          // por baixo, e desce de volta ao deitar — assentando na nova página.
+          tl.to(
+            bookmark,
+            { y: -26, rotate: -3, duration: 0.16, ease: "power2.out" },
+            start - 0.06
+          );
+          tl.to(
+            bookmark,
+            { y: 0, rotate: 0, duration: 0.22, ease: "power2.in" },
+            end - 0.22
+          );
+        }
+
         // Ao deitar, some e volta ao repouso — o conteúdo já bate com o estático.
         tl.set(sheet, { autoAlpha: 0, rotateY: 0, z: 0 }, end);
       }
     } else if (card) {
       // Mobile (páginas empilhadas): crossfade simples no meio de cada virada.
+      const bookmark = bookmarkRef.current;
+      if (bookmark) tl.set(bookmark, { y: 0, rotate: 0 }, 0);
       for (let k = 0; k < TURNS; k++) {
         const mid = LEAD + k * PAGE_DURATION + PAGE_DURATION / 2;
         tl.to(card, { opacity: 0, duration: 0.18, ease: "power1.in" }, mid - 0.18);
         tl.to(card, { opacity: 1, duration: 0.18, ease: "power1.out" }, mid);
+        if (bookmark) {
+          tl.to(
+            bookmark,
+            { y: -26, rotate: -3, duration: 0.16, ease: "power2.out" },
+            mid - 0.24
+          );
+          tl.to(
+            bookmark,
+            { y: 0, rotate: 0, duration: 0.22, ease: "power2.in" },
+            mid + 0.02
+          );
+        }
       }
     }
 
@@ -386,12 +419,6 @@ export default function Sobre({ scrollPages = false }: SobreProps) {
             ref={cardRef}
             className="relative grid grid-cols-1 overflow-hidden rounded-sm border border-stone-400/80 bg-[#EAE6DF] shadow-[0_28px_60px_rgba(30,29,26,0.22)] lg:h-[560px] lg:grid-cols-12"
           >
-            {/* Marcador de fita bordô */}
-            <div
-              className="absolute -top-2 right-8 z-30 h-16 w-6 bg-red-900/85 shadow-md"
-              style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%)" }}
-            />
-
             {/* Sombra projetada pela folha enquanto vira */}
             <div
               ref={sheetShadowRef}
@@ -476,6 +503,13 @@ export default function Sobre({ scrollPages = false }: SobreProps) {
               />
             </div>
           </div>
+
+          {/* Marcador de fita bordô — fora do overflow-hidden, para poder levantar */}
+          <div
+            ref={bookmarkRef}
+            className="pointer-events-none absolute -top-2 right-8 z-30 h-16 w-6 bg-red-900/85 shadow-md"
+            style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%)" }}
+          />
         </div>
 
         {/* Indicador de páginas folheadas pelo scroll */}

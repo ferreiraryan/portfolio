@@ -68,12 +68,16 @@ Isso elimina os "buracos" que apareciam quando cada transição tinha seu própr
 | Constante | Valor | Papel |
 |-----------|-------|-------|
 | `EFFECT_DURATION` | `1` | duração normalizada de cada efeito |
-| `HOLD_AFTER_EFFECT` | `0.85` | respiro (mundo parado) após cada efeito |
-| `LEAD_IN` | `0.3` | respiro antes do primeiro efeito |
-| `TRAILING_HOLD` | `0.7` | respiro final antes de soltar o pin |
-| `PX_PER_UNIT` | `900` | quanto de scroll (px) cada unidade representa |
+| `HOLD_AFTER_EFFECT` | `0.45` | respiro (mundo parado) após cada efeito |
+| `LEAD_IN` | `0.15` | respiro antes do primeiro efeito |
+| `TRAILING_HOLD` | `0.4` | respiro final antes de soltar o pin |
+| `PX_PER_UNIT` | `600` | quanto de scroll (px) cada unidade representa |
 
 O mapeamento é **scroll = tempo × `PX_PER_UNIT`**.
+
+Constantes do dwell do livro (`Sobre.tsx`): `PAGE_DURATION = 1.0` e `LEAD = 0.2`
+(⇒ `DWELL_TOTAL = LEAD + 2 × PAGE_DURATION = 2.2`). O `ScrollTrigger` usa
+`scrub: 0.45` e o `Lenis` (`useLenis.ts`) usa `duration: 1.0`.
 
 ### Contexts — `src/lib/useTransitionTimeline.ts`
 
@@ -204,6 +208,18 @@ portfolio/
 - [x] **Árvore de skills** com abas e barras (Skills).
 - [x] **Prateleira de mangás** clicável (Estante).
 - [x] **Formulário de contato** (visual/estado de UI apenas).
+- [x] **Pacing do scroll recalibrado** (2026-10-16): scroll total pinado caiu de
+      ~10.485px para ~5.460px (`PX_PER_UNIT` 900→600, `HOLD_AFTER_EFFECT` 0.85→0.45,
+      `LEAD_IN` 0.3→0.15, `TRAILING_HOLD` 0.7→0.4, `scrub` 0.85→0.45, `Lenis`
+      duration 1.2→1.0). O dwell do livro foi encurtado para `DWELL_TOTAL = 2.2`
+      (`PAGE_DURATION` 1.4→1.0, `LEAD` 0.3→0.2). A zona morta entre efeitos caiu de
+      765px para 270px.
+- [x] **Marcador (fita bordô) animado** (2026-10-16): a fita saiu de dentro do
+      `overflow-hidden` do card (onde era clipada e ficava sobreposta à folha que gira) e
+      agora **levanta e desce** a cada virada — sobe ~26px + leve rotação um instante antes
+      de a folha aparecer e assenta de volta na nova página. Funciona no desktop (virada 3D)
+      e no mobile (crossfade); no repouso sempre retorna à posição original, então as duas
+      cópias de `Sobre` continuam idênticas (`Sobre.tsx`).
 - [x] `tsc --noEmit` **limpo** e `eslint` **limpo**.
 
 ---
@@ -266,3 +282,10 @@ portfolio/
 - **Mobile:** fallback sem pin ou layout alternativo abaixo de `md`?
 - **Dados reais:** trocar placeholders (projetos, links, e-mail) pelos reais?
 - **SEO:** domínio final para `metadataBase` / `sitemap`.
+- **Pacing do scroll:** calibrar no olho o `HOLD_AFTER_EFFECT` (hoje `0.45`). Com esse
+  valor, cada mundo não-livro (Projetos/Skills/Estante/Contato) fica visível por só
+  ~270px de rolagem — se parecer apressado para ler/interagir, subir para `0.55`–`0.7`
+  (uma linha em `TransitionStage.tsx`). Próximo passo: rodar `npm run dev` e validar a
+  sensação do Hero até o Contato.
+- **Marcador do livro:** validar no olho a intensidade do levante (hoje `y: -26`, `rotate: -3`)
+  e o tempo (sobe em 0.16 / desce em 0.22) em `Sobre.tsx`; ajustar se parecer exagerado.
