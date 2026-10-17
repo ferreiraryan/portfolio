@@ -10,6 +10,8 @@ import Glitch from "@/components/transitions/Glitch";
 import LevelUp from "@/components/transitions/LevelUp";
 import PainelHQ from "@/components/transitions/PainelHQ";
 import CRT from "@/components/transitions/CRT";
+import WorldJourneyRail from "@/components/navigation/WorldJourneyRail";
+import MobileJourneyDock from "@/components/navigation/MobileJourneyDock";
 
 function MobileDivider({
   from,
@@ -33,6 +35,7 @@ export default function Page() {
     <>
       {/* Experiência Desktop: Palco Único Pinado com 5 Transições Cinemáticas */}
       <div className="hidden lg:block motion-reduce:lg:hidden">
+        <WorldJourneyRail />
         <TransitionStage>
           {/* 1. Hero (Neutro) --[Papel Rasgando]--> 2. Sobre (Livro) */}
           <RasgoPapel topLayer={<Hero />} bottomLayer={<Sobre scrollPages />} />
@@ -53,17 +56,30 @@ export default function Page() {
 
       {/* Experiência Mobile, Tablet & Reduced Motion: Fluxo Vertical Despinado com Touch Scroll Fluido */}
       <div className="block lg:hidden motion-reduce:lg:block w-full overflow-x-hidden">
-        <Hero />
+        <MobileJourneyDock />
+        <section id="hero">
+          <Hero />
+        </section>
         <MobileDivider from="01 // Neutro" to="02 // Livro" accent="text-stone-300" />
-        <Sobre />
+        <section id="sobre">
+          <Sobre />
+        </section>
         <MobileDivider from="02 // Livro" to="03 // Cyberpunk" accent="text-fuchsia-400" />
-        <Projetos />
+        <section id="projetos">
+          <Projetos />
+        </section>
         <MobileDivider from="03 // Cyberpunk" to="04 // RPG" accent="text-amber-400" />
-        <Skills />
+        <section id="skills">
+          <Skills />
+        </section>
         <MobileDivider from="04 // RPG" to="05 // Mangá & HQ" accent="text-yellow-400" />
-        <Estante />
+        <section id="estante">
+          <Estante />
+        </section>
         <MobileDivider from="05 // Mangá & HQ" to="06 // Arcade CRT" accent="text-emerald-400" />
-        <Contato />
+        <section id="contato">
+          <Contato />
+        </section>
       </div>
     </>
   );

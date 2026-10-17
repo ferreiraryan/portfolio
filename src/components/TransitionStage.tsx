@@ -13,6 +13,7 @@ import {
   TransitionTimelineContext,
 } from "@/lib/useTransitionTimeline";
 import { scrollToScrollY } from "@/lib/useLenis";
+import { journeyStore } from "@/lib/journeyStore";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -145,6 +146,11 @@ export default function TransitionStage({ children }: { children: ReactNode }) {
           anticipatePin: 1,
           invalidateOnRefresh: true,
           animation: master,
+          onUpdate: (self) => {
+            const currentScroll = self.scroll() - self.start;
+            const totalDistance = self.end - self.start;
+            journeyStore.updateDesktopScroll(currentScroll, totalDistance);
+          },
         });
 
         triggerRef.current = trigger;

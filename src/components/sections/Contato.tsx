@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import SectionScrollPrompt from "@/components/navigation/SectionScrollPrompt";
 
 export default function Contato() {
   const [coins, setCoins] = useState<number>(1);
@@ -220,9 +221,10 @@ export default function Contato() {
         </div>
       </div>
 
+      <SectionScrollPrompt targetWorld={1} text="VOLTAR AO INÍCIO" direction="up" />
+
       <footer className="relative z-10 flex items-center justify-between font-mono text-eyebrow uppercase tracking-[0.14em] text-emerald-300 select-none">
-        <span>CRT 60Hz • FÓSFORO VERDE</span>
-        <span>FIM DA JORNADA — RYAN FERREIRA © 2026</span>
+        <span>CRT 60Hz • RYAN FERREIRA © 2026</span>
         <span>06 / 06</span>
       </footer>
     </div>

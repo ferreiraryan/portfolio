@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import SectionScrollPrompt from "@/components/navigation/SectionScrollPrompt";
 
 interface ProjectItem {
   id: string;
@@ -238,9 +239,10 @@ export default function Projetos() {
         </div>
       </div>
 
+      <SectionScrollPrompt targetWorld={4} text="ROLE PARA AS HABILIDADES" />
+
       <footer className="relative z-10 flex items-center justify-between text-eyebrow uppercase tracking-[0.14em] text-fuchsia-300 select-none">
         <span>MEM: 64GB NEURAL RAM</span>
-        <span>Role para ganhar XP (Level Up) ↓</span>
         <span>03 / 06</span>
       </footer>
     </div>

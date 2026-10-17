@@ -291,6 +291,16 @@ portfolio/
       - `TransitionStage.tsx`: `HOLD_AFTER_EFFECT` aumentado de `0.45` para `0.60` (~360px de respiro) e `TRAILING_HOLD` aumentado de `0.4` para `0.60`. O tempo de permanência em mundos interativos e de leitura densa (Projetos, Skills, Estante e Contato) agora é confortável e natural antes de engatilhar a transição seguinte.
       - `Skills.tsx`: cabeçalho RPG harmonizado de `"GUILDA DOS ENGENHEIROS • NÍVEL 99"` para `"GUILDA DOS ENGENHEIROS • NV. MULTICLASSE"`, mantendo coerência visual com o badge da ficha de personagem.
       - `Sobre.tsx`: física do marcador (*ribbon*) recalibrada — deslocamento vertical ajustado de `-26px` para `-22px` e rotação `-2.5°` com easing `power2.inOut` tanto no desktop quanto no mobile, evitando que a ponta da fita extrapole o contorno do livro e garantindo assentamento amortecido na nova página.
+- [x] **Trilha Cinematográfica de Mundos (Journey HUD) & Melhorias de UX/A11y** (2026-10-17):
+      - `journeyStore.ts`: store baseado em `useSyncExternalStore` gerenciando o estado dos 6 mundos (`currentWorld`, `unlockedWorlds`, `justUnlocked`, `scrollProgress`) e função de navegação `navigateToWorld` via rolagem acelerada no Lenis;
+      - `WorldJourneyRail.tsx`: trilha vertical ergonômica na lateral direita com 6 nós temáticos (Minimalista, Pergaminho Livro, Cyberpunk Neon, Runa RPG Âmbar, Halftone Mangá e Arcade CRT Verde Fósforo), linha de luz contínua de progresso, estados *Fog of War* (mundos futuros bloqueados com rótulo discreto da categoria), animação de desbloqueio com efeito ping de luz ao cruzar transições, e tooltips laterais ricos em hover/foco de teclado;
+      - `MobileJourneyDock.tsx`: dock flutuante compacto touch no centro inferior para mobile com indicador de seção ativa (`0X / 06`) e gaveta de seleção rápida sincronizada via `IntersectionObserver`.
+- [x] **Botões Temáticos de Scroll Centralizados & Navegação Cinemática (Fase 6)** (2026-10-17):
+      - `SectionScrollPrompt.tsx`: botão arredondado (pílula) com ícone de mouse animado com ponto pulsante, tipografia mono e seta indicativa (`↓` ou `↑`). Posicionado com precisão matemática no centro da tela (`left-1/2 -translate-x-1/2` no desktop e `relative my-4` no mobile);
+      - **Tematização Dinâmica da Seção Futura**: a cada seção, o botão antecipa o tema do universo seguinte (Hero → Sobre/Livro; Sobre → Projetos/Cyberpunk Ciano; Projetos → Skills/RPG Âmbar; Skills → Estante/Mangá P&B; Estante → Contato/Arcade CRT Verde; Contato → Início/Minimalista Branco);
+      - **Remoção de Textos Descentralizados dos Rodapés**: removidos os textos `"Role para..."` de todos os 5 footers das seções (`Hero.tsx`, `Sobre.tsx`, `Projetos.tsx`, `Skills.tsx`, `Estante.tsx`), eliminando a assimetria visual causada pelo `justify-between`;
+      - **Desaceleração da Animação ao Clicar**: duração da rolagem programática aumentada de `1.15s` para `2.2s` em `journeyStore.ts` e `useLenis.ts`, permitindo que o usuário aprecie as transições cinemáticas com ritmo suave e contemplativo;
+      - `Sobre.tsx`: `slotRef` com `lg:pb-16` para garantir que o fit-to-height da escala 3D preserve a respiração visual com o botão e o indicador de capítulos.
 - [x] `tsc --noEmit` **limpo**, `eslint` **limpo** e `npm run build` **100% aprovado** (rotas estáticas e dinâmicas geradas sem warnings).
 
 ---
@@ -327,24 +337,24 @@ portfolio/
 - [x] **Alinhamento RPG:** ✅ **resolvido** (2026-10-17). Header de `Skills.tsx` unificado com `NV. MULTICLASSE`.
 - [x] **Marcador do livro:** ✅ **resolvido** (2026-10-17). Deslocamento (`y: -22`) e amortecimento suave em `Sobre.tsx`.
 
-### Notas de arquitetura (não bloqueantes)
+### Fase 5 — Trilha de Mundos (Journey HUD), Acessibilidade & UX ✅ CONCLUÍDO
 
-- `TransitionStage` usa `useEffect(..., [])` lendo `childrenArray` — só funciona porque
-  `page.tsx` é estático; é frágil.
-- A ordem de registro (dwells dos filhos antes do efeito do pai) depende da ordem de
-  efeitos do React — funciona, mas vale documentar.
-- Conteúdo todo inline nos componentes; poderia migrar para arquivos de dados.
+- [x] **Trilha Vertical Flutuante no Desktop:** ✅ **resolvido** (2026-10-17). `WorldJourneyRail.tsx` com 6 nós temáticos, linha de luz de progresso, tooltips ricos e acessibilidade por teclado.
+- [x] **Fog of War & Reveal Animado:** ✅ **resolvido** (2026-10-17). Mundos futuros ocultos com rótulo discreto, desbloqueio dinâmico com flash de luz ao atingir a transição.
+- [x] **Mobile Journey Dock:** ✅ **resolvido** (2026-10-17). `MobileJourneyDock.tsx` com gaveta touch compacta e sincronização via `IntersectionObserver`.
+
+### Fase 6 — Botões Temáticos de Scroll Centralizados & Transição Suave ✅ CONCLUÍDO
+
+- [x] **Botão Redondo Centralizado:** ✅ **resolvido** (2026-10-17). `SectionScrollPrompt.tsx` com ícone de mouse animado, texto mono e seta indicativa, posicionado matematicamente em `left-1/2 -translate-x-1/2`.
+- [x] **Tematização Dinâmica por Seção:** ✅ **resolvido** (2026-10-17). Cada seção antecipa as cores, bordas e brilhos da seção seguinte, e a seção de Contato permite retornar ao início (`↑`).
+- [x] **Eliminação de Assimetria nos Rodapés:** ✅ **resolvido** (2026-10-17). Textos `"Role para..."` removidos dos rodapés de `Hero`, `Sobre`, `Projetos`, `Skills` e `Estante`.
+- [x] **Desaceleração da Animação ao Clicar:** ✅ **resolvido** (2026-10-17). Duração de transição aumentada de `1.15s` para `2.2s`, proporcionando rolagem suave e cinematográfica.
 
 ---
 
 ## 9. Pendências & decisões abertas
 
-- **Fases P0, P1, P2 e Fase 4:** ✅ **100% concluídas** (2026-10-17). Mobile despinado, formulário com API Route, acessibilidade/reduced-motion, Hero glow otimizado, SEO completo, OpenGraph dinâmico, sitemap, robots, manifest, favicon, documentação completa e calibração fina de scroll/fita/textos.
-- **Dados reais:** ✅ **resolvido** (2026-10-17). `projetos.prj_04.liveUrl` agora aponta para
-  o repositório do Visualisit e o filtro `AI & ENGINE` voltou a ter item (Grene). Restam
-  ~57 campos do `CONTEUDO.md` em branco (rótulos de UI, transições, `footer_*`), mantidos como estão.
-- **Skills × header RPG:** ✅ **resolvido** (2026-10-17). Alinhado para `NV. MULTICLASSE`.
-- **Pacing do scroll:** ✅ **resolvido** (2026-10-17). `HOLD_AFTER_EFFECT` em `0.60` e `TRAILING_HOLD` em `0.60`.
-- **Marcador do livro:** ✅ **resolvido** (2026-10-17). Levante `-22px` com `power2.inOut`.
-- **Transição CRT:** Duração do colapso do papel (0.20), expansão do raster (0.40) e intensidade do flash (0.6). Funcionando perfeitamente.
-- **DOM duplicado por design:** `Sobre` 2× (`page.tsx:18,21`) e `Hero` 2× dentro do `RasgoPapel` (`RasgoPapel.tsx:132,153`) — mantido conforme especificação de transição de duas metades.
+- **Fases P0, P1, P2, Fase 4, Fase 5 e Fase 6:** ✅ **100% concluídas** (2026-10-17). Mobile despinado, formulário com API Route, acessibilidade/reduced-motion, Hero glow otimizado, SEO completo, OpenGraph dinâmico, sitemap, robots, manifest, favicon, documentação completa, calibração fina de scroll/fita/textos, Trilha de Mundos (Journey HUD) com Fog of War, botões redondos temáticos de scroll perfeitamente centralizados e transição desacelerada de 2.2s.
+- **Próximos Passos Sugeridos:**
+  - Testes com usuários finais em diferentes tamanhos de tela para validar a nova experiência de rolagem desacelerada.
+  - Eventual expansão de novos projetos no terminal conforme novos cases forem produzidos.

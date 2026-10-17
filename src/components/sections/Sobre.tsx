@@ -6,6 +6,7 @@ import {
   useDwellTimeline,
   useScrollToDwell,
 } from "@/lib/useTransitionTimeline";
+import SectionScrollPrompt from "@/components/navigation/SectionScrollPrompt";
 
 const CHAPTERS = [
   {
@@ -266,9 +267,8 @@ export default function Sobre({ scrollPages = false }: SobreProps) {
   const rightIdx = clampChapter(rawRight);
   const leftChapter = CHAPTERS[leftIdx];
   const rightChapter = CHAPTERS[rightIdx];
-  // O capítulo "corrente" (destaque e rodapé) acompanha a página direita.
+  // O capítulo "corrente" (destaque e indicador) acompanha a página direita.
   const chapterIdx = rightIdx;
-  const isLastChapter = rightIdx >= MAX_CHAPTER;
 
   const cardRef = useRef<HTMLDivElement>(null);
   const sheetRef = useRef<HTMLDivElement>(null);
@@ -553,7 +553,7 @@ export default function Sobre({ scrollPages = false }: SobreProps) {
       {/* Livro Aberto em Duas Páginas */}
       <div
         ref={slotRef}
-        className="mx-auto flex min-h-0 w-full max-w-6xl flex-1 flex-col justify-center-safe py-4"
+        className="mx-auto flex min-h-0 w-full max-w-6xl flex-1 flex-col justify-center-safe py-4 lg:pb-16"
       >
         {/* Palco 3D do livro — sem overflow, para a folha girar livre. */}
         <div
@@ -690,13 +690,10 @@ export default function Sobre({ scrollPages = false }: SobreProps) {
         </div>
       </div>
 
+      <SectionScrollPrompt targetWorld={3} text="ROLE PARA OS PROJETOS" />
+
       <footer className="flex items-center justify-between font-mono text-eyebrow uppercase tracking-[0.12em] text-stone-700 select-none">
         <span>Tipografia: Playfair Display</span>
-        <span>
-          {isLastChapter
-            ? "Role para quebrar a tela (Glitch) ↓"
-            : "Continue rolando para folhear o livro ↓"}
-        </span>
         <span>02 / 06</span>
       </footer>
     </div>

@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 let lenisInstance: Lenis | null = null;
 
 /** Rola até uma posição Y do documento respeitando preferências de movimento. */
-export function scrollToScrollY(y: number, duration = 1.1) {
+export function scrollToScrollY(y: number, duration = 2.2) {
   if (typeof window !== "undefined") {
     const prefersReduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)"

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import SectionScrollPrompt from "@/components/navigation/SectionScrollPrompt";
 
 interface MangaVolume {
   id: string;
@@ -152,9 +153,10 @@ export default function Estante() {
         </div>
       </div>
 
+      <SectionScrollPrompt targetWorld={6} text="ROLE PARA ENTRAR EM CONTATO" />
+
       <footer className="relative z-10 flex items-center justify-between text-xs font-mono font-bold uppercase tracking-[0.2em] select-none">
         <span>Fundo: Papel Off-White (#F4F0EA)</span>
-        <span>Role para ligar o Tubo CRT (Arcade) ↓</span>
         <span>05 / 06</span>
       </footer>
     </div>

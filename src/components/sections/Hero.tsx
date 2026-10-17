@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import SectionScrollPrompt from "@/components/navigation/SectionScrollPrompt";
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -94,12 +95,10 @@ export default function Hero() {
         </motion.p>
       </div>
 
+      <SectionScrollPrompt targetWorld={2} text="ROLE PARA EXPLORAR A JORNADA" />
+
       <footer className="flex items-center justify-between font-mono text-eyebrow uppercase tracking-[0.2em] text-neutral-400 select-none">
         <span>Next.js 16 • GSAP • Lenis</span>
-        <div className="flex items-center gap-2 text-neutral-300">
-          <span>Role para rasgar</span>
-          <span className="inline-block animate-bounce">↓</span>
-        </div>
         <span>01 / 06</span>
       </footer>
     </div>

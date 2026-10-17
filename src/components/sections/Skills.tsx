@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import SectionScrollPrompt from "@/components/navigation/SectionScrollPrompt";
 
 interface SkillNode {
   name: string;
@@ -260,9 +261,10 @@ export default function Skills() {
         </div>
       </div>
 
+      <SectionScrollPrompt targetWorld={5} text="ROLE PARA ABRIR A ESTANTE" />
+
       <footer className="flex items-center justify-between font-mono text-eyebrow uppercase tracking-[0.14em] text-amber-300 select-none">
         <span>Fundo: Marrom / Âmbar (#1C120B)</span>
-        <span>Role para abrir o Painel de HQ ↓</span>
         <span>04 / 06</span>
       </footer>
     </div>
