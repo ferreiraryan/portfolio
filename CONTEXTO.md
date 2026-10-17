@@ -282,8 +282,12 @@ portfolio/
 - [x] **Hero Mouse Glow Otimizado (Zero Re-renders)** (2026-10-17): `Hero.tsx` migrado de `useState` para `containerRef` com variáveis CSS `--mouse-x` / `--mouse-y` atualizadas via `requestAnimationFrame`. Elimina re-renderizações completas a cada pixel de movimento do cursor.
 - [x] **Acessibilidade Completa & `prefers-reduced-motion`** (2026-10-17): desativação do scroll-jacking no `TransitionStage` quando reduced-motion estiver ativo (`gsap.matchMedia`), chaveamento via Tailwind no `page.tsx` para o fluxo vertical sequencial acessível, desativação de interpolação no `useLenis.ts` com fallback instantâneo no `scrollToScrollY`, e mitigação global de pulso/bounce em `globals.css`.
 - [x] **Auditoria de `scrollToDwell` & `LEAD_IN`** (2026-10-17): verificado matematicamente que `LEAD_IN` já está incluído no `start` do dwell window (`position + EFFECT_DURATION`). Destino de rolagem blindado com `triggerRef.current?.start ?? 0`.
-- [x] **Limpeza de Código Morto** (2026-10-17): export `getLenis` removido de `useLenis.ts`.
-- [x] `tsc --noEmit` **limpo**, `eslint` **limpo** e `npm run build` **100% aprovado**.
+- [x] **SEO Completo & OpenGraph Dinâmico** (2026-10-17): `layout.tsx` configurado com `metadataBase` dinâmica (`NEXT_PUBLIC_SITE_URL` com fallback para `https://ryanferreira.dev`), títulos com template (`%s | Ryan Ferreira`), descrição detalhada, keywords, autor, publisher, robots directives (`index, follow, max-image-preview:large`) e `alternates.canonical`. Suporte ao export dedicado de `viewport` para `themeColor: "#050505"` e escala móvel. Criado `opengraph-image.tsx` gerando dinamicamente cartão social 1200×630 via `ImageResponse` com estética dark cinematic, monograma RF, tags dos 6 universos e subtítulos.
+- [x] **SEO Estrutural & PWA** (2026-10-17): criados `src/app/robots.ts` (bloqueando `/api/` e apontando para o sitemap) e `src/app/sitemap.ts` (indexação mensal com prioridade 1.0). Criado `src/app/manifest.ts` configurando Web App Manifest para PWA com cores de tema e ícones.
+- [x] **Favicon Vetorial, Apple Touch Icon & Limpeza de Assets** (2026-10-17): criado `src/app/icon.svg` com monograma moderno e borda neon esmeralda em alta nitidez para qualquer resolução; criado `src/app/apple-icon.tsx` gerando ícone 180×180 via `ImageResponse` para dispositivos Apple. Removidos da pasta `public/` os 5 SVGs de template do boilerplate (`file.svg`, `globe.svg`, `next.svg`, `vercel.svg`, `window.svg`).
+- [x] **Otimização de Fontes & Layout** (2026-10-17): adicionado `display: "swap"` nas definições de fontes do Google (`Inter`, `Syne`, `Playfair Display`, `JetBrains Mono`) em `layout.tsx`, eliminando FOIT e otimizando LCP.
+- [x] **Documentação de Engenharia Completa** (2026-10-17): `README.md` totalmente reescrito em português com apresentação do portfólio, arquitetura de scroll com GSAP/Lenis, visão dos 6 mundos e 5 transições, responsividade/acessibilidade, stack técnica, árvore de diretórios, guia de variáveis de ambiente (`RESEND_API_KEY`, etc.) e scripts de verificação.
+- [x] `tsc --noEmit` **limpo**, `eslint` **limpo** e `npm run build` **100% aprovado** (rotas estáticas e dinâmicas geradas sem warnings).
 
 ---
 
@@ -303,18 +307,21 @@ portfolio/
 - [x] **Sem `prefers-reduced-motion`:** ✅ **resolvido** (2026-10-17). Fallback para o layout sequencial sem pin, bypass do Lenis e regras CSS globais.
 - [x] **Código morto:** ✅ **resolvido** (2026-10-17). `getLenis` removido de `useLenis.ts`.
 
-### P2 — SEO, performance e polimento (PRÓXIMO PASSO)
+### P2 — SEO, performance e polimento ✅ CONCLUÍDO
 
-- [ ] **Metadata mínima** (`layout.tsx:11-14`): só `title`/`description`. Adicionar
-      OpenGraph, Twitter card, ícones e `metadataBase`.
-- [ ] Sem **`robots.ts`** / **`sitemap.ts`** e sem favicon real (só SVGs de template em
-      `public/`).
-- [ ] **`README.md`** ainda é boilerplate do `create-next-app`.
-- [ ] **4 famílias de fontes** (`layout.tsx:2,6-9`) — pesado; avaliar enxugar.
-- [ ] **DOM duplicado por design:** `Sobre` 2× (`page.tsx:18,21`) e `Hero` 2× dentro do
-      `RasgoPapel` (`RasgoPapel.tsx:132,153`).
-- [ ] **Dados fictícios:** projetos e links (`Projetos.tsx`, ex.: `:29`) e contato
-      (`Contato.tsx:65`, `:75`, `:85`) apontam para `ryanferreira` / `ryanferreira.dev`.
+- [x] **Metadata completa:** ✅ **resolvido** (2026-10-17). `layout.tsx` com `metadataBase`, OpenGraph, Twitter card, robots, canonical e export `viewport`.
+- [x] **Card OpenGraph dinâmico:** ✅ **resolvido** (2026-10-17). `opengraph-image.tsx` via `ImageResponse` (1200x630).
+- [x] **SEO estrutural & PWA:** ✅ **resolvido** (2026-10-17). `robots.ts`, `sitemap.ts` e `manifest.ts`.
+- [x] **Favicon & Apple Icon:** ✅ **resolvido** (2026-10-17). `icon.svg` vetorial + `apple-icon.tsx` (180x180).
+- [x] **Limpeza de assets:** ✅ **resolvido** (2026-10-17). SVGs boilerplate de `public/` removidos.
+- [x] **Otimização de fontes:** ✅ **resolvido** (2026-10-17). `display: "swap"` em todas as 4 fontes Google.
+- [x] **Documentação técnica:** ✅ **resolvido** (2026-10-17). `README.md` completo com arquitetura, stack e setup.
+
+### Próximos Itens & Calibrações Opcionais (Pós-P2)
+
+- [ ] **Pacing do scroll no olho:** calibrar a duração do `HOLD_AFTER_EFFECT` (0.45 atual) navegando pelo site.
+- [ ] **DOM duplicado por design:** `Sobre` 2× (`page.tsx:18,21`) e `Hero` 2× dentro do `RasgoPapel` (`RasgoPapel.tsx:132,153`).
+- [ ] **Dados fictícios de projetos:** validar se os projetos reais no `CONTEUDO.md` cobrem todas as tags ou se novos cases serão adicionados.
 
 ### Notas de arquitetura (não bloqueantes)
 
@@ -328,10 +335,8 @@ portfolio/
 
 ## 9. Pendências & decisões abertas
 
-- **Formulário:** ✅ **resolvido** (2026-10-17). Endpoint `POST /api/contact` implementado com validação, integração Resend e modo de simulação em dev.
-- **Mobile & Acessibilidade:** ✅ **resolvido** (2026-10-17). `gsap.matchMedia` isola o pin para desktop com movimento permitido (`>= 1024px` + `no-preference`) e o mobile / reduced-motion conta com fluxo sequencial unpinned com divisores de universos.
-- **Performance & Qualidade (P1):** ✅ **resolvido** (2026-10-17). Zero re-renders no Hero glow via CSS vars + rAF; código morto `getLenis` removido; `scrollToDwell` blindado.
-- **Próximo passo:** Iniciar a Fase P2 — SEO (metadata OpenGraph/Twitter, `robots.ts`, `sitemap.ts`, favicon e ícones), documentação no `README.md` e otimização de fontes.
+- **Fases P0, P1 e P2:** ✅ **100% concluídas** (2026-10-17). Mobile despinado, formulário com API Route, acessibilidade/reduced-motion, Hero glow otimizado, SEO completo, OpenGraph dinâmico, sitemap, robots, manifest, favicon e documentação completa no README.md.
+- **Próximo passo sugerido:** Calibração fina no olho rodando a experiência completa no navegador (transição CRT, velocidade de scroll de cada mundo, marcador do livro) ou novos conteúdos específicos.
 - **Dados reais:** ✅ **resolvido** (2026-10-17). `projetos.prj_04.liveUrl` agora aponta para
   o repositório do Visualisit e o filtro `AI & ENGINE` voltou a ter item (Grene). Restam
   ~57 campos do `CONTEUDO.md` em branco (rótulos de UI, transições, `footer_*`), mantidos como estão.
