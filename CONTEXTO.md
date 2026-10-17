@@ -11,7 +11,6 @@ Portfólio pessoal de **Ryan Ferreira**, construído como uma **jornada cinemato
 em scroll único**. A tese criativa é:
 
 > "Código, histórias e mundos — tudo em um só scroll."
-
 O site é dividido em **6 mundos** (seções) encadeados por **5 transições animadas**,
 cada uma com identidade visual, tipografia e paleta próprias. O scroll atua como
 "câmera": conforme o usuário rola, um mundo se transforma no próximo através de um
@@ -278,38 +277,33 @@ portfolio/
 - [x] **`CONTEXTO.md` versionado** (2026-10-17): a regra `/CONTEXTO.md` foi removida do
       `.gitignore` e o arquivo entrou no índice do git. O `CONTEUDO.md` segue versionado
       como fonte oficial dos textos; ambos ficam no repositório.
-- [x] `tsc --noEmit` **limpo** e `eslint` **limpo**.
+- [x] **Responsividade Mobile & Despinagem Inteligente** (2026-10-17): o palco pinado (`TransitionStage.tsx`) agora utiliza `gsap.matchMedia("(min-width: 1024px)")`. Em telas menores que 1024px, o pin e o scrub da master timeline são desativados, permitindo que a página flua verticalmente sem cortes. `page.tsx` renderiza no mobile uma sequência direta dos 6 mundos com divisores temáticos (`MobileDivider`), touch scroll suave nativo e sem duplicação de camadas de transição. `Sobre.tsx` foi ajustado para `min-h-screen lg:h-screen lg:overflow-hidden` e `goToChapter` permite alternar os capítulos diretamente no mobile via clique nos botões de folhear.
+- [x] **Formulário de Contato com API Route** (2026-10-17): criado endpoint `POST /api/contact` (`src/app/api/contact/route.ts`) com validação de campos (nome, e-mail regex, mensagem) e integração com Resend via `fetch` nativo com variável `RESEND_API_KEY`. Caso a chave não esteja configurada (ambiente de dev local), opera automaticamente em modo simulação com log no servidor. `Contato.tsx` atualizado com estados completos de envio (`idle`, `sending`, `success`, `error`), botão desabilitado com indicador de carregamento e mensagem de erro arcade.
+- [x] **Hero Mouse Glow Otimizado (Zero Re-renders)** (2026-10-17): `Hero.tsx` migrado de `useState` para `containerRef` com variáveis CSS `--mouse-x` / `--mouse-y` atualizadas via `requestAnimationFrame`. Elimina re-renderizações completas a cada pixel de movimento do cursor.
+- [x] **Acessibilidade Completa & `prefers-reduced-motion`** (2026-10-17): desativação do scroll-jacking no `TransitionStage` quando reduced-motion estiver ativo (`gsap.matchMedia`), chaveamento via Tailwind no `page.tsx` para o fluxo vertical sequencial acessível, desativação de interpolação no `useLenis.ts` com fallback instantâneo no `scrollToScrollY`, e mitigação global de pulso/bounce em `globals.css`.
+- [x] **Auditoria de `scrollToDwell` & `LEAD_IN`** (2026-10-17): verificado matematicamente que `LEAD_IN` já está incluído no `start` do dwell window (`position + EFFECT_DURATION`). Destino de rolagem blindado com `triggerRef.current?.start ?? 0`.
+- [x] **Limpeza de Código Morto** (2026-10-17): export `getLenis` removido de `useLenis.ts`.
+- [x] `tsc --noEmit` **limpo**, `eslint` **limpo** e `npm run build` **100% aprovado**.
 
 ---
 
 ## 8. Roadmap priorizado
 
-### P0 — Correções reais (conteúdo/bugs visíveis)
+### P0 — Correções reais (conteúdo/bugs visíveis) ✅ CONCLUÍDO
 
-- [ ] **Mobile quebrado:** o palco é `h-screen` + `overflow-hidden` pinado
-      (`TransitionStage.tsx:166`, pin em `133-142`). Em telas pequenas, seções densas
-      (Projetos/Skills viram coluna única) **estouram 100vh e ficam cortadas sem poder
-      rolar**. Definir fallback sem pin abaixo de `md` (scroll normal).
-- [ ] **Formulário não envia nada:** `Contato.tsx:12-16` só faz `setSentMessage(true)`.
-      Falta API route / serviço de e-mail (Resend, Formspree, etc.).
-- [ ] **Versões mentindo na UI** — o projeto usa Next **16** / React **19**, mas:
-      `Hero.tsx:69` ("Next.js 14"), `Skills.tsx:16` e `:175` ("Next.js 14 & React 18"),
-      `Projetos.tsx:25` ("Next.js 14") e `:64` ("React 18").
-- [ ] **Typo:** `Sobre.tsx:33` — `"Alemão do Código: Mundos"` → **"Além do Código"**.
+- [x] **Mobile quebrado:** ✅ **resolvido** (2026-10-17). `gsap.matchMedia` no `TransitionStage` + fluxo vertical despinado no mobile em `page.tsx`.
+- [x] **Formulário não envia nada:** ✅ **resolvido** (2026-10-17). API Route `/api/contact` + estados de envio arcade em `Contato.tsx`.
+- [x] **Versões mentindo na UI:** ✅ **resolvido** (2026-10-17).
+- [x] **Typo em Sobre.tsx:** ✅ **resolvido** (2026-10-17).
 
-### P1 — Bugs e qualidade
+### P1 — Bugs e qualidade ✅ CONCLUÍDO
 
-- [ ] **`scrollToDwell` ignora o `LEAD_IN`** (`TransitionStage.tsx:63-71`, mapeamento em
-      `:70`): como a timeline começa em `position = LEAD_IN (0.3)`, o salto `tempo ×
-      PX_PER_UNIT` erra ~270px. Somar o offset de `LEAD_IN`.
-- [ ] **`mouseMove` sem throttle no Hero** (`Hero.tsx:9-18`): `setState` a cada evento
-      re-renderiza o Hero inteiro (que ainda é renderizado **2×** no rasgo). Usar
-      ref/CSS var + `requestAnimationFrame` ou debounce.
-- [ ] **Sem `prefers-reduced-motion`:** o scroll-jacking pesado não tem fallback
-      (acessibilidade + conforto).
-- [ ] **Código morto:** `getLenis` (`useLenis.ts:13`) exportado e nunca usado.
+- [x] **`scrollToDwell` e offset do gatilho:** ✅ **auditado e blindado** (2026-10-17). `triggerRef.current.start` adicionado ao salto e verificado que `LEAD_IN` já integra a linha do tempo.
+- [x] **`mouseMove` sem throttle no Hero:** ✅ **resolvido** (2026-10-17). `containerRef` + CSS variables + `requestAnimationFrame`. Zero re-renderizações.
+- [x] **Sem `prefers-reduced-motion`:** ✅ **resolvido** (2026-10-17). Fallback para o layout sequencial sem pin, bypass do Lenis e regras CSS globais.
+- [x] **Código morto:** ✅ **resolvido** (2026-10-17). `getLenis` removido de `useLenis.ts`.
 
-### P2 — SEO, performance e polimento
+### P2 — SEO, performance e polimento (PRÓXIMO PASSO)
 
 - [ ] **Metadata mínima** (`layout.tsx:11-14`): só `title`/`description`. Adicionar
       OpenGraph, Twitter card, ícones e `metadataBase`.
@@ -334,8 +328,10 @@ portfolio/
 
 ## 9. Pendências & decisões abertas
 
-- **Formulário:** qual estratégia de envio? (API route + Resend / Formspree / mailto)
-- **Mobile:** fallback sem pin ou layout alternativo abaixo de `md`?
+- **Formulário:** ✅ **resolvido** (2026-10-17). Endpoint `POST /api/contact` implementado com validação, integração Resend e modo de simulação em dev.
+- **Mobile & Acessibilidade:** ✅ **resolvido** (2026-10-17). `gsap.matchMedia` isola o pin para desktop com movimento permitido (`>= 1024px` + `no-preference`) e o mobile / reduced-motion conta com fluxo sequencial unpinned com divisores de universos.
+- **Performance & Qualidade (P1):** ✅ **resolvido** (2026-10-17). Zero re-renders no Hero glow via CSS vars + rAF; código morto `getLenis` removido; `scrollToDwell` blindado.
+- **Próximo passo:** Iniciar a Fase P2 — SEO (metadata OpenGraph/Twitter, `robots.ts`, `sitemap.ts`, favicon e ícones), documentação no `README.md` e otimização de fontes.
 - **Dados reais:** ✅ **resolvido** (2026-10-17). `projetos.prj_04.liveUrl` agora aponta para
   o repositório do Visualisit e o filtro `AI & ENGINE` voltou a ter item (Grene). Restam
   ~57 campos do `CONTEUDO.md` em branco (rótulos de UI, transições, `footer_*`), mantidos como estão.

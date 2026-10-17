@@ -1,27 +1,53 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
 export default function Hero() {
-  const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({
-        x: (e.clientX / window.innerWidth) * 100,
-        y: (e.clientY / window.innerHeight) * 100,
-      });
+    const container = containerRef.current;
+    if (!container) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      container.style.setProperty("--mouse-x", "50%");
+      container.style.setProperty("--mouse-y", "50%");
+      return;
+    }
+
+    let rafId: number | null = null;
+    let targetX = 50;
+    let targetY = 50;
+
+    const update = () => {
+      container.style.setProperty("--mouse-x", `${targetX}%`);
+      container.style.setProperty("--mouse-y", `${targetY}%`);
+      rafId = null;
     };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+
+    const handleMouseMove = (e: MouseEvent) => {
+      targetX = (e.clientX / window.innerWidth) * 100;
+      targetY = (e.clientY / window.innerHeight) * 100;
+      if (!rafId) {
+        rafId = requestAnimationFrame(update);
+      }
+    };
+
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   return (
     <div
+      ref={containerRef}
       className="relative flex h-screen w-full flex-col justify-between px-6 py-10 md:px-16 md:py-12 bg-[#050505] text-[#F5F5F7] select-none overflow-hidden"
       style={{
-        backgroundImage: `radial-gradient(550px circle at ${mousePos.x}% ${mousePos.y}%, rgba(255,255,255,0.065), transparent 60%)`,
+        backgroundImage:
+          "radial-gradient(550px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.065), transparent 60%)",
       }}
     >
       <header className="flex items-center justify-between font-mono text-eyebrow uppercase tracking-[0.2em] text-neutral-400 select-none">

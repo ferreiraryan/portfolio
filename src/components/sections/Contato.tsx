@@ -4,15 +4,42 @@ import { FormEvent, useState } from "react";
 
 export default function Contato() {
   const [coins, setCoins] = useState<number>(1);
-  const [sentMessage, setSentMessage] = useState<boolean>(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [playerName, setPlayerName] = useState<string>("");
   const [playerEmail, setPlayerEmail] = useState<string>("");
   const [playerQuest, setPlayerQuest] = useState<string>("");
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!playerName.trim() || !playerEmail.trim()) return;
-    setSentMessage(true);
+    if (!playerName.trim() || !playerEmail.trim() || !playerQuest.trim()) return;
+
+    setStatus("sending");
+    setErrorMsg(null);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: playerName,
+          email: playerEmail,
+          message: playerQuest,
+        }),
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        throw new Error(data.error || "Falha ao transmitir dados. Tente novamente.");
+      }
+
+      setStatus("success");
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : "Erro inesperado ao transmitir dados.";
+      setErrorMsg(msg);
+      setStatus("error");
+    }
   };
 
   return (
@@ -46,7 +73,8 @@ export default function Contato() {
               type="button"
               onClick={() => {
                 setCoins((c) => c + 1);
-                setSentMessage(false);
+                setStatus("idle");
+                setErrorMsg(null);
               }}
               className="px-5 py-3 rounded-lg bg-amber-400 hover:bg-amber-300 text-black font-extrabold text-xs uppercase tracking-widest shadow-[0_0_24px_rgba(251,191,36,0.6)] transition active:scale-95"
             >
@@ -92,13 +120,13 @@ export default function Contato() {
 
             {/* Formulário de Transmissão Arcade */}
             <div className="lg:col-span-7">
-              {sentMessage ? (
+              {status === "success" ? (
                 <div className="h-full flex flex-col items-center justify-center text-center p-6 rounded border-2 border-emerald-400 bg-emerald-950/30">
                   <p className="text-xs uppercase tracking-[0.3em] text-amber-300">
-                    STAGE CLEAR! // MENSAGEM ENVIADA
+                    STAGE CLEAR! // MENSAGEM TRANSMITIDA
                   </p>
                   <h3 className="mt-2 text-2xl font-bold text-white">
-                    GG, {playerName}! Mensagem registrada por aqui.
+                    GG, {playerName}! Transmissão registrada com sucesso.
                   </h3>
                   <p className="mt-2 text-xs text-emerald-200">
                     Valeu demais pelo contato! Vou ler tudo com calma e te respondo em breve pelo {playerEmail}.
@@ -106,7 +134,8 @@ export default function Contato() {
                   <button
                     type="button"
                     onClick={() => {
-                      setSentMessage(false);
+                      setStatus("idle");
+                      setErrorMsg(null);
                       setPlayerName("");
                       setPlayerEmail("");
                       setPlayerQuest("");
@@ -118,6 +147,19 @@ export default function Contato() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
+                  {status === "error" && errorMsg && (
+                    <div className="p-3 rounded border border-rose-500/60 bg-rose-950/40 text-rose-300 text-xs flex items-center justify-between gap-2">
+                      <span>⚠ [ERRO DE CONEXÃO] {errorMsg}</span>
+                      <button
+                        type="button"
+                        onClick={() => setStatus("idle")}
+                        className="text-rose-200 underline uppercase hover:text-white"
+                      >
+                        Fechar
+                      </button>
+                    </div>
+                  )}
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs uppercase tracking-wider text-emerald-300 mb-1">
@@ -126,10 +168,11 @@ export default function Contato() {
                       <input
                         type="text"
                         required
+                        disabled={status === "sending"}
                         value={playerName}
                         onChange={(e) => setPlayerName(e.target.value)}
                         placeholder="Ex.: Como posso te chamar?"
-                        className="w-full rounded border border-emerald-500/40 bg-black/80 px-3.5 py-2.5 text-base text-white focus:border-emerald-300 focus:outline-none"
+                        className="w-full rounded border border-emerald-500/40 bg-black/80 px-3.5 py-2.5 text-base text-white focus:border-emerald-300 focus:outline-none disabled:opacity-50"
                       />
                     </div>
                     <div>
@@ -139,10 +182,11 @@ export default function Contato() {
                       <input
                         type="email"
                         required
+                        disabled={status === "sending"}
                         value={playerEmail}
                         onChange={(e) => setPlayerEmail(e.target.value)}
                         placeholder="seuemail@dominio.com"
-                        className="w-full rounded border border-emerald-500/40 bg-black/80 px-3.5 py-2.5 text-base text-white focus:border-emerald-300 focus:outline-none"
+                        className="w-full rounded border border-emerald-500/40 bg-black/80 px-3.5 py-2.5 text-base text-white focus:border-emerald-300 focus:outline-none disabled:opacity-50"
                       />
                     </div>
                   </div>
@@ -154,18 +198,20 @@ export default function Contato() {
                     <textarea
                       rows={3}
                       required
+                      disabled={status === "sending"}
                       value={playerQuest}
                       onChange={(e) => setPlayerQuest(e.target.value)}
                       placeholder="Me conta sobre uma oportunidade na área de TI, uma ideia de projeto ou manda um oi pra trocarmos ideia sobre tecnologia..."
-                      className="w-full rounded border border-emerald-500/40 bg-black/80 px-3.5 py-2.5 text-base text-white focus:border-emerald-300 focus:outline-none"
+                      className="w-full rounded border border-emerald-500/40 bg-black/80 px-3.5 py-2.5 text-base text-white focus:border-emerald-300 focus:outline-none disabled:opacity-50"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full py-3 rounded bg-emerald-400 hover:bg-emerald-300 text-black font-black text-xs uppercase tracking-[0.25em] shadow-[0_0_20px_rgba(52,211,153,0.5)] transition"
+                    disabled={status === "sending"}
+                    className="w-full py-3 rounded bg-emerald-400 hover:bg-emerald-300 text-black font-black text-xs uppercase tracking-[0.25em] shadow-[0_0_20px_rgba(52,211,153,0.5)] transition disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    ▶ PRESS START — ENVIAR MENSAGEM
+                    {status === "sending" ? "⏳ TRANSMITINDO DADOS..." : "▶ PRESS START — ENVIAR MENSAGEM"}
                   </button>
                 </form>
               )}

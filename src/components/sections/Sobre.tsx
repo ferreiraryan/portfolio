@@ -287,7 +287,17 @@ export default function Sobre({ scrollPages = false }: SobreProps) {
   const goToDwell = useScrollToDwell();
   const goToChapter = useCallback(
     (idx: number) => {
-      goToDwell(settleProgress(idx));
+      const isDesktop =
+        typeof window !== "undefined" &&
+        window.matchMedia(
+          "(min-width: 1024px) and (prefers-reduced-motion: no-preference)"
+        ).matches;
+      if (isDesktop) {
+        goToDwell(settleProgress(idx));
+      } else {
+        const k = clampChapter(idx);
+        bookStore.setSpread(k, k);
+      }
     },
     [goToDwell]
   );
@@ -319,7 +329,10 @@ export default function Sobre({ scrollPages = false }: SobreProps) {
     const dots = dotsRef.current;
     if (!slot || !stage || !card || !dots) return;
 
-    const isDesktop = () => window.matchMedia("(min-width: 1024px)").matches;
+    const isDesktop = () =>
+      window.matchMedia(
+        "(min-width: 1024px) and (prefers-reduced-motion: no-preference)"
+      ).matches;
 
     /** Maior altura natural do conteúdo medida nesta largura. */
     let maxNatural = 0;
@@ -390,7 +403,9 @@ export default function Sobre({ scrollPages = false }: SobreProps) {
 
     const isDesktop =
       typeof window !== "undefined" &&
-      window.matchMedia("(min-width: 1024px)").matches;
+      window.matchMedia(
+        "(min-width: 1024px) and (prefers-reduced-motion: no-preference)"
+      ).matches;
 
     const sheet = sheetRef.current;
     const card = cardRef.current;
@@ -528,7 +543,7 @@ export default function Sobre({ scrollPages = false }: SobreProps) {
   });
 
   return (
-    <div className="relative flex h-screen w-full flex-col justify-between overflow-hidden bg-[#D6D3CD] p-5 text-[#1E1D1A] sm:p-8 lg:px-12 lg:py-8">
+    <div className="relative flex min-h-screen lg:h-screen w-full flex-col justify-between lg:overflow-hidden bg-[#D6D3CD] p-5 text-[#1E1D1A] sm:p-8 lg:px-12 lg:py-8">
       {/* Cabeçalho editorial */}
       <header className="flex items-center justify-between border-b border-stone-400/70 pb-3 font-mono text-eyebrow uppercase tracking-[0.14em] text-stone-700 select-none">
         <span>02 // Universo Livro — Sobre</span>

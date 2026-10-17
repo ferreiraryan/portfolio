@@ -9,13 +9,18 @@ gsap.registerPlugin(ScrollTrigger);
 
 let lenisInstance: Lenis | null = null;
 
-/** Acesso à instância do Lenis (para rolagem programática suave). */
-export function getLenis() {
-  return lenisInstance;
-}
-
-/** Rola suavemente até uma posição Y do documento. */
+/** Rola até uma posição Y do documento respeitando preferências de movimento. */
 export function scrollToScrollY(y: number, duration = 1.1) {
+  if (typeof window !== "undefined") {
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (prefersReduced) {
+      window.scrollTo({ top: y, behavior: "auto" });
+      return;
+    }
+  }
+
   if (lenisInstance) {
     lenisInstance.scrollTo(y, { duration });
     return;
@@ -27,6 +32,12 @@ export function scrollToScrollY(y: number, duration = 1.1) {
 
 export function useLenis() {
   useEffect(() => {
+    // Se o usuário preferir movimento reduzido, desativa smooth scroll
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (mediaQuery.matches) {
+      return;
+    }
+
     const lenis = new Lenis({
       duration: 1.0,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -43,7 +54,18 @@ export function useLenis() {
     gsap.ticker.add(updateTicker);
     gsap.ticker.lagSmoothing(0);
 
+    const handleMediaChange = (e: MediaQueryListEvent) => {
+      if (e.matches) {
+        gsap.ticker.remove(updateTicker);
+        lenis.destroy();
+        if (lenisInstance === lenis) lenisInstance = null;
+      }
+    };
+
+    mediaQuery.addEventListener("change", handleMediaChange);
+
     return () => {
+      mediaQuery.removeEventListener("change", handleMediaChange);
       gsap.ticker.remove(updateTicker);
       lenis.destroy();
       if (lenisInstance === lenis) lenisInstance = null;
