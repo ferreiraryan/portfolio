@@ -359,7 +359,7 @@ portfolio/
 ## 9. Pendências & decisões abertas
 
 - **Fases P0, P1, P2, Fase 4, Fase 5 e Fase 6:** ✅ **100% concluídas** (2026-10-17). Mobile despinado, formulário com API Route, acessibilidade/reduced-motion, Hero glow otimizado, SEO completo, OpenGraph dinâmico, sitemap, robots, manifest, favicon, documentação completa, calibração fina de scroll/fita/textos, Trilha de Mundos (Journey HUD) com Fog of War, botões redondos temáticos de scroll perfeitamente centralizados e transição desacelerada de 2.2s.
-- **Área de Admin (`/admin`):** ✅ **100% concluída**. Painel completo com gestão de projetos (destaques, visibilidade, criação de projetos manuais/privados), edição de skills/grimórios e atributos RPG, edição da estante de mangás (`src/data/estante.json`) e dos capítulos do livro biográfico (`src/data/chapters.json`), além de sincronização GitHub com 1 clique (senha padrão `rf290407` via `ADMIN_PASSWORD`).
+- **Área de Admin (`/admin`):** ✅ **100% concluída**. Painel completo com gestão de projetos (destaques, visibilidade, criação de projetos manuais/privados), edição de skills/grimórios e atributos RPG, edição da estante de mangás (`src/data/estante.json`) e dos capítulos do livro biográfico (`src/data/chapters.json`), além de sincronização GitHub com 1 clique (protegido exclusivamente via variável de ambiente `ADMIN_PASSWORD` no `.env.local`).
 - **Próximos Passos Sugeridos:**
   - Testes com usuários finais em diferentes tamanhos de tela para validar a nova experiência de rolagem desacelerada.
   - Expansão contínua de projetos e skills através do painel `/admin`.

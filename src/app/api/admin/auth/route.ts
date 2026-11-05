@@ -9,12 +9,26 @@ export async function GET() {
 
 export async function POST(req: Request) {
   try {
+    const expectedPassword = process.env.ADMIN_PASSWORD?.trim();
+    if (!expectedPassword) {
+      return NextResponse.json(
+        { ok: false, error: "ADMIN_PASSWORD não configurada nas variáveis de ambiente." },
+        { status: 500 }
+      );
+    }
+
     const body = await req.json();
     const password = body?.password?.trim() || "";
-    const expectedPassword = (process.env.ADMIN_PASSWORD || "rf290407").trim();
 
     if (password === expectedPassword) {
       const token = getExpectedToken();
+      if (!token) {
+        return NextResponse.json(
+          { ok: false, error: "Erro ao gerar credencial de sessão." },
+          { status: 500 }
+        );
+      }
+
       const cookieStore = await cookies();
       cookieStore.set("admin_session", token, {
         httpOnly: true,
