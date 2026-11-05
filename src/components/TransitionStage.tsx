@@ -13,19 +13,20 @@ import {
   TransitionTimelineContext,
 } from "@/lib/useTransitionTimeline";
 import { scrollToScrollY } from "@/lib/useLenis";
+import { journeyStore } from "@/lib/journeyStore";
 
 gsap.registerPlugin(ScrollTrigger);
 
 /** Duração normalizada de cada efeito de transição (em "unidades" de timeline). */
 const EFFECT_DURATION = 1;
 /** Tempo de respiro (mundo parado) depois de cada efeito. */
-const HOLD_AFTER_EFFECT = 0.85;
+const HOLD_AFTER_EFFECT = 0.6;
 /** Pequeno respiro antes do primeiro efeito. */
-const LEAD_IN = 0.3;
+const LEAD_IN = 0.15;
 /** Respiro final para apreciar o último mundo antes de soltar o pin. */
-const TRAILING_HOLD = 0.7;
+const TRAILING_HOLD = 0.6;
 /** Quanto de scroll (px) cada unidade de timeline representa. */
-const PX_PER_UNIT = 900;
+const PX_PER_UNIT = 600;
 
 /**
  * Palco único: todos os mundos/transições ficam empilhados e são orquestrados
@@ -35,6 +36,7 @@ const PX_PER_UNIT = 900;
  */
 export default function TransitionStage({ children }: { children: ReactNode }) {
   const stageRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<ScrollTrigger | null>(null);
   const layerRefs = useRef<(HTMLDivElement | null)[]>([]);
   const buildersRef = useRef(new Map<number, TransitionBuilder>());
   const dwellsRef = useRef(new Map<number, TransitionBuilder>());
@@ -67,7 +69,8 @@ export default function TransitionStage({ children }: { children: ReactNode }) {
     if (!range) return;
     const clamped = Math.min(1, Math.max(0, progress));
     const time = range.start + clamped * range.duration;
-    scrollToScrollY(time * PX_PER_UNIT);
+    const startY = triggerRef.current ? triggerRef.current.start : 0;
+    scrollToScrollY(startY + time * PX_PER_UNIT);
   }, []);
 
   useEffect(() => {
@@ -77,84 +80,100 @@ export default function TransitionStage({ children }: { children: ReactNode }) {
     const els = layerRefs.current.filter(Boolean) as HTMLDivElement[];
     if (els.length === 0) return;
 
-    const ctx = gsap.context(() => {
-      // Estado inicial: apenas a primeira camada visível.
-      gsap.set(els, { autoAlpha: 0 });
-      gsap.set(els[0], { autoAlpha: 1 });
+    const mm = gsap.matchMedia();
 
-      dwellWindowsRef.current.clear();
+    mm.add(
+      "(min-width: 1024px) and (prefers-reduced-motion: no-preference)",
+      () => {
+        // Estado inicial: apenas a primeira camada visível.
+        gsap.set(els, { autoAlpha: 0 });
+        gsap.set(els[0], { autoAlpha: 1 });
 
-      const master = gsap.timeline({ paused: true });
-      let position = LEAD_IN;
-      let total = LEAD_IN;
+        dwellWindowsRef.current.clear();
 
-      // Monta cada efeito em sequência, trocando as camadas no tempo certo.
-      for (let i = 0; i < els.length; i++) {
-        const builder = buildersRef.current.get(i);
-        const isLast = i === els.length - 1;
+        const master = gsap.timeline({ paused: true });
+        let position = LEAD_IN;
+        let total = LEAD_IN;
 
-        master.set(els[i], { autoAlpha: 1 }, position);
-        if (i > 0) master.set(els[i - 1], { autoAlpha: 0 }, position);
+        // Monta cada efeito em sequência, trocando as camadas no tempo certo.
+        for (let i = 0; i < els.length; i++) {
+          const builder = buildersRef.current.get(i);
+          const isLast = i === els.length - 1;
 
-        if (builder) {
-          const effect = gsap.timeline();
-          builder(effect);
-          const duration = effect.duration();
-          if (duration > 0) effect.timeScale(duration / EFFECT_DURATION);
-          master.add(effect, position);
-        }
+          master.set(els[i], { autoAlpha: 1 }, position);
+          if (i > 0) master.set(els[i - 1], { autoAlpha: 0 }, position);
 
-        // Animação de "pausa": roda enquanto o mundo fica parado na tela.
-        // A própria duração do dwell define quanto tempo o mundo fica parado.
-        let hold = HOLD_AFTER_EFFECT;
-        const dwellBuilder = dwellsRef.current.get(i);
-        if (dwellBuilder) {
-          const dwell = gsap.timeline();
-          dwellBuilder(dwell);
-          const duration = dwell.duration();
-          if (duration > 0) {
-            const start = position + EFFECT_DURATION;
-            master.add(dwell, start);
-            dwellWindowsRef.current.set(i, { start, duration });
-            hold = Math.max(hold, duration);
+          if (builder) {
+            const effect = gsap.timeline();
+            builder(effect);
+            const duration = effect.duration();
+            if (duration > 0) effect.timeScale(duration / EFFECT_DURATION);
+            master.add(effect, position);
           }
+
+          // Animação de "pausa": roda enquanto o mundo fica parado na tela.
+          // A própria duração do dwell define quanto tempo o mundo fica parado.
+          let hold = HOLD_AFTER_EFFECT;
+          const dwellBuilder = dwellsRef.current.get(i);
+          if (dwellBuilder) {
+            const dwell = gsap.timeline();
+            dwellBuilder(dwell);
+            const duration = dwell.duration();
+            if (duration > 0) {
+              const start = position + EFFECT_DURATION;
+              master.add(dwell, start);
+              dwellWindowsRef.current.set(i, { start, duration });
+              hold = Math.max(hold, duration);
+            }
+          }
+
+          const span = EFFECT_DURATION + (isLast ? 0 : hold);
+          position += span;
+          total += span;
         }
 
-        const span = EFFECT_DURATION + (isLast ? 0 : hold);
-        position += span;
-        total += span;
+        // Estende a timeline com a pausa final para que a duração do master
+        // seja exatamente `total` — mantendo scroll = tempo × PX_PER_UNIT.
+        master.to({}, { duration: TRAILING_HOLD }, position);
+        total += TRAILING_HOLD;
+
+        const trigger = ScrollTrigger.create({
+          trigger: stage,
+          start: "top top",
+          end: () => "+=" + Math.round(total * PX_PER_UNIT),
+          pin: stage,
+          scrub: 0.45,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          animation: master,
+          onUpdate: (self) => {
+            const currentScroll = self.scroll() - self.start;
+            const totalDistance = self.end - self.start;
+            journeyStore.updateDesktopScroll(currentScroll, totalDistance);
+          },
+        });
+
+        triggerRef.current = trigger;
+
+        // Recalcula depois que fontes/imagens assentarem.
+        const raf = requestAnimationFrame(() => ScrollTrigger.refresh());
+        const onLoad = () => ScrollTrigger.refresh();
+        window.addEventListener("load", onLoad);
+
+        return () => {
+          cancelAnimationFrame(raf);
+          window.removeEventListener("load", onLoad);
+          trigger.kill();
+          triggerRef.current = null;
+          master.kill();
+        };
       }
+    );
 
-      // Estende a timeline com a pausa final para que a duração do master
-      // seja exatamente `total` — mantendo scroll = tempo × PX_PER_UNIT.
-      master.to({}, { duration: TRAILING_HOLD }, position);
-      total += TRAILING_HOLD;
-
-      const trigger = ScrollTrigger.create({
-        trigger: stage,
-        start: "top top",
-        end: () => "+=" + Math.round(total * PX_PER_UNIT),
-        pin: stage,
-        scrub: 0.85,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-        animation: master,
-      });
-
-      // Recalcula depois que fontes/imagens assentarem.
-      const raf = requestAnimationFrame(() => ScrollTrigger.refresh());
-      const onLoad = () => ScrollTrigger.refresh();
-      window.addEventListener("load", onLoad);
-
-      return () => {
-        cancelAnimationFrame(raf);
-        window.removeEventListener("load", onLoad);
-        trigger.kill();
-        master.kill();
-      };
-    }, stage);
-
-    return () => ctx.revert();
+    return () => {
+      triggerRef.current = null;
+      mm.revert();
+    };
   }, []);
 
   return (

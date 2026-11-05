@@ -1,26 +1,5 @@
 [
   {
-    "id": "manual_1793918369140",
-    "code": "PRJ_16 // FEIRA_DE_TROCAS_COTE",
-    "name": "FEIRA DE TROCAS COTEMIG",
-    "category": "FULL-STACK",
-    "status": "FINALIZADO",
-    "stack": [
-      "TypeScript",
-      "REACT",
-      "FIREBASE"
-    ],
-    "summary": "Liderei o desenvolvimento de um PWA serverless em Firebase (Auth, Firestore, RTDB e Cloud Functions) que digitalizou a Feira de Trocas do Cotemig, substituindo milhares de fichas físicas por moeda digital. Em 40 dias, integrei carteira para os usuários, PDV para caixas e painel em tempo real, suportando centenas de pessoas e processando milhares de transações em produção estável.",
-    "metrics": "PROJETO MANUAL • 0 BUGS CRÍTICOS",
-    "repoUrl": "#",
-    "liveUrl": "https://www.linkedin.com/feed/update/urn:li:activity:7394444248248545281/",
-    "commitCount": 1,
-    "stars": 0,
-    "pushedAt": "2026-11-05T22:39:29.141Z",
-    "featured": true,
-    "isManual": true
-  },
-  {
     "id": "hub_agent",
     "code": "PRJ_01 // HUB_AGENT_—_AUTONOMOUS",
     "name": "HUB Agent — Autonomous Orchestrator",
@@ -106,28 +85,8 @@
     "featured": true
   },
   {
-    "id": "javagraphicslearn",
-    "code": "PRJ_05 // JAVA_GRAPHICS_&_RENDER",
-    "name": "Java Graphics & Rendering Engine",
-    "category": "CREATIVE WEB",
-    "status": "EXPERIMENTAL",
-    "stack": [
-      "Java",
-      "Computação Gráfica",
-      "Matemática Linear"
-    ],
-    "summary": "Laboratório de computação gráfica, renderização de primitivas vetoriais, rasterização e transformações matriciais em Java puro.",
-    "metrics": "11 COMMITS • 0 STARS • SYNC: MAR. DE 2026",
-    "repoUrl": "https://github.com/ferreiraryan/JavaGraphicsLearn",
-    "liveUrl": "https://github.com/ferreiraryan/JavaGraphicsLearn",
-    "commitCount": 11,
-    "stars": 0,
-    "pushedAt": "2026-03-03T21:50:33Z",
-    "featured": false
-  },
-  {
     "id": "boid_java",
-    "code": "PRJ_06 // BOIDS_FLOCKING_&_SWARM",
+    "code": "PRJ_05 // BOIDS_FLOCKING_&_SWARM",
     "name": "Boids Flocking & Swarm Simulation",
     "category": "CREATIVE WEB",
     "status": "SIMULATION ACTIVE",
@@ -148,7 +107,7 @@
   },
   {
     "id": "sanfall",
-    "code": "PRJ_07 // SANFALL_—_FALLING_SAND",
+    "code": "PRJ_06 // SANFALL_—_FALLING_SAND",
     "name": "SanFall — Falling Sand Physics",
     "category": "CREATIVE WEB",
     "status": "PHYSICS ENGINE",
@@ -168,29 +127,29 @@
     "featured": true
   },
   {
-    "id": "verde.nvim",
-    "code": "PRJ_08 // VERDE.NVIM_—_NEOVIM_TH",
-    "name": "Verde.nvim — NeoVim Theme Engine",
-    "category": "CREATIVE WEB",
-    "status": "RELEASED",
+    "id": "manual_1793918369140",
+    "code": "PRJ_07 // FEIRA_DE_TROCAS_COTEMI",
+    "name": "FEIRA DE TROCAS COTEMIG",
+    "category": "FULL-STACK",
+    "status": "FINALIZADO",
     "stack": [
-      "Lua",
-      "Neovim",
-      "Color Palette",
-      "UI Design"
+      "TypeScript",
+      "REACT",
+      "FIREBASE"
     ],
-    "summary": "Tema e engine visual para NeoVim com paleta verde-esmeralda de alto contraste, suporte a Treesitter highlights e renderização limpa.",
-    "metrics": "3 COMMITS • 0 STARS • SYNC: MAR. DE 2026",
-    "repoUrl": "https://github.com/ferreiraryan/verde.nvim",
-    "liveUrl": "https://github.com/ferreiraryan/verde.nvim",
-    "commitCount": 3,
+    "summary": "Liderei o desenvolvimento de um PWA serverless em Firebase (Auth, Firestore, RTDB e Cloud Functions) que digitalizou a Feira de Trocas do Cotemig, substituindo milhares de fichas físicas por moeda digital. Em 40 dias, integrei carteira para os usuários, PDV para caixas e painel em tempo real, suportando centenas de pessoas e processando milhares de transações em produção estável.",
+    "metrics": "PROJETO MANUAL • 0 BUGS CRÍTICOS",
+    "repoUrl": "#",
+    "liveUrl": "https://www.linkedin.com/feed/update/urn:li:activity:7394444248248545281/",
+    "commitCount": 1,
     "stars": 0,
-    "pushedAt": "2026-03-25T13:09:57Z",
-    "featured": false
+    "pushedAt": "2026-11-05T22:39:29.141Z",
+    "featured": true,
+    "isManual": true
   },
   {
     "id": "detetive_godot_game",
-    "code": "PRJ_09 // DETETIVE_NOIR_—_GODOT_",
+    "code": "PRJ_08 // DETETIVE_NOIR_—_GODOT_",
     "name": "Detetive Noir — Godot 2D Engine",
     "category": "CREATIVE WEB",
     "status": "PLAYABLE ALPHA",
@@ -211,7 +170,7 @@
   },
   {
     "id": "chess-java",
-    "code": "PRJ_10 // CHESS_MASTER_—_JAVA_GA",
+    "code": "PRJ_09 // CHESS_MASTER_—_JAVA_GA",
     "name": "Chess Master — Java Game Engine",
     "category": "AI & ENGINE",
     "status": "STABLE BUILD",
@@ -231,8 +190,100 @@
     "featured": true
   },
   {
+    "id": "grene-project",
+    "code": "PRJ_10 // GRENE_—_MONITORAMENTO_",
+    "name": "Grene — Monitoramento Ambiental IoT",
+    "category": "AI & ENGINE",
+    "status": "EM PRODUÇÃO [IOT & EDGE]",
+    "stack": [
+      "C/C++",
+      "ESP32",
+      "API REST",
+      "Docker",
+      "Edge Computing"
+    ],
+    "summary": "Exploração na fronteira entre hardware, redes e dados. Firmware em C/C++ para ESP32 lendo sensores físicos e transmitindo dados estruturados via API REST orquestrada em Docker.",
+    "metrics": "1 COMMITS • 0 STARS • SYNC: DEZ. DE 2025",
+    "repoUrl": "https://github.com/ferreiraryan/Grene-Project",
+    "liveUrl": "https://grene-production.up.railway.app/",
+    "commitCount": 1,
+    "stars": 0,
+    "pushedAt": "2025-12-19T00:48:57Z",
+    "featured": true
+  },
+  {
+    "id": "ecomerce-node",
+    "code": "PRJ_11 // DEVSTORE_—_E_COMMERCE_",
+    "name": "DevStore — E-commerce Full Stack",
+    "category": "FULL-STACK",
+    "status": "PUBLICADO [DOCKER & WEB]",
+    "stack": [
+      "Node.js",
+      "TypeScript",
+      "React",
+      "Docker",
+      "JWT",
+      "REST API"
+    ],
+    "summary": "Projeto conectando desenvolvimento web, arquitetura de backend, segurança e infraestrutura. API em Node.js com TypeScript e JWT, frontend em React e ambiente isolado com Docker.",
+    "metrics": "1 COMMITS • 0 STARS • SYNC: DEZ. DE 2025",
+    "repoUrl": "https://github.com/ferreiraryan/ecomerce-node",
+    "liveUrl": "https://ecomerce-node-git-main-ferreiraryans-projects.vercel.app/",
+    "commitCount": 1,
+    "stars": 0,
+    "pushedAt": "2025-12-17T03:05:46Z",
+    "featured": true
+  },
+  {
+    "id": "movie-queue-app",
+    "code": "PRJ_12 // MOVIE_QUEUE_—_APP_SOCI",
+    "name": "Movie Queue — App Social Multiplataforma",
+    "category": "FULL-STACK",
+    "status": "PUBLICADO [ANDROID & PWA]",
+    "stack": [
+      "Flutter",
+      "Dart",
+      "Firebase Auth",
+      "Cloud Firestore",
+      "PWA",
+      "Android"
+    ],
+    "summary": "Desenvolvido em Flutter e Dart para Android e navegador como PWA, com Firebase Authentication e Cloud Firestore sincronizando filmes em tempo real.",
+    "metrics": "Mobile & Web (PWA) • Sincronização em Tempo Real • Cloud BaaS",
+    "repoUrl": "https://github.com/ferreiraryan",
+    "liveUrl": "https://movie-queue-c2e96.web.app/",
+    "commitCount": 1,
+    "stars": 0,
+    "pushedAt": "2026-10-15T00:00:00Z",
+    "featured": true,
+    "isManual": true
+  },
+  {
+    "id": "visualisit-algo",
+    "code": "PRJ_13 // VISUALISIT_—_VISUALIZA",
+    "name": "Visualisit — Visualizador de Algoritmos",
+    "category": "CREATIVE WEB",
+    "status": "MVP PUBLICADO [ALGORITMOS]",
+    "stack": [
+      "React",
+      "TypeScript",
+      "Algoritmos",
+      "Estruturas de Dados",
+      "Vite"
+    ],
+    "summary": "Aplicação interativa em React e TypeScript que anima passo a passo algoritmos clássicos de ordenação como Selection Sort e Insertion Sort.",
+    "metrics": "Ciência da Computação • Lógica Visual Passo a Passo • Interface Reativa",
+    "repoUrl": "https://github.com/ferreiraryan",
+    "liveUrl": "https://github.com/ferreiraryan",
+    "commitCount": 1,
+    "stars": 0,
+    "pushedAt": "2026-10-15T00:00:00Z",
+    "featured": true,
+    "isManual": true
+  },
+  {
     "id": "dotfiles",
-    "code": "PRJ_11 // DOTFILES_&_UNIX_WORKST",
+    "code": "PRJ_14 // DOTFILES_&_UNIX_WORKST",
     "name": "Dotfiles & Unix Workstation",
     "category": "FULL-STACK",
     "status": "STABLE BUILD",
@@ -252,8 +303,49 @@
     "featured": false
   },
   {
+    "id": "javagraphicslearn",
+    "code": "PRJ_15 // JAVA_GRAPHICS_&_RENDER",
+    "name": "Java Graphics & Rendering Engine",
+    "category": "CREATIVE WEB",
+    "status": "EXPERIMENTAL",
+    "stack": [
+      "Java",
+      "Computação Gráfica",
+      "Matemática Linear"
+    ],
+    "summary": "Laboratório de computação gráfica, renderização de primitivas vetoriais, rasterização e transformações matriciais em Java puro.",
+    "metrics": "11 COMMITS • 0 STARS • SYNC: MAR. DE 2026",
+    "repoUrl": "https://github.com/ferreiraryan/JavaGraphicsLearn",
+    "liveUrl": "https://github.com/ferreiraryan/JavaGraphicsLearn",
+    "commitCount": 11,
+    "stars": 0,
+    "pushedAt": "2026-03-03T21:50:33Z",
+    "featured": false
+  },
+  {
+    "id": "verde.nvim",
+    "code": "PRJ_16 // VERDE.NVIM_—_NEOVIM_TH",
+    "name": "Verde.nvim — NeoVim Theme Engine",
+    "category": "CREATIVE WEB",
+    "status": "RELEASED",
+    "stack": [
+      "Lua",
+      "Neovim",
+      "Color Palette",
+      "UI Design"
+    ],
+    "summary": "Tema e engine visual para NeoVim com paleta verde-esmeralda de alto contraste, suporte a Treesitter highlights e renderização limpa.",
+    "metrics": "3 COMMITS • 0 STARS • SYNC: MAR. DE 2026",
+    "repoUrl": "https://github.com/ferreiraryan/verde.nvim",
+    "liveUrl": "https://github.com/ferreiraryan/verde.nvim",
+    "commitCount": 3,
+    "stars": 0,
+    "pushedAt": "2026-03-25T13:09:57Z",
+    "featured": false
+  },
+  {
     "id": "codigo-p6",
-    "code": "PRJ_12 // CODIGO_P6",
+    "code": "PRJ_17 // CODIGO_P6",
     "name": "codigo-p6",
     "category": "EXPERIMENTS",
     "status": "STABLE BUILD",
@@ -271,7 +363,7 @@
   },
   {
     "id": "fireworks_java",
-    "code": "PRJ_13 // FIREWORKS_JAVA",
+    "code": "PRJ_18 // FIREWORKS_JAVA",
     "name": "Fireworks_Java",
     "category": "EXPERIMENTS",
     "status": "STABLE BUILD",
@@ -285,42 +377,6 @@
     "commitCount": 1,
     "stars": 1,
     "pushedAt": "2026-03-03T21:49:22Z",
-    "featured": false
-  },
-  {
-    "id": "grene-project",
-    "code": "PRJ_14 // GRENE_PROJECT",
-    "name": "Grene-Project",
-    "category": "EXPERIMENTS",
-    "status": "STABLE BUILD",
-    "stack": [
-      "CSS"
-    ],
-    "summary": "Plataforma full stack para monitoramento inteligente de plantas, com frontend moderno em Django + Tailwind, backend robusto em Django REST e integração com dispositivos IoT (ESP32).",
-    "metrics": "1 COMMITS • 0 STARS • SYNC: DEZ. DE 2025",
-    "repoUrl": "https://github.com/ferreiraryan/Grene-Project",
-    "liveUrl": "https://grene-production.up.railway.app/",
-    "commitCount": 1,
-    "stars": 0,
-    "pushedAt": "2025-12-19T00:48:57Z",
-    "featured": true
-  },
-  {
-    "id": "ecomerce-node",
-    "code": "PRJ_15 // ECOMERCE_NODE",
-    "name": "ecomerce-node",
-    "category": "FULL-STACK",
-    "status": "STABLE BUILD",
-    "stack": [
-      "TypeScript"
-    ],
-    "summary": "Projeto desenvolvido por Ryan Ferreira com foco em arquitetura limpa, alta performance e manutenibilidade.",
-    "metrics": "1 COMMITS • 0 STARS • SYNC: DEZ. DE 2025",
-    "repoUrl": "https://github.com/ferreiraryan/ecomerce-node",
-    "liveUrl": "https://ecomerce-node-one.vercel.app",
-    "commitCount": 1,
-    "stars": 0,
-    "pushedAt": "2025-12-17T03:05:46Z",
     "featured": false
   }
 ]

@@ -1,30 +1,57 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import SectionScrollPrompt from "@/components/navigation/SectionScrollPrompt";
 
 export default function Hero() {
-  const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({
-        x: (e.clientX / window.innerWidth) * 100,
-        y: (e.clientY / window.innerHeight) * 100,
-      });
+    const container = containerRef.current;
+    if (!container) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      container.style.setProperty("--mouse-x", "50%");
+      container.style.setProperty("--mouse-y", "50%");
+      return;
+    }
+
+    let rafId: number | null = null;
+    let targetX = 50;
+    let targetY = 50;
+
+    const update = () => {
+      container.style.setProperty("--mouse-x", `${targetX}%`);
+      container.style.setProperty("--mouse-y", `${targetY}%`);
+      rafId = null;
     };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+
+    const handleMouseMove = (e: MouseEvent) => {
+      targetX = (e.clientX / window.innerWidth) * 100;
+      targetY = (e.clientY / window.innerHeight) * 100;
+      if (!rafId) {
+        rafId = requestAnimationFrame(update);
+      }
+    };
+
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   return (
     <div
+      ref={containerRef}
       className="relative flex h-screen w-full flex-col justify-between px-6 py-10 md:px-16 md:py-12 bg-[#050505] text-[#F5F5F7] select-none overflow-hidden"
       style={{
-        backgroundImage: `radial-gradient(550px circle at ${mousePos.x}% ${mousePos.y}%, rgba(255,255,255,0.065), transparent 60%)`,
+        backgroundImage:
+          "radial-gradient(550px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.065), transparent 60%)",
       }}
     >
-      <header className="flex items-center justify-between text-[11px] font-mono uppercase tracking-[0.28em] text-neutral-500">
+      <header className="flex items-center justify-between font-mono text-eyebrow uppercase tracking-[0.2em] text-neutral-400 select-none">
         <span>01 // Universo Neutro</span>
         <span className="flex items-center gap-2">
           <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -39,9 +66,9 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.1 }}
           className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full border border-white/10 bg-white/[0.03] text-[11px] font-mono uppercase tracking-[0.3em] text-neutral-400"
         >
-          <span>Portfólio Cinematográfico</span>
+          <span>Portfólio &amp; Jornada em TI</span>
           <span className="text-neutral-600">•</span>
-          <span>6 Mundos</span>
+          <span>Múltiplas Áreas</span>
         </motion.div>
 
         <motion.h1
@@ -59,18 +86,19 @@ export default function Hero() {
           transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
           className="mt-6 md:mt-8 max-w-2xl mx-auto text-base sm:text-xl md:text-2xl font-light text-neutral-400 leading-relaxed"
         >
-          <span className="text-white font-normal">Código</span>,{" "}
-          <span className="text-white font-normal">histórias</span> e{" "}
-          <span className="text-white font-normal">mundos</span> — tudo em um só scroll.
+          Movido pela curiosidade de entender como tudo funciona — do{" "}
+          <span className="text-white font-normal">hardware</span> e da{" "}
+          <span className="text-white font-normal">infraestrutura</span> ao{" "}
+          <span className="text-white font-normal">código</span>, aos{" "}
+          <span className="text-white font-normal">dados</span> e às{" "}
+          <span className="text-white font-normal">interfaces</span>.
         </motion.p>
       </div>
 
-      <footer className="flex items-center justify-between text-[11px] font-mono uppercase tracking-[0.22em] text-neutral-500">
-        <span>Next.js 14 • GSAP • Lenis</span>
-        <div className="flex items-center gap-2 text-neutral-300">
-          <span>Role para rasgar</span>
-          <span className="inline-block animate-bounce">↓</span>
-        </div>
+      <SectionScrollPrompt targetWorld={2} text="ROLE PARA EXPLORAR A JORNADA" />
+
+      <footer className="flex items-center justify-between font-mono text-eyebrow uppercase tracking-[0.2em] text-neutral-400 select-none">
+        <span>Next.js 16 • GSAP • Lenis</span>
         <span>01 / 06</span>
       </footer>
     </div>

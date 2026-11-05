@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import estanteData from "@/data/estante.json";
+import SectionScrollPrompt from "@/components/navigation/SectionScrollPrompt";
 
 export interface MangaVolume {
   id: string;
@@ -16,26 +17,48 @@ export interface MangaVolume {
 
 const DEFAULT_VOLUMES: MangaVolume[] = [
   {
-    id: "vagabond",
+    id: "one-piece",
     vol: "VOL. 01",
-    title: "Vagabond",
-    jpTitle: "バガボンド",
-    author: "Takehiko Inoue",
-    accent: "bg-red-700 text-white",
-    quote: "“Preocupado com uma única folha, você não verá a árvore.”",
+    title: "One Piece",
+    jpTitle: "ワンピース",
+    author: "Eiichiro Oda",
+    accent: "bg-red-700 text-amber-300",
+    quote: "“Enquanto eu estiver vivo, existem infinitas possibilidades!”",
     review:
-      "Referência absoluta de traço, disciplina e foco. Me ensinou que maestria técnica exige paciência e atenção ao espaço vazio.",
+      "A maior aula sobre curiosidade, parceria e construção de mundo. Me lembra todos os dias que explorar o desconhecido — seja uma ilha nova ou uma área da TI que nunca testei antes — é muito melhor quando a gente mantém a mente aberta e valoriza quem caminha junto.",
   },
   {
-    id: "berserk",
+    id: "orv",
     vol: "VOL. 02",
-    title: "Berserk",
-    jpTitle: "ベルセルク",
-    author: "Kentaro Miura",
-    accent: "bg-neutral-900 text-amber-400",
-    quote: "“Mesmo que você force de volta o que foi perdido, ainda não será como era antes.”",
+    title: "Omniscient Reader's Viewpoint",
+    jpTitle: "전지적 독자 시점",
+    author: "sing N song",
+    accent: "bg-slate-900 text-cyan-400",
+    quote: "“Toda grande história é construída a partir de pequenos fragmentos acumulados pelo caminho.”",
     review:
-      "Construção de mundo monumental e hachuras inigualáveis. Inspiração direta para a seção de RPG e para resiliência em projetos difíceis.",
+      "Em ORV, o universo inteiro é movido por histórias: cada desafio superado vira um fragmento narrativo que mantém os personagens de pé para o próximo cenário. Enxergo a TI do mesmo jeito — cada área que exploro, cada incidente resolvido e cada projeto que tiro do papel não são apenas códigos isolados, mas capítulos que vão construindo a minha própria história na tecnologia.",
+  },
+  {
+    id: "neuromancer",
+    vol: "VOL. 03",
+    title: "Neuromancer & Trilogia Sprawl",
+    jpTitle: "ニューロマンサー",
+    author: "William Gibson",
+    accent: "bg-zinc-900 text-emerald-400",
+    quote: "“O céu sobre o porto tinha a cor de uma TV sintonizada em um canal fora do ar.”",
+    review:
+      "O ponto de partida do cyberpunk e do próprio conceito de ciberespaço. A Trilogia Sprawl alimenta direto meu fascínio por redes, segurança, sistemas operacionais, inteligência artificial e essa fronteira onde o hardware, os dados e as pessoas se cruzam.",
+  },
+  {
+    id: "meditacoes",
+    vol: "VOL. 04",
+    title: "Meditações",
+    jpTitle: "Τὰ εἰς ἑαυτόν",
+    author: "Marco Aurélio",
+    accent: "bg-stone-800 text-amber-200",
+    quote: "“A qualidade dos seus pensamentos determina a qualidade da sua mente.”",
+    review:
+      "Escrito como um caderno pessoal de reflexões, traz uma visão pé-no-chão sobre clareza mental, foco no que está ao nosso alcance e busca pela causa real das coisas. Na TI, quando tudo parece urgente, essa calma analítica faz toda a diferença para resolver problemas de verdade.",
   },
 ];
 
@@ -48,12 +71,12 @@ export default function Estante() {
   const [selectedVol, setSelectedVol] = useState<MangaVolume>(VOLUMES[0]);
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col justify-between p-5 sm:p-10 md:p-14 bg-[#F4F0EA] text-neutral-950 select-none">
+    <div className="relative flex min-h-screen w-full flex-col justify-between p-5 sm:p-10 md:p-14 bg-[#F4F0EA] text-neutral-950">
       {/* Retícula halftone sutil */}
       <div className="manga-halftone pointer-events-none absolute inset-0 opacity-[0.07]" />
 
       {/* Header HQ */}
-      <header className="relative z-10 flex flex-wrap items-center justify-between gap-2 border-b-4 border-black pb-3 text-xs font-mono font-bold uppercase tracking-[0.2em]">
+      <header className="relative z-10 flex flex-wrap items-center justify-between gap-2 border-b-4 border-black pb-3 text-xs font-mono font-bold uppercase tracking-[0.2em] select-none">
         <span className="bg-black text-white px-2.5 py-1">
           05 // Universo Mangá &amp; Quadrinhos — A Estante
         </span>
@@ -76,7 +99,7 @@ export default function Estante() {
                   key={item.id}
                   type="button"
                   onClick={() => setSelectedVol(item)}
-                  className={`group relative flex flex-col justify-between h-64 p-3.5 text-left border-4 border-black transition-transform duration-200 ${
+                  className={`group @container relative flex min-w-0 flex-col justify-between h-64 overflow-hidden p-3.5 text-left border-4 border-black transition-transform duration-200 ${
                     active
                       ? "-translate-y-3 shadow-[8px_8px_0px_#000000] ring-2 ring-black"
                       : "hover:-translate-y-2 shadow-[4px_4px_0px_#000000]"
@@ -87,18 +110,16 @@ export default function Estante() {
                     <span className="opacity-90">{item.jpTitle}</span>
                   </div>
 
-                  <div>
-                    <span className="text-[10px] font-mono font-bold uppercase opacity-80">
-                      {item.author}
-                    </span>
-                    <h4 className="font-display text-xl font-black leading-tight uppercase">
+                  <div className="my-auto min-w-0 w-full">
+                    <p className="truncate text-xs font-bold opacity-80">{item.jpTitle}</p>
+                    <h3 className="mt-1 font-sans text-[clamp(8.5px,12cqw,13px)] font-black uppercase leading-tight tracking-tight text-balance wrap-anywhere">
                       {item.title}
-                    </h4>
+                    </h3>
                   </div>
 
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-right underline underline-offset-4">
-                    LER ANÁLISE ➔
-                  </span>
+                  <div className="truncate text-[10px] font-mono font-bold uppercase opacity-90">
+                    {item.author}
+                  </div>
                 </button>
               );
             })}
@@ -116,7 +137,7 @@ export default function Estante() {
               {selectedVol.vol} {"// DESTAQUE"}
             </div>
 
-            <p className="font-mono text-xs font-bold uppercase text-neutral-500">
+            <p className="font-mono text-xs font-bold uppercase text-neutral-700">
               {selectedVol.author} • {selectedVol.jpTitle}
             </p>
             <h3 className="mt-1 font-display text-3xl sm:text-4xl font-black uppercase text-black">
@@ -140,9 +161,10 @@ export default function Estante() {
         </div>
       </div>
 
-      <footer className="relative z-10 flex items-center justify-between text-xs font-mono font-bold uppercase tracking-[0.2em]">
-        <span>ESTANTE: 100% ANALÓGICA</span>
-        <span>Role para ligar o Tubo CRT (Arcade) ↓</span>
+      <SectionScrollPrompt targetWorld={6} text="ROLE PARA ENTRAR EM CONTATO" />
+
+      <footer className="relative z-10 flex items-center justify-between text-xs font-mono font-bold uppercase tracking-[0.2em] select-none">
+        <span>Fundo: Papel Off-White (#F4F0EA)</span>
         <span>05 / 06</span>
       </footer>
     </div>

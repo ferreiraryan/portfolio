@@ -1,97 +1,97 @@
 {
   "skillTrees": {
-    "Grimório Front-End": [
+    "Desenvolvimento & Apps": [
       {
-        "name": "Next.js 16 & React 19",
-        "level": 98,
-        "rank": "GRÃO-MESTRE [SS]",
-        "manaCost": "Passiva Contínua",
-        "desc": "Arquitetura App Router moderna, Turbopack, Server Actions, streaming progressivo e renderização ultra-otimizada."
-      },
-      {
-        "name": "TypeScript Estrito",
-        "level": 96,
-        "rank": "MESTRE [S+]",
-        "manaCost": "0 MP",
-        "desc": "Tipagem estrita, inferência avançada de contratos de API, generics de alta fidelidade e tolerância zero a 'any'."
-      },
-      {
-        "name": "Tailwind CSS v4 & Design Systems",
-        "level": 97,
-        "rank": "MESTRE [S+]",
-        "manaCost": "10 MP",
-        "desc": "Tokens semânticos customizados, layouts responsivos dinâmicos, paletas de alto contraste e performance pura via CSS nativo."
-      }
-    ],
-    "Artes de Animação": [
-      {
-        "name": "GSAP & ScrollTrigger",
-        "level": 94,
-        "rank": "ARCANO [S]",
-        "manaCost": "25 MP",
-        "desc": "Timelines mestre encadeadas, sincronização de corte de mundos, scrub milimétrico e orquestração de efeitos visuais."
-      },
-      {
-        "name": "Lenis & Smooth Physics",
+        "name": "Back-End & APIs (Java, Node & Python)",
         "level": 92,
-        "rank": "ARCANO [A+]",
-        "manaCost": "15 MP",
-        "desc": "Rolagem inercial cinemática sincronizada ao ticker global de renderização (60fps estáveis)."
+        "rank": "VERSÁTIL [S]",
+        "manaCost": "20 MP",
+        "desc": "Construção de APIs REST com Spring Boot, Node.js (TypeScript) e FastAPI, aplicando autenticação JWT, TDD e foco em código seguro e organizado."
       },
       {
-        "name": "Shaders, Canvas & Efeitos Visuais",
+        "name": "Front-End & Web (React & TypeScript)",
         "level": 88,
-        "rank": "ESPECIALISTA [A]",
-        "manaCost": "30 MP",
-        "desc": "Simulação de partículas, estilhaços de tela, máscaras vetoriais dinâmicas e transições temáticas."
+        "rank": "AVANÇADO [A+]",
+        "manaCost": "15 MP",
+        "desc": "Criação de interfaces web modernas, responsivas e PWAs que conversam de ponta a ponta com o backend mantendo consistência de tipos."
+      },
+      {
+        "name": "Mobile & Tempo Real (Flutter & Firebase)",
+        "level": 85,
+        "rank": "EXPLORADOR [A]",
+        "manaCost": "20 MP",
+        "desc": "Desenvolvimento de aplicativos para Android e Web com sincronização instantânea no Cloud Firestore, autenticação de usuários e boa experiência de uso."
       }
     ],
-    "Forja Back-End": [
+    "Infra, Linux & Suporte": [
       {
-        "name": "Python & Hub de Agentes AI",
-        "level": 95,
-        "rank": "MESTRE [S]",
-        "manaCost": "20 MP",
-        "desc": "Arquitetura de microsserviços, agentes inteligentes assíncronos, automações robustas e manipulação de dados."
+        "name": "Linux (Arch), Redes & Segurança",
+        "level": 94,
+        "rank": "DOMÍNIO PRÁTICO [S+]",
+        "manaCost": "Passiva Contínua",
+        "desc": "Configuração e uso diário de Arch Linux, explorando o sistema operacional a fundo, redes TCP/IP, firewalls, hardening e boas práticas do OWASP Top 10."
       },
       {
-        "name": "Java, Dart & Algoritmos",
+        "name": "Docker, Ambientes & Automação Bash",
         "level": 90,
-        "rank": "VETERANO [A+]",
-        "manaCost": "25 MP",
-        "desc": "Estruturas de dados complexas, simulações computacionais orientadas a objetos e lógica de alta fidelidade."
+        "rank": "ESPECIALISTA [S]",
+        "manaCost": "20 MP",
+        "desc": "Conteinerização para isolar aplicações e criação de scripts em Shell/Bash que automatizam tarefas repetitivas de infraestrutura e desenvolvimento."
       },
       {
-        "name": "Linux, Neovim & DevOps",
-        "level": 93,
-        "rank": "MESTRE [S]",
+        "name": "Suporte Técnico, Hardware & Pessoas",
+        "level": 95,
+        "rank": "VIVÊNCIA REAL [S+]",
+        "manaCost": "10 MP",
+        "desc": "Experiência prática no TRT-3 e na Prefeitura de Nova Lima resolvendo incidentes críticos, fazendo manutenção de hardware e redes e apoiando usuários e professores."
+      }
+    ],
+    "Dados, IoT & Ciência": [
+      {
+        "name": "Bancos de Dados & SQL",
+        "level": 89,
+        "rank": "CERTIFICADO [A+]",
         "manaCost": "15 MP",
-        "desc": "Ambiente Unix customizado, fluxos modais no NeoVim, automação de scripts de build e containers isolados."
+        "desc": "Modelagem e administração de bancos de dados relacionais, com planejamento de índices, otimização de consultas e estratégias de recuperação."
+      },
+      {
+        "name": "IoT & Sistemas Embarcados (C/C++ & ESP32)",
+        "level": 84,
+        "rank": "INVENTOR [A]",
+        "manaCost": "25 MP",
+        "desc": "Programação próxima ao hardware para leitura de sensores em microcontroladores, cuidando de eficiência energética, memória e envio de dados na borda."
+      },
+      {
+        "name": "Algoritmos, Matemática & Base em IA",
+        "level": 86,
+        "rank": "ACADÊMICO [A]",
+        "manaCost": "30 MP",
+        "desc": "Base em Ciência da Computação na PUC Minas unindo Estruturas de Dados, Cálculo, Álgebra Linear e Estatística para análise de dados e modelos de IA."
       }
     ]
   },
   "baseAttributes": [
     {
       "code": "INT",
-      "name": "Arquitetura & Lógica",
-      "val": 91
+      "name": "Lógica, Dados & Ciência da Computação",
+      "val": 92
     },
     {
       "code": "DEX",
-      "name": "UI Motion & Performance",
-      "val": 95
+      "name": "Desenvolvimento Web, Mobile & APIs",
+      "val": 94
     },
     {
       "code": "WIS",
-      "name": "Commits & Resolução de Problemas",
-      "val": 90
+      "name": "Infraestrutura, Linux & Segurança",
+      "val": 93
     },
     {
       "code": "CHA",
-      "name": "Storytelling & UX Cinematográfica",
-      "val": 96
+      "name": "Suporte, Comunicação & Trabalho em Equipe",
+      "val": 95
     }
   ],
-  "totalCommitsAll": 128,
+  "totalCommitsAll": 143,
   "totalRepos": 15
 }

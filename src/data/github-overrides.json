@@ -8,25 +8,34 @@
     "EAD1-Activities",
     "DIW-2026",
     "Calculadora-Idade-Canina",
-    "ferreiraryan",
-    "verde.nvim",
-    "detetive_godot_game",
-    "codigo-p6"
+    "ferreiraryan"
   ],
   "overrides": {
+    "ecomerce-node": {
+      "name": "DevStore — E-commerce Full Stack",
+      "category": "FULL-STACK",
+      "summary": "Projeto conectando desenvolvimento web, arquitetura de backend, segurança e infraestrutura. API em Node.js com TypeScript e JWT, frontend em React e ambiente isolado com Docker.",
+      "liveUrl": "https://ecomerce-node-git-main-ferreiraryans-projects.vercel.app/",
+      "status": "PUBLICADO [DOCKER & WEB]",
+      "stack": ["Node.js", "TypeScript", "React", "Docker", "JWT", "REST API"],
+      "featured": true
+    },
+    "grene-project": {
+      "name": "Grene — Monitoramento Ambiental IoT",
+      "category": "AI & ENGINE",
+      "summary": "Exploração na fronteira entre hardware, redes e dados. Firmware em C/C++ para ESP32 lendo sensores físicos e transmitindo dados estruturados via API REST orquestrada em Docker.",
+      "liveUrl": "https://grene-production.up.railway.app/",
+      "status": "EM PRODUÇÃO [IOT & EDGE]",
+      "stack": ["C/C++", "ESP32", "API REST", "Docker", "Edge Computing"],
+      "featured": true
+    },
     "portfolio": {
       "name": "Portfólio Cinematográfico",
       "category": "CREATIVE WEB",
       "summary": "Jornada cinematográfica interativa em scroll único com 6 mundos temáticos, timelines sincronizadas no GSAP, inércia Lenis e corte de palco contínuo.",
       "liveUrl": "https://portfolio-three-bay-99.vercel.app",
       "status": "DEPLOYED [PROD]",
-      "stack": [
-        "Next.js 16",
-        "React 19",
-        "Tailwind CSS v4",
-        "GSAP",
-        "Lenis"
-      ],
+      "stack": ["Next.js 16", "React 19", "Tailwind CSS v4", "GSAP", "Lenis"],
       "featured": true
     },
     "HUB_AGENT": {
@@ -34,12 +43,7 @@
       "category": "AI & ENGINE",
       "summary": "Plataforma e hub central para orquestração de agentes autônomos, execução de tarefas assíncronas e integração com modelos neurais.",
       "status": "ACTIVE LINK",
-      "stack": [
-        "Python",
-        "FastAPI",
-        "AI Agents",
-        "Docker"
-      ],
+      "stack": ["Python", "FastAPI", "AI Agents", "Docker"],
       "featured": true
     },
     "boid_java": {
@@ -47,12 +51,7 @@
       "category": "CREATIVE WEB",
       "summary": "Simulação de comportamento emergente de enxames (algoritmo Boids de Craig Reynolds) com vetores físicos de separação, alinhamento e coesão em tempo real.",
       "status": "SIMULATION ACTIVE",
-      "stack": [
-        "Java",
-        "Computação Gráfica",
-        "Física Vetorial",
-        "Algoritmos"
-      ],
+      "stack": ["Java", "Computação Gráfica", "Física Vetorial", "Algoritmos"],
       "featured": true
     },
     "Detetive_Godot_Game": {
@@ -60,12 +59,7 @@
       "category": "CREATIVE WEB",
       "summary": "Jogo de investigação e mistério desenvolvido no motor Godot com mecânicas de pistas, diálogos dinâmicos, iluminação atmosférica e narrativa interativa.",
       "status": "PLAYABLE ALPHA",
-      "stack": [
-        "Godot Engine",
-        "GDScript",
-        "Game Design",
-        "Pixel Art"
-      ],
+      "stack": ["Godot Engine", "GDScript", "Game Design", "Pixel Art"],
       "featured": true
     },
     "Cronos": {
@@ -73,12 +67,7 @@
       "category": "AI & ENGINE",
       "summary": "Motor e utilitário multiplataforma de alta precisão para telemetria de tempo, tracking de produtividade e benchmarking construído em Dart e C++.",
       "status": "STABLE",
-      "stack": [
-        "Dart",
-        "C++",
-        "CMake",
-        "Desktop"
-      ],
+      "stack": ["Dart", "C++", "CMake", "Desktop"],
       "featured": true
     },
     "nvimconfigs": {
@@ -86,118 +75,42 @@
       "category": "FULL-STACK",
       "summary": "Ambiente de desenvolvimento modal customizado com Lua, LSP, Treesitter, snippets e workflow altamente otimizado para engenharia de software.",
       "status": "DAILY DRIVER",
-      "stack": [
-        "Lua",
-        "Neovim",
-        "LSP",
-        "Treesitter"
-      ],
-      "featured": true
-    },
-    "verde.nvim": {
-      "name": "Verde.nvim — NeoVim Theme Engine",
-      "category": "CREATIVE WEB",
-      "summary": "Tema e engine visual para NeoVim com paleta verde-esmeralda de alto contraste, suporte a Treesitter highlights e renderização limpa.",
-      "status": "RELEASED",
-      "stack": [
-        "Lua",
-        "Neovim",
-        "Color Palette",
-        "UI Design"
-      ],
-      "featured": false,
-      "liveUrl": "https://github.com/ferreiraryan/verde.nvim"
-    },
-    "JavaGraphicsLearn": {
-      "name": "Java Graphics & Rendering Engine",
-      "category": "CREATIVE WEB",
-      "summary": "Laboratório de computação gráfica, renderização de primitivas vetoriais, rasterização e transformações matriciais em Java puro.",
-      "status": "EXPERIMENTAL",
-      "stack": [
-        "Java",
-        "Computação Gráfica",
-        "Matemática Linear"
-      ],
-      "featured": true
-    },
-    "Chess-Java": {
-      "name": "Chess Master — Java Game Engine",
-      "category": "AI & ENGINE",
-      "summary": "Implementação completa das regras clássicas de xadrez em Java orientada a objetos, com validação estrita de movimentos, en passant e detecção de xeque-mate.",
-      "status": "STABLE BUILD",
-      "stack": [
-        "Java",
-        "OOP",
-        "Algoritmos",
-        "Game Logic"
-      ],
-      "featured": true
-    },
-    "dotfiles": {
-      "name": "Dotfiles & Unix Workstation",
-      "category": "FULL-STACK",
-      "summary": "Configurações de ambiente Unix de alto desempenho, scripts de automação, gerenciamento de janelas e personalização de terminal.",
-      "status": "STABLE BUILD",
-      "stack": [
-        "Lua",
-        "Shell",
-        "Linux",
-        "Configs"
-      ],
-      "featured": false
-    },
-    "SanFall": {
-      "name": "SanFall — Falling Sand Physics",
-      "category": "CREATIVE WEB",
-      "summary": "Simulação física celular de partículas em queda (areia, água e fogo) com regras de autômatos celulares escritas em C++ e C.",
-      "status": "PHYSICS ENGINE",
-      "stack": [
-        "C++",
-        "C",
-        "Autômatos Celulares",
-        "Física"
-      ],
-      "featured": true
-    },
-    "grene-project": {
-      "featured": true
-    },
-    "javagraphicslearn": {
-      "featured": false
-    },
-    "manual_1793918369140": {
-      "name": "FEIRA DE TROCAS COTEMIG",
-      "category": "FULL-STACK",
-      "status": "FINALIZADO",
-      "summary": "Liderei o desenvolvimento de um PWA serverless em Firebase (Auth, Firestore, RTDB e Cloud Functions) que digitalizou a Feira de Trocas do Cotemig, substituindo milhares de fichas físicas por moeda digital. Em 40 dias, integrei carteira para os usuários, PDV para caixas e painel em tempo real, suportando centenas de pessoas e processando milhares de transações em produção estável.",
-      "stack": [
-        "TypeScript",
-        "REACT",
-        "FIREBASE"
-      ],
-      "liveUrl": "https://www.linkedin.com/feed/update/urn:li:activity:7394444248248545281/",
+      "stack": ["Lua", "Neovim", "LSP", "Treesitter"],
       "featured": true
     }
   },
   "manualProjects": [
     {
-      "id": "manual_1793918369140",
-      "code": "PRJ_16 // FEIRA_DE_TROCAS_COTE",
-      "name": "FEIRA DE TROCAS COTEMIG",
+      "id": "movie-queue-app",
+      "code": "PRJ_03 // MOVIE-QUEUE-APP",
+      "name": "Movie Queue — App Social Multiplataforma",
       "category": "FULL-STACK",
-      "status": "FINALIZADO",
-      "stack": [
-        "TypeScript",
-        "REACT",
-        "FIREBASE"
-      ],
-      "summary": "Para eliminar os gargalos operacionais das fichas de papel na tradicional Feira de Trocas do Cotemig, liderei o desenvolvimento de um PWA serverless voltado a digitalizar a economia do evento com moeda própria. Em 40 dias de desenvolvimento, estruturei uma arquitetura com Firebase (Auth, Firestore, Realtime Database e Cloud Functions) que integrou carteira digital para os participantes, PDV ágil para caixas e dashboard administrativo em tempo real. Em produção durante o evento presencial, o sistema suportou centenas de usuários e processou milhares de transações com sincronização instantânea, substituindo o papel por uma solução estável e segura.",
-      "metrics": "PROJETO MANUAL • 0 BUGS CRÍTICOS",
-      "repoUrl": "#",
-      "liveUrl": "https://www.linkedin.com/feed/update/urn:li:activity:7394444248248545281/",
+      "status": "PUBLICADO [ANDROID & PWA]",
+      "stack": ["Flutter", "Dart", "Firebase Auth", "Cloud Firestore", "PWA", "Android"],
+      "summary": "Desenvolvido em Flutter e Dart para Android e navegador como PWA, com Firebase Authentication e Cloud Firestore sincronizando filmes em tempo real.",
+      "metrics": "Mobile & Web (PWA) • Sincronização em Tempo Real • Cloud BaaS",
+      "repoUrl": "https://github.com/ferreiraryan",
+      "liveUrl": "https://movie-queue-c2e96.web.app/",
       "commitCount": 1,
       "stars": 0,
-      "pushedAt": "2026-11-05T22:39:29.141Z",
+      "pushedAt": "2026-10-15T00:00:00Z",
+      "featured": true,
+      "isManual": true
+    },
+    {
+      "id": "visualisit-algo",
+      "code": "PRJ_04 // VISUALISIT-ALGO",
+      "name": "Visualisit — Visualizador de Algoritmos",
+      "category": "CREATIVE WEB",
+      "status": "MVP PUBLICADO [ALGORITMOS]",
+      "stack": ["React", "TypeScript", "Algoritmos", "Estruturas de Dados", "Vite"],
+      "summary": "Aplicação interativa em React e TypeScript que anima passo a passo algoritmos clássicos de ordenação como Selection Sort e Insertion Sort.",
+      "metrics": "Ciência da Computação • Lógica Visual Passo a Passo • Interface Reativa",
+      "repoUrl": "https://github.com/ferreiraryan",
+      "liveUrl": "https://github.com/ferreiraryan",
+      "commitCount": 1,
+      "stars": 0,
+      "pushedAt": "2026-10-15T00:00:00Z",
       "featured": true,
       "isManual": true
     }
