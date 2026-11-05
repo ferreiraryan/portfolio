@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "sync:github": "node --env-file-if-exists=.env.local scripts/sync-github.ts",
     "start": "next start",
     "lint": "eslint"
   },

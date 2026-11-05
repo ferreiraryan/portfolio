@@ -1,0 +1,42 @@
+[
+  {
+    "id": "vagabond",
+    "vol": "VOL. 01",
+    "title": "Vagabond",
+    "jpTitle": "バガボンド",
+    "author": "Takehiko Inoue",
+    "accent": "bg-red-700 text-white",
+    "quote": "“Preocupado com uma única folha, você não verá a árvore.”",
+    "review": "Referência absoluta de traço, disciplina e foco. Me ensinou que maestria técnica exige paciência e atenção ao espaço vazio."
+  },
+  {
+    "id": "berserk",
+    "vol": "VOL. 02",
+    "title": "Berserk",
+    "jpTitle": "ベルセルク",
+    "author": "Kentaro Miura",
+    "accent": "bg-neutral-900 text-amber-400",
+    "quote": "“Mesmo que você force de volta o que foi perdido, ainda não será como era antes.”",
+    "review": "Construção de mundo monumental e hachuras inigualáveis. Inspiração direta para a seção de RPG e para resiliência em projetos difíceis."
+  },
+  {
+    "id": "akira",
+    "vol": "VOL. 03",
+    "title": "Akira",
+    "jpTitle": "アキラ",
+    "author": "Katsuhiro Otomo",
+    "accent": "bg-rose-600 text-white",
+    "quote": "“O futuro não é uma linha reta; é um circuito em sobrecarga.”",
+    "review": "A bíblia visual do Cyberpunk. A direção de iluminação neon e a escala arquitetônica de Neo-Tokyo guiam toda a minha estética de terminal."
+  },
+  {
+    "id": "spiderverse",
+    "vol": "VOL. 04",
+    "title": "Spider-Verse Artbook",
+    "jpTitle": "スパイダーバース",
+    "author": "Alberto Mielgo & Equipe",
+    "accent": "bg-indigo-700 text-yellow-300",
+    "quote": "“Cada universo merece sua própria linguagem visual e taxa de quadros.”",
+    "review": "A faísca central deste portfólio: misturar retículas de quadrinhos, glitch cromático e múltiplos mundos dentro de uma única narrativa."
+  }
+]

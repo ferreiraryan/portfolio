@@ -1,0 +1,326 @@
+[
+  {
+    "id": "manual_1793918369140",
+    "code": "PRJ_16 // FEIRA_DE_TROCAS_COTE",
+    "name": "FEIRA DE TROCAS COTEMIG",
+    "category": "FULL-STACK",
+    "status": "FINALIZADO",
+    "stack": [
+      "TypeScript",
+      "REACT",
+      "FIREBASE"
+    ],
+    "summary": "Liderei o desenvolvimento de um PWA serverless em Firebase (Auth, Firestore, RTDB e Cloud Functions) que digitalizou a Feira de Trocas do Cotemig, substituindo milhares de fichas físicas por moeda digital. Em 40 dias, integrei carteira para os usuários, PDV para caixas e painel em tempo real, suportando centenas de pessoas e processando milhares de transações em produção estável.",
+    "metrics": "PROJETO MANUAL • 0 BUGS CRÍTICOS",
+    "repoUrl": "#",
+    "liveUrl": "https://www.linkedin.com/feed/update/urn:li:activity:7394444248248545281/",
+    "commitCount": 1,
+    "stars": 0,
+    "pushedAt": "2026-11-05T22:39:29.141Z",
+    "featured": true,
+    "isManual": true
+  },
+  {
+    "id": "hub_agent",
+    "code": "PRJ_01 // HUB_AGENT_—_AUTONOMOUS",
+    "name": "HUB Agent — Autonomous Orchestrator",
+    "category": "AI & ENGINE",
+    "status": "ACTIVE LINK",
+    "stack": [
+      "Python",
+      "FastAPI",
+      "AI Agents",
+      "Docker"
+    ],
+    "summary": "Plataforma e hub central para orquestração de agentes autônomos, execução de tarefas assíncronas e integração com modelos neurais.",
+    "metrics": "39 COMMITS • 0 STARS • SYNC: OUT. DE 2026",
+    "repoUrl": "https://github.com/ferreiraryan/HUB_AGENT",
+    "liveUrl": "https://github.com/ferreiraryan/HUB_AGENT",
+    "commitCount": 39,
+    "stars": 0,
+    "pushedAt": "2026-10-21T00:04:59Z",
+    "featured": true
+  },
+  {
+    "id": "portfolio",
+    "code": "PRJ_02 // PORTFÓLIO_CINEMATOGRÁF",
+    "name": "Portfólio Cinematográfico",
+    "category": "CREATIVE WEB",
+    "status": "DEPLOYED [PROD]",
+    "stack": [
+      "Next.js 16",
+      "React 19",
+      "Tailwind CSS v4",
+      "GSAP",
+      "Lenis"
+    ],
+    "summary": "Jornada cinematográfica interativa em scroll único com 6 mundos temáticos, timelines sincronizadas no GSAP, inércia Lenis e corte de palco contínuo.",
+    "metrics": "14 COMMITS • 0 STARS • SYNC: OUT. DE 2026",
+    "repoUrl": "https://github.com/ferreiraryan/portfolio",
+    "liveUrl": "https://portfolio-three-bay-99.vercel.app",
+    "commitCount": 14,
+    "stars": 0,
+    "pushedAt": "2026-10-17T22:48:35Z",
+    "featured": true
+  },
+  {
+    "id": "cronos",
+    "code": "PRJ_03 // CRONOS_ENGINE_—_TIME_&",
+    "name": "Cronos Engine — Time & Telemetry Tracker",
+    "category": "AI & ENGINE",
+    "status": "STABLE",
+    "stack": [
+      "Dart",
+      "C++",
+      "CMake",
+      "Desktop"
+    ],
+    "summary": "Motor e utilitário multiplataforma de alta precisão para telemetria de tempo, tracking de produtividade e benchmarking construído em Dart e C++.",
+    "metrics": "14 COMMITS • 0 STARS • SYNC: MAR. DE 2026",
+    "repoUrl": "https://github.com/ferreiraryan/Cronos",
+    "liveUrl": "https://github.com/ferreiraryan/Cronos",
+    "commitCount": 14,
+    "stars": 0,
+    "pushedAt": "2026-03-18T12:31:49Z",
+    "featured": true
+  },
+  {
+    "id": "nvimconfigs",
+    "code": "PRJ_04 // NEOVIM_DEV_ENVIRONMENT",
+    "name": "NeoVim Dev Environment (IDE)",
+    "category": "FULL-STACK",
+    "status": "DAILY DRIVER",
+    "stack": [
+      "Lua",
+      "Neovim",
+      "LSP",
+      "Treesitter"
+    ],
+    "summary": "Ambiente de desenvolvimento modal customizado com Lua, LSP, Treesitter, snippets e workflow altamente otimizado para engenharia de software.",
+    "metrics": "12 COMMITS • 1 STARS • SYNC: SET. DE 2026",
+    "repoUrl": "https://github.com/ferreiraryan/nvimconfigs",
+    "liveUrl": "https://github.com/ferreiraryan/nvimconfigs",
+    "commitCount": 12,
+    "stars": 1,
+    "pushedAt": "2026-09-18T17:35:38Z",
+    "featured": true
+  },
+  {
+    "id": "javagraphicslearn",
+    "code": "PRJ_05 // JAVA_GRAPHICS_&_RENDER",
+    "name": "Java Graphics & Rendering Engine",
+    "category": "CREATIVE WEB",
+    "status": "EXPERIMENTAL",
+    "stack": [
+      "Java",
+      "Computação Gráfica",
+      "Matemática Linear"
+    ],
+    "summary": "Laboratório de computação gráfica, renderização de primitivas vetoriais, rasterização e transformações matriciais em Java puro.",
+    "metrics": "11 COMMITS • 0 STARS • SYNC: MAR. DE 2026",
+    "repoUrl": "https://github.com/ferreiraryan/JavaGraphicsLearn",
+    "liveUrl": "https://github.com/ferreiraryan/JavaGraphicsLearn",
+    "commitCount": 11,
+    "stars": 0,
+    "pushedAt": "2026-03-03T21:50:33Z",
+    "featured": false
+  },
+  {
+    "id": "boid_java",
+    "code": "PRJ_06 // BOIDS_FLOCKING_&_SWARM",
+    "name": "Boids Flocking & Swarm Simulation",
+    "category": "CREATIVE WEB",
+    "status": "SIMULATION ACTIVE",
+    "stack": [
+      "Java",
+      "Computação Gráfica",
+      "Física Vetorial",
+      "Algoritmos"
+    ],
+    "summary": "Simulação de comportamento emergente de enxames (algoritmo Boids de Craig Reynolds) com vetores físicos de separação, alinhamento e coesão em tempo real.",
+    "metrics": "8 COMMITS • 0 STARS • SYNC: ABR. DE 2026",
+    "repoUrl": "https://github.com/ferreiraryan/boid_java",
+    "liveUrl": "https://github.com/ferreiraryan/boid_java",
+    "commitCount": 8,
+    "stars": 0,
+    "pushedAt": "2026-04-05T20:07:32Z",
+    "featured": true
+  },
+  {
+    "id": "sanfall",
+    "code": "PRJ_07 // SANFALL_—_FALLING_SAND",
+    "name": "SanFall — Falling Sand Physics",
+    "category": "CREATIVE WEB",
+    "status": "PHYSICS ENGINE",
+    "stack": [
+      "C++",
+      "C",
+      "Autômatos Celulares",
+      "Física"
+    ],
+    "summary": "Simulação física celular de partículas em queda (areia, água e fogo) com regras de autômatos celulares escritas em C++ e C.",
+    "metrics": "3 COMMITS • 0 STARS • SYNC: ABR. DE 2026",
+    "repoUrl": "https://github.com/ferreiraryan/SanFall",
+    "liveUrl": "https://github.com/ferreiraryan/SanFall",
+    "commitCount": 3,
+    "stars": 0,
+    "pushedAt": "2026-04-05T20:05:55Z",
+    "featured": true
+  },
+  {
+    "id": "verde.nvim",
+    "code": "PRJ_08 // VERDE.NVIM_—_NEOVIM_TH",
+    "name": "Verde.nvim — NeoVim Theme Engine",
+    "category": "CREATIVE WEB",
+    "status": "RELEASED",
+    "stack": [
+      "Lua",
+      "Neovim",
+      "Color Palette",
+      "UI Design"
+    ],
+    "summary": "Tema e engine visual para NeoVim com paleta verde-esmeralda de alto contraste, suporte a Treesitter highlights e renderização limpa.",
+    "metrics": "3 COMMITS • 0 STARS • SYNC: MAR. DE 2026",
+    "repoUrl": "https://github.com/ferreiraryan/verde.nvim",
+    "liveUrl": "https://github.com/ferreiraryan/verde.nvim",
+    "commitCount": 3,
+    "stars": 0,
+    "pushedAt": "2026-03-25T13:09:57Z",
+    "featured": false
+  },
+  {
+    "id": "detetive_godot_game",
+    "code": "PRJ_09 // DETETIVE_NOIR_—_GODOT_",
+    "name": "Detetive Noir — Godot 2D Engine",
+    "category": "CREATIVE WEB",
+    "status": "PLAYABLE ALPHA",
+    "stack": [
+      "Godot Engine",
+      "GDScript",
+      "Game Design",
+      "Pixel Art"
+    ],
+    "summary": "Jogo de investigação e mistério desenvolvido no motor Godot com mecânicas de pistas, diálogos dinâmicos, iluminação atmosférica e narrativa interativa.",
+    "metrics": "1 COMMITS • 0 STARS • SYNC: MAR. DE 2026",
+    "repoUrl": "https://github.com/ferreiraryan/Detetive_Godot_Game",
+    "liveUrl": "https://github.com/ferreiraryan/Detetive_Godot_Game",
+    "commitCount": 1,
+    "stars": 0,
+    "pushedAt": "2026-03-29T23:39:37Z",
+    "featured": true
+  },
+  {
+    "id": "chess-java",
+    "code": "PRJ_10 // CHESS_MASTER_—_JAVA_GA",
+    "name": "Chess Master — Java Game Engine",
+    "category": "AI & ENGINE",
+    "status": "STABLE BUILD",
+    "stack": [
+      "Java",
+      "OOP",
+      "Algoritmos",
+      "Game Logic"
+    ],
+    "summary": "Implementação completa das regras clássicas de xadrez em Java orientada a objetos, com validação estrita de movimentos, en passant e detecção de xeque-mate.",
+    "metrics": "1 COMMITS • 0 STARS • SYNC: MAR. DE 2026",
+    "repoUrl": "https://github.com/ferreiraryan/Chess-Java",
+    "liveUrl": "https://github.com/ferreiraryan/Chess-Java",
+    "commitCount": 1,
+    "stars": 0,
+    "pushedAt": "2026-03-03T21:59:00Z",
+    "featured": true
+  },
+  {
+    "id": "dotfiles",
+    "code": "PRJ_11 // DOTFILES_&_UNIX_WORKST",
+    "name": "Dotfiles & Unix Workstation",
+    "category": "FULL-STACK",
+    "status": "STABLE BUILD",
+    "stack": [
+      "Lua",
+      "Shell",
+      "Linux",
+      "Configs"
+    ],
+    "summary": "Configurações de ambiente Unix de alto desempenho, scripts de automação, gerenciamento de janelas e personalização de terminal.",
+    "metrics": "17 COMMITS • 0 STARS • SYNC: MAR. DE 2026",
+    "repoUrl": "https://github.com/ferreiraryan/dotfiles",
+    "liveUrl": "https://github.com/ferreiraryan/dotfiles",
+    "commitCount": 17,
+    "stars": 0,
+    "pushedAt": "2026-03-15T15:42:03Z",
+    "featured": false
+  },
+  {
+    "id": "codigo-p6",
+    "code": "PRJ_12 // CODIGO_P6",
+    "name": "codigo-p6",
+    "category": "EXPERIMENTS",
+    "status": "STABLE BUILD",
+    "stack": [
+      "C"
+    ],
+    "summary": "Projeto desenvolvido por Ryan Ferreira com foco em arquitetura limpa, alta performance e manutenibilidade.",
+    "metrics": "2 COMMITS • 0 STARS • SYNC: JUL. DE 2026",
+    "repoUrl": "https://github.com/ferreiraryan/codigo-p6",
+    "liveUrl": "https://github.com/ferreiraryan/codigo-p6",
+    "commitCount": 2,
+    "stars": 0,
+    "pushedAt": "2026-07-09T22:33:57Z",
+    "featured": false
+  },
+  {
+    "id": "fireworks_java",
+    "code": "PRJ_13 // FIREWORKS_JAVA",
+    "name": "Fireworks_Java",
+    "category": "EXPERIMENTS",
+    "status": "STABLE BUILD",
+    "stack": [
+      "Java"
+    ],
+    "summary": "Projeto desenvolvido por Ryan Ferreira com foco em arquitetura limpa, alta performance e manutenibilidade.",
+    "metrics": "1 COMMITS • 1 STARS • SYNC: MAR. DE 2026",
+    "repoUrl": "https://github.com/ferreiraryan/Fireworks_Java",
+    "liveUrl": "https://github.com/ferreiraryan/Fireworks_Java",
+    "commitCount": 1,
+    "stars": 1,
+    "pushedAt": "2026-03-03T21:49:22Z",
+    "featured": false
+  },
+  {
+    "id": "grene-project",
+    "code": "PRJ_14 // GRENE_PROJECT",
+    "name": "Grene-Project",
+    "category": "EXPERIMENTS",
+    "status": "STABLE BUILD",
+    "stack": [
+      "CSS"
+    ],
+    "summary": "Plataforma full stack para monitoramento inteligente de plantas, com frontend moderno em Django + Tailwind, backend robusto em Django REST e integração com dispositivos IoT (ESP32).",
+    "metrics": "1 COMMITS • 0 STARS • SYNC: DEZ. DE 2025",
+    "repoUrl": "https://github.com/ferreiraryan/Grene-Project",
+    "liveUrl": "https://grene-production.up.railway.app/",
+    "commitCount": 1,
+    "stars": 0,
+    "pushedAt": "2025-12-19T00:48:57Z",
+    "featured": true
+  },
+  {
+    "id": "ecomerce-node",
+    "code": "PRJ_15 // ECOMERCE_NODE",
+    "name": "ecomerce-node",
+    "category": "FULL-STACK",
+    "status": "STABLE BUILD",
+    "stack": [
+      "TypeScript"
+    ],
+    "summary": "Projeto desenvolvido por Ryan Ferreira com foco em arquitetura limpa, alta performance e manutenibilidade.",
+    "metrics": "1 COMMITS • 0 STARS • SYNC: DEZ. DE 2025",
+    "repoUrl": "https://github.com/ferreiraryan/ecomerce-node",
+    "liveUrl": "https://ecomerce-node-one.vercel.app",
+    "commitCount": 1,
+    "stars": 0,
+    "pushedAt": "2025-12-17T03:05:46Z",
+    "featured": false
+  }
+]

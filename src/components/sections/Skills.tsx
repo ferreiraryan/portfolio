@@ -1,35 +1,29 @@
 "use client";
 
 import { useState } from "react";
+import githubSkillsData from "@/data/github-skills.json";
+import type { SkillNode, SkillTrees, AttributeNode } from "@/types/github";
 
-interface SkillNode {
-  name: string;
-  level: number;
-  rank: string;
-  manaCost: string;
-  desc: string;
-}
-
-const SKILL_TREES: Record<string, SkillNode[]> = {
+const DEFAULT_SKILL_TREES: SkillTrees = {
   "Grimório Front-End": [
     {
-      name: "Next.js 14 & React 18",
-      level: 96,
-      rank: "MESTRE [S+]",
+      name: "Next.js 16 & React 19",
+      level: 98,
+      rank: "GRÃO-MESTRE [SS]",
       manaCost: "Passiva Contínua",
       desc: "Server Components, App Router, Streaming SSR e arquitetura modular de alta performance.",
     },
     {
       name: "TypeScript Estrito",
-      level: 94,
-      rank: "MESTRE [S]",
+      level: 96,
+      rank: "MESTRE [S+]",
       manaCost: "0 MP",
       desc: "Tipagem avançada, generics, inferência segura de contratos de API e zero 'any'.",
     },
     {
       name: "Tailwind CSS & Design Systems",
-      level: 98,
-      rank: "GRÃO-MESTRE [SS]",
+      level: 97,
+      rank: "MESTRE [S+]",
       manaCost: "10 MP",
       desc: "Tokens semânticos, layouts responsivos fluidos e temas customizados multiverso.",
     },
@@ -37,57 +31,63 @@ const SKILL_TREES: Record<string, SkillNode[]> = {
   "Artes de Animação": [
     {
       name: "GSAP & ScrollTrigger",
-      level: 92,
+      level: 94,
       rank: "ARCANO [S]",
       manaCost: "25 MP",
       desc: "Timelines complexas, pin de seções, scrub milimétrico e cortes de tela sincronizados.",
     },
     {
-      name: "Lenis & Framer Motion",
-      level: 90,
+      name: "Lenis & Smooth Physics",
+      level: 92,
       rank: "ARCANO [A+]",
       manaCost: "15 MP",
       desc: "Inércia suave de rolagem sincronizada ao ticker e transições declarativas de layout.",
     },
     {
       name: "SVG Clip-Path & Shaders",
-      level: 86,
+      level: 88,
       rank: "ESPECIALISTA [A]",
-      manaCost: "35 MP",
+      manaCost: "30 MP",
       desc: "Máscaras vetoriais dinâmicas para efeitos de rasgo de papel, estilhaços e CRT.",
     },
   ],
   "Forja Back-End": [
     {
-      name: "Node.js & APIs REST/GraphQL",
-      level: 91,
+      name: "Python & Hub de Agentes AI",
+      level: 95,
       rank: "MESTRE [S]",
       manaCost: "20 MP",
-      desc: "Serviços escaláveis, autenticação segura, caching inteligente e baixa latência.",
+      desc: "Arquitetura assíncrona, microsserviços, automação de dados e orquestração de agentes.",
     },
     {
-      name: "PostgreSQL, Prisma & Redis",
-      level: 88,
+      name: "Java, Dart & Algoritmos",
+      level: 90,
       rank: "VETERANO [A+]",
-      manaCost: "20 MP",
-      desc: "Modelagem relacional limpa, índices otimizados e filas assíncronas.",
+      manaCost: "25 MP",
+      desc: "Estruturas de dados complexas, simulações computacionais e tipagem forte.",
     },
     {
-      name: "Docker, CI/CD & Cloud",
-      level: 85,
-      rank: "VETERANO [A]",
-      manaCost: "30 MP",
-      desc: "Containers reprodutíveis, pipelines automatizados e deploy edge.",
+      name: "Linux, Neovim & DevOps",
+      level: 93,
+      rank: "MESTRE [S]",
+      manaCost: "15 MP",
+      desc: "Ambiente modal no Neovim, automação de builds, pipelines e containers isolados.",
     },
   ],
 };
 
-const BASE_ATTRIBUTES = [
+const DEFAULT_ATTRIBUTES: AttributeNode[] = [
   { code: "INT", name: "Arquitetura & Lógica", val: 96 },
   { code: "DEX", name: "UI Motion & Performance", val: 94 },
-  { code: "WIS", name: "Resolução de Problemas", val: 92 },
+  { code: "WIS", name: "Commits & Resolução de Problemas", val: 92 },
   { code: "CHA", name: "Storytelling & UX", val: 95 },
 ];
+
+const SKILL_TREES: SkillTrees =
+  githubSkillsData?.skillTrees || DEFAULT_SKILL_TREES;
+
+const BASE_ATTRIBUTES: AttributeNode[] =
+  githubSkillsData?.baseAttributes || DEFAULT_ATTRIBUTES;
 
 export default function Skills() {
   const categories = Object.keys(SKILL_TREES);
@@ -101,7 +101,9 @@ export default function Skills() {
       {/* Header RPG */}
       <header className="flex flex-wrap items-center justify-between gap-2 border-b border-amber-500/30 pb-3 text-[11px] font-mono uppercase tracking-[0.25em] text-amber-400">
         <span>04 // Universo RPG — Ficha de Personagem</span>
-        <span>GUILDA DOS ENGENHEIROS • NÍVEL 99</span>
+        <span>
+          GUILDA DOS ENGENHEIROS • NÍVEL 99 • {githubSkillsData?.totalCommitsAll || 140}+ COMMITS ATIVOS
+        </span>
       </header>
 
       {/* Container da Ficha */}
@@ -172,7 +174,7 @@ export default function Skills() {
 
             <div className="mt-6 p-3 rounded bg-amber-950/40 border border-amber-500/30 font-mono text-xs text-amber-200/90">
               <strong className="text-amber-400">EQUIPAMENTO ATUAL:</strong>{" "}
-              Next.js 14Grimoire + Luvas de TypeScript + Botas de Scroll Suave (Lenis)
+              Next.js 16 Grimoire + Luvas de TypeScript + Botas de Scroll Suave (Lenis)
             </div>
           </div>
 
@@ -202,7 +204,7 @@ export default function Skills() {
 
               {/* Barras das Habilidades da Categoria */}
               <div className="mt-5 space-y-3">
-                {SKILL_TREES[activeCat].map((sk) => {
+                {SKILL_TREES[activeCat]?.map((sk) => {
                   const isSelected = selectedSkill.name === sk.name;
                   return (
                     <button

@@ -1,83 +1,101 @@
 "use client";
 
 import { useState } from "react";
+import githubProjects from "@/data/github-projects.json";
+import type { ProjectItem } from "@/types/github";
 
-interface ProjectItem {
-  id: string;
-  code: string;
-  name: string;
-  category: "FULL-STACK" | "AI & ENGINE" | "CREATIVE WEB";
-  status: string;
-  stack: string[];
-  summary: string;
-  metrics: string;
-  repoUrl: string;
-  liveUrl: string;
-}
-
-const PROJECTS: ProjectItem[] = [
+const FALLBACK_PROJECTS: ProjectItem[] = [
   {
-    id: "nexus-os",
-    code: "PRJ_01 // NEXUS-CYBERDECK",
-    name: "Nexus OS — Cloud Dev Environment",
-    category: "FULL-STACK",
-    status: "ONLINE [99.98% UPTIME]",
-    stack: ["Next.js 14", "TypeScript", "WebSockets", "Docker", "Tailwind"],
-    summary:
-      "Ambiente de desenvolvimento colaborativo no navegador com terminal em tempo real, execução em containers isolados e telemetria de latência.",
-    metrics: "< 18ms sync latency • 12k+ sessões",
-    repoUrl: "https://github.com/ryanferreira/nexus-os",
-    liveUrl: "https://nexus-os-demo.vercel.app",
-  },
-  {
-    id: "chronos-engine",
-    code: "PRJ_02 // CHRONOS-SCROLL",
-    name: "Chronos — Narrative Scroll Engine",
-    category: "CREATIVE WEB",
-    status: "DEPLOYED [v2.4.0]",
-    stack: ["GSAP", "ScrollTrigger", "Lenis", "Framer Motion", "WebGL"],
-    summary:
-      "Motor de storytelling interativo que sincroniza transições de corte de tela, shaders e trilhas de áudio baseadas na velocidade do scroll.",
-    metrics: "60fps cravados • 0 CLS",
-    repoUrl: "https://github.com/ryanferreira/chronos-engine",
-    liveUrl: "https://chronos-scroll.vercel.app",
-  },
-  {
-    id: "valkyrie-ai",
-    code: "PRJ_03 // VALKYRIE-CORE",
-    name: "Valkyrie — Autonomous Code Auditor",
+    id: "hub_agent",
+    code: "PRJ_01 // HUB_AGENT",
+    name: "HUB Agent — Autonomous Orchestrator",
     category: "AI & ENGINE",
-    status: "NEURAL LINK ACTIVE",
-    stack: ["Node.js", "TypeScript", "AST Parser", "PostgreSQL", "Redis"],
+    status: "ACTIVE LINK",
+    stack: ["Python", "FastAPI", "AI Agents", "Docker"],
     summary:
-      "Pipeline de análise estática e semântica que inspeciona pull requests, detecta gargalos de concorrência e sugere patches automatizados.",
-    metrics: "420+ repos auditados • -64% bug rate",
-    repoUrl: "https://github.com/ryanferreira/valkyrie-ai",
-    liveUrl: "https://valkyrie-auditor.vercel.app",
+      "Plataforma e hub central para orquestração de agentes autônomos, execução de tarefas assíncronas e integração com modelos neurais.",
+    metrics: "39 COMMITS • 0 STARS • SYNC: RECENTE",
+    repoUrl: "https://github.com/ferreiraryan/HUB_AGENT",
+    liveUrl: "https://github.com/ferreiraryan/HUB_AGENT",
+    commitCount: 39,
+    stars: 0,
+    pushedAt: new Date().toISOString(),
+    featured: true,
   },
   {
-    id: "akira-ui",
-    code: "PRJ_04 // AKIRA-DESIGN-SYS",
-    name: "Akira — Neo-Tokyo UI Kit",
+    id: "portfolio",
+    code: "PRJ_02 // PORTFOLIO",
+    name: "Portfólio Cinematográfico",
     category: "CREATIVE WEB",
-    status: "STABLE RELEASE",
-    stack: ["React 18", "Tailwind CSS", "Radix UI", "SVG Filters"],
+    status: "DEPLOYED [PROD]",
+    stack: ["Next.js 16", "React 19", "Tailwind CSS v4", "GSAP", "Lenis"],
     summary:
-      "Biblioteca de componentes acessíveis com estética cyberpunk, HUDs modulares, efeitos de glitch controlados e suporte completo a teclado.",
-    metrics: "38 componentes • 100% A11y score",
-    repoUrl: "https://github.com/ryanferreira/akira-ui",
-    liveUrl: "https://akira-ui.vercel.app",
+      "Jornada cinematográfica interativa em scroll único com 6 mundos temáticos, timelines sincronizadas no GSAP e transições de tela fluidas.",
+    metrics: "14 COMMITS • 0 STARS • SYNC: RECENTE",
+    repoUrl: "https://github.com/ferreiraryan/portfolio",
+    liveUrl: "https://portfolio-three-bay-99.vercel.app",
+    commitCount: 14,
+    stars: 0,
+    pushedAt: new Date().toISOString(),
+    featured: true,
+  },
+  {
+    id: "boid_java",
+    code: "PRJ_03 // BOID_JAVA",
+    name: "Boids Flocking & Swarm Simulation",
+    category: "CREATIVE WEB",
+    status: "SIMULATION ACTIVE",
+    stack: ["Java", "Computação Gráfica", "Física Vetorial", "Algoritmos"],
+    summary:
+      "Simulação de comportamento emergente de enxames (algoritmo Boids de Craig Reynolds) com vetores físicos de separação, alinhamento e coesão em tempo real.",
+    metrics: "8 COMMITS • 0 STARS • SYNC: RECENTE",
+    repoUrl: "https://github.com/ferreiraryan/boid_java",
+    liveUrl: "https://github.com/ferreiraryan/boid_java",
+    commitCount: 8,
+    stars: 0,
+    pushedAt: new Date().toISOString(),
+    featured: true,
   },
 ];
 
+const PROJECTS: ProjectItem[] =
+  Array.isArray(githubProjects) && githubProjects.length > 0
+    ? (githubProjects as ProjectItem[])
+    : FALLBACK_PROJECTS;
+
 export default function Projetos() {
   const [selectedId, setSelectedId] = useState<string>(PROJECTS[0].id);
-  const [filter, setFilter] = useState<string>("ALL");
+  const [filter, setFilter] = useState<string>("★ DESTAQUES");
 
-  const filtered =
-    filter === "ALL" ? PROJECTS : PROJECTS.filter((p) => p.category === filter);
+  const categories = [
+    "★ DESTAQUES",
+    "ALL",
+    "FULL-STACK",
+    "CREATIVE WEB",
+    "AI & ENGINE",
+  ].filter(
+    (cat) =>
+      cat === "★ DESTAQUES" ||
+      cat === "ALL" ||
+      PROJECTS.some((p) => p.category === cat)
+  );
+
+  const getFilteredList = (currentFilter: string) => {
+    if (currentFilter === "★ DESTAQUES") {
+      const feat = PROJECTS.filter((p) => p.featured);
+      return feat.length > 0 ? feat : PROJECTS;
+    }
+    if (currentFilter === "ALL") return PROJECTS;
+    return PROJECTS.filter((p) => p.category === currentFilter);
+  };
+
+  const filtered = getFilteredList(filter);
   const activeProject =
     PROJECTS.find((p) => p.id === selectedId) || filtered[0] || PROJECTS[0];
+
+  const hasLiveDemo =
+    Boolean(activeProject.liveUrl) &&
+    activeProject.liveUrl !== activeProject.repoUrl;
 
   return (
     <div className="relative flex min-h-screen w-full flex-col justify-between p-5 sm:p-10 md:p-14 bg-[#0D041A] text-fuchsia-100 font-mono select-none overflow-hidden">
@@ -91,7 +109,9 @@ export default function Projetos() {
           <span className="h-2 w-2 rounded-full bg-cyan-400 animate-ping" />
           03 // Universo Cyberpunk — Terminal de Projetos
         </span>
-        <span className="text-cyan-400">SYS_KERNEL: RYAN_OS v4.2 // ROOT_ACCESS</span>
+        <span className="text-cyan-400">
+          SYS_KERNEL: GITHUB_SYNC // RANKING: COMMITS & DESTAQUES
+        </span>
       </header>
 
       {/* Janela Principal do Terminal */}
@@ -103,28 +123,27 @@ export default function Projetos() {
               <span className="h-3 w-3 rounded-full bg-rose-500/80" />
               <span className="h-3 w-3 rounded-full bg-amber-400/80" />
               <span className="h-3 w-3 rounded-full bg-emerald-400/80" />
-              <span className="ml-2 text-fuchsia-200 font-semibold">
-                ryan@cyberdeck:~/projetos$ ./listar_sistemas.sh
+              <span className="ml-2 text-fuchsia-200 font-semibold truncate">
+                ryan@cyberdeck:~/projetos$ ./filtrar_destaques.sh --github
               </span>
             </div>
 
             {/* Filtros de Categoria */}
             <div className="flex items-center gap-1.5 flex-wrap">
-              {["ALL", "FULL-STACK", "CREATIVE WEB", "AI & ENGINE"].map((cat) => (
+              {categories.map((cat) => (
                 <button
                   key={cat}
                   type="button"
                   onClick={() => {
                     setFilter(cat);
-                    const nextList =
-                      cat === "ALL"
-                        ? PROJECTS
-                        : PROJECTS.filter((p) => p.category === cat);
+                    const nextList = getFilteredList(cat);
                     if (nextList.length > 0) setSelectedId(nextList[0].id);
                   }}
                   className={`px-2.5 py-1 rounded text-[11px] transition border ${
                     filter === cat
-                      ? "bg-cyan-400 text-black font-bold border-cyan-300 shadow-[0_0_12px_rgba(34,211,238,0.6)]"
+                      ? cat === "★ DESTAQUES"
+                        ? "bg-amber-400 text-black font-bold border-amber-300 shadow-[0_0_15px_rgba(251,191,36,0.7)]"
+                        : "bg-cyan-400 text-black font-bold border-cyan-300 shadow-[0_0_12px_rgba(34,211,238,0.6)]"
                       : "bg-fuchsia-950/50 text-fuchsia-300 border-fuchsia-500/30 hover:border-cyan-400/60"
                   }`}
                 >
@@ -137,9 +156,12 @@ export default function Projetos() {
           {/* Corpo dividido: Lista de Diretórios + Inspecionar Sistema */}
           <div className="grid grid-cols-1 lg:grid-cols-12">
             {/* Coluna Esquerda: Lista de Projetos */}
-            <div className="lg:col-span-5 border-b lg:border-b-0 lg:border-r border-fuchsia-500/30 p-4 sm:p-6 space-y-2.5">
-              <p className="text-[11px] uppercase tracking-widest text-fuchsia-400 mb-3">
-                &gt; SELECIONE UM MÓDULO ({filtered.length} ENCONTRADOS):
+            <div className="lg:col-span-5 border-b lg:border-b-0 lg:border-r border-fuchsia-500/30 p-4 sm:p-6 space-y-2.5 max-h-[500px] overflow-y-auto">
+              <p className="text-[11px] uppercase tracking-widest text-fuchsia-400 mb-3 flex items-center justify-between">
+                <span>&gt; MÓDULOS ({filtered.length}):</span>
+                <span className="text-[10px] text-cyan-400">
+                  {filter === "★ DESTAQUES" ? "PROJETOS SELECIONADOS" : "ORDEM: COMMITS"}
+                </span>
               </p>
               {filtered.map((proj) => {
                 const active = proj.id === activeProject.id;
@@ -148,15 +170,24 @@ export default function Projetos() {
                     key={proj.id}
                     type="button"
                     onClick={() => setSelectedId(proj.id)}
-                    className={`w-full text-left p-3.5 rounded border transition flex flex-col gap-1 ${
+                    className={`w-full text-left p-3.5 rounded border transition flex flex-col gap-1.5 ${
                       active
                         ? "bg-fuchsia-500/20 border-cyan-400 text-white shadow-[inset_0_0_18px_rgba(34,211,238,0.2)]"
                         : "bg-black/30 border-fuchsia-500/20 text-fuchsia-200/80 hover:border-fuchsia-400/50 hover:bg-fuchsia-500/10"
                     }`}
                   >
                     <div className="flex items-center justify-between text-[10px] text-cyan-300">
-                      <span>{proj.code}</span>
-                      <span>{active ? "◄ ATIVO" : "READY"}</span>
+                      <span className="truncate max-w-[160px]">{proj.code}</span>
+                      <div className="flex items-center gap-1.5">
+                        {proj.featured && (
+                          <span className="px-1.5 py-0.5 rounded bg-amber-400/20 text-amber-300 border border-amber-400/40 text-[9px] font-bold">
+                            ★
+                          </span>
+                        )}
+                        <span className="font-bold text-amber-300">
+                          {active ? "◄ ATIVO" : `${proj.commitCount} COMMITS`}
+                        </span>
+                      </div>
                     </div>
                     <span className="text-sm sm:text-base font-bold tracking-tight">
                       {proj.name}
@@ -170,12 +201,24 @@ export default function Projetos() {
             <div className="lg:col-span-7 p-5 sm:p-8 flex flex-col justify-between bg-[#0B0314]/80">
               <div>
                 <div className="flex flex-wrap items-center justify-between gap-2 border-b border-fuchsia-500/20 pb-3">
-                  <span className="text-xs text-cyan-400 font-semibold">
-                    {activeProject.code}
-                  </span>
-                  <span className="px-2.5 py-0.5 rounded bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-[11px]">
-                    {activeProject.status}
-                  </span>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="text-xs text-cyan-400 font-semibold">
+                      {activeProject.code}
+                    </span>
+                    {activeProject.featured && (
+                      <span className="px-2 py-0.5 rounded bg-amber-400/20 border border-amber-300/50 text-amber-300 text-[10px] font-bold shadow-[0_0_12px_rgba(251,191,36,0.3)]">
+                        ★ DESTAQUE
+                      </span>
+                    )}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="px-2 py-0.5 rounded bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 text-[10px]">
+                      {activeProject.commitCount} COMMITS
+                    </span>
+                    <span className="px-2.5 py-0.5 rounded bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-[11px]">
+                      {activeProject.status}
+                    </span>
+                  </div>
                 </div>
 
                 <h3 className="mt-4 text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
@@ -212,7 +255,7 @@ export default function Projetos() {
 
               <div className="mt-8 pt-4 border-t border-fuchsia-500/20 flex flex-wrap items-center justify-between gap-3">
                 <span className="text-xs text-fuchsia-400">
-                  STATUS: COMPILADO SEM ERROS
+                  STATUS: SINCRONIZADO VIA GITHUB API
                 </span>
                 <div className="flex items-center gap-3">
                   <a
@@ -223,14 +266,20 @@ export default function Projetos() {
                   >
                     &gt; VER_CÓDIGO (GITHUB)
                   </a>
-                  <a
-                    href={activeProject.liveUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="px-4 py-2 rounded text-xs font-bold bg-cyan-400 text-black hover:bg-cyan-300 shadow-[0_0_16px_rgba(34,211,238,0.5)] transition"
-                  >
-                    &gt; EXECUTAR_DEMO ↗
-                  </a>
+                  {hasLiveDemo ? (
+                    <a
+                      href={activeProject.liveUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="px-4 py-2 rounded text-xs font-bold bg-cyan-400 text-black hover:bg-cyan-300 shadow-[0_0_16px_rgba(34,211,238,0.5)] transition"
+                    >
+                      &gt; EXECUTAR_DEMO ↗
+                    </a>
+                  ) : (
+                    <span className="px-3 py-2 rounded text-xs font-mono text-fuchsia-400/60 border border-fuchsia-800/40">
+                      [DEMO DIRETA NO GITHUB]
+                    </span>
+                  )}
                 </div>
               </div>
             </div>

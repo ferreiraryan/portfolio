@@ -7,7 +7,20 @@ import {
   useScrollToDwell,
 } from "@/lib/useTransitionTimeline";
 
-const CHAPTERS = [
+import chaptersData from "@/data/chapters.json";
+
+export interface Chapter {
+  number: string;
+  title: string;
+  quote: string;
+  dropCap: string;
+  body: string;
+  marginNote: string;
+  metaLeft: string;
+  metaRight: string;
+}
+
+const DEFAULT_CHAPTERS: Chapter[] = [
   {
     number: "Capítulo I",
     title: "O Autor & A Origem",
@@ -30,7 +43,7 @@ const CHAPTERS = [
   },
   {
     number: "Capítulo III",
-    title: "Alemão do Código: Mundos",
+    title: "Além do Código: Mundos",
     quote: "“Jogos, mangás e literatura moldaram meu olhar para ritmo, contraste e impacto visual.”",
     dropCap: "Q",
     body: "uando não estou projetando aplicações web ou otimizando queries, estou explorando universos de RPG, colecionando edições de mangá ou estudando design de jogos retrô. Este portfólio reúne todas essas referências em uma única jornada contínua.",
@@ -40,7 +53,10 @@ const CHAPTERS = [
   },
 ];
 
-type Chapter = (typeof CHAPTERS)[number];
+const CHAPTERS: Chapter[] =
+  Array.isArray(chaptersData) && chaptersData.length > 0
+    ? (chaptersData as Chapter[])
+    : DEFAULT_CHAPTERS;
 
 /** 2 viradas de página (Cap. I → II → III). */
 const TURNS = CHAPTERS.length - 1;

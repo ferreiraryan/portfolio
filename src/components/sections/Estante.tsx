@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import estanteData from "@/data/estante.json";
 
-interface MangaVolume {
+export interface MangaVolume {
   id: string;
   vol: string;
   title: string;
@@ -13,7 +14,7 @@ interface MangaVolume {
   review: string;
 }
 
-const VOLUMES: MangaVolume[] = [
+const DEFAULT_VOLUMES: MangaVolume[] = [
   {
     id: "vagabond",
     vol: "VOL. 01",
@@ -36,29 +37,12 @@ const VOLUMES: MangaVolume[] = [
     review:
       "Construção de mundo monumental e hachuras inigualáveis. Inspiração direta para a seção de RPG e para resiliência em projetos difíceis.",
   },
-  {
-    id: "akira",
-    vol: "VOL. 03",
-    title: "Akira",
-    jpTitle: "アキラ",
-    author: "Katsuhiro Otomo",
-    accent: "bg-rose-600 text-white",
-    quote: "“O futuro não é uma linha reta; é um circuito em sobrecarga.”",
-    review:
-      "A bíblia visual do Cyberpunk. A direção de iluminação neon e a escala arquitetônica de Neo-Tokyo guiam toda a minha estética de terminal.",
-  },
-  {
-    id: "spiderverse",
-    vol: "VOL. 04",
-    title: "Spider-Verse Artbook",
-    jpTitle: "スパイダーバース",
-    author: "Alberto Mielgo & Equipe",
-    accent: "bg-indigo-700 text-yellow-300",
-    quote: "“Cada universo merece sua própria linguagem visual e taxa de quadros.”",
-    review:
-      "A faísca central deste portfólio: misturar retículas de quadrinhos, glitch cromático e múltiplos mundos dentro de uma única narrativa.",
-  },
 ];
+
+const VOLUMES: MangaVolume[] =
+  Array.isArray(estanteData) && estanteData.length > 0
+    ? (estanteData as MangaVolume[])
+    : DEFAULT_VOLUMES;
 
 export default function Estante() {
   const [selectedVol, setSelectedVol] = useState<MangaVolume>(VOLUMES[0]);
@@ -98,25 +82,28 @@ export default function Estante() {
                       : "hover:-translate-y-2 shadow-[4px_4px_0px_#000000]"
                   } ${item.accent}`}
                 >
-                  <div className="flex items-center justify-between text-[10px] font-mono font-bold border-b-2 border-current pb-1">
-                    <span>{item.vol}</span>
-                    <span>HQ</span>
+                  <div className="flex items-center justify-between font-mono text-[10px] font-black uppercase tracking-wider">
+                    <span className="bg-white/20 px-1 py-0.5 rounded">{item.vol}</span>
+                    <span className="opacity-90">{item.jpTitle}</span>
                   </div>
 
-                  <div className="my-auto">
-                    <p className="text-xs font-bold opacity-80">{item.jpTitle}</p>
-                    <h3 className="font-display text-xl font-black uppercase leading-tight mt-1">
+                  <div>
+                    <span className="text-[10px] font-mono font-bold uppercase opacity-80">
+                      {item.author}
+                    </span>
+                    <h4 className="font-display text-xl font-black leading-tight uppercase">
                       {item.title}
-                    </h3>
+                    </h4>
                   </div>
 
-                  <div className="text-[10px] font-mono font-bold uppercase opacity-90">
-                    {item.author}
-                  </div>
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-right underline underline-offset-4">
+                    LER ANÁLISE ➔
+                  </span>
                 </button>
               );
             })}
           </div>
+
           {/* Base de madeira/tinta da prateleira */}
           <div className="h-4 w-full bg-black" />
         </div>
@@ -125,7 +112,7 @@ export default function Estante() {
         <div className="lg:col-span-5">
           <div className="relative bg-white border-4 border-black p-6 sm:p-8 shadow-[12px_12px_0px_#000000]">
             {/* Etiqueta de capítulo no canto */}
-            <div className="absolute -top-4 right-4 bg-yellow-300 border-3 border-black px-3 py-1 font-mono text-xs font-black uppercase shadow-[4px_4px_0px_#000]">
+            <div className="absolute -top-4 right-4 bg-yellow-300 border-[3px] border-black px-3 py-1 font-mono text-xs font-black uppercase shadow-[4px_4px_0px_#000]">
               {selectedVol.vol} {"// DESTAQUE"}
             </div>
 
@@ -137,7 +124,7 @@ export default function Estante() {
             </h3>
 
             {/* Balão de fala */}
-            <div className="mt-5 relative bg-neutral-100 border-3 border-black p-4 rounded-xl font-serif italic text-base text-black">
+            <div className="mt-5 relative bg-neutral-100 border-[3px] border-black p-4 rounded-xl font-serif italic text-base text-black">
               {selectedVol.quote}
             </div>
 
@@ -154,7 +141,7 @@ export default function Estante() {
       </div>
 
       <footer className="relative z-10 flex items-center justify-between text-xs font-mono font-bold uppercase tracking-[0.2em]">
-        <span>Fundo: Papel Off-White (#F4F0EA)</span>
+        <span>ESTANTE: 100% ANALÓGICA</span>
         <span>Role para ligar o Tubo CRT (Arcade) ↓</span>
         <span>05 / 06</span>
       </footer>

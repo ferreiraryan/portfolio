@@ -202,6 +202,9 @@ portfolio/
 - [x] **Livro interativo** (Sobre): virada automática por scroll + navegação por botões.
 - [x] **Filtro de projetos** e **painel de detalhe** (Projetos).
 - [x] **Árvore de skills** com abas e barras (Skills).
+- [x] **Sincronização GitHub (Projetos & Skills)**: pipeline automatizado (`scripts/sync-github.ts` + `npm run sync:github`), ranqueamento decrescente por volume de commits, exclusão/enriquecimento de repositórios (`src/data/github-overrides.json`) e integração visual no Cyberpunk Terminal (Mundo 03) e na Ficha RPG (Mundo 04).
+- [x] **Projetos em Destaque (Featured)**: curadoria dos projetos mais técnicos/interessantes (HUB Agent, Portfólio, Cronos, NeoVim Dev Environment, Boids Simulation, Detetive Godot, SanFall Sand Physics, Chess Engine) com filtro dedicado `[★ DESTAQUES]`, badge dourada e priorização visual.
+- [x] **Área de Administração (`/admin`)**: painel completo protegido por senha com gestão de projetos (destaques, visibilidade, criação de projetos manuais/privados), edição de skills/grimórios e atributos RPG, edição da estante de mangás (`src/data/estante.json`) e dos capítulos do livro biográfico (`src/data/chapters.json`), além de sincronização GitHub com 1 clique.
 - [x] **Prateleira de mangás** clicável (Estante).
 - [x] **Formulário de contato** (visual/estado de UI apenas).
 - [x] `tsc --noEmit` **limpo** e `eslint` **limpo**.
@@ -221,12 +224,11 @@ portfolio/
 - [ ] **Versões mentindo na UI** — o projeto usa Next **16** / React **19**, mas:
       `Hero.tsx:69` ("Next.js 14"), `Skills.tsx:16` e `:175` ("Next.js 14 & React 18"),
       `Projetos.tsx:25` ("Next.js 14") e `:64` ("React 18").
-- [ ] **Typo:** `Sobre.tsx:33` — `"Alemão do Código: Mundos"` → **"Além do Código"**.
+- [x] **Typo:** `Sobre.tsx:33` — `"Alemão do Código: Mundos"` → **"Além do Código"** (corrigido e extraído para `src/data/chapters.json`).
 
 ### P1 — Bugs e qualidade
 
-- [ ] **`border-3` inválido no Tailwind** (`Estante.tsx:128`, `:140`) — a classe não
-      existe no core; usar `border-[3px]`.
+- [x] **`border-3` inválido no Tailwind** (`Estante.tsx:128`, `:140`) — corrigido para `border-[3px]`.
 - [ ] **`scrollToDwell` ignora o `LEAD_IN`** (`TransitionStage.tsx:63-71`, mapeamento em
       `:70`): como a timeline começa em `position = LEAD_IN (0.3)`, o salto `tempo ×
       PX_PER_UNIT` erra ~270px. Somar o offset de `LEAD_IN`.
@@ -262,7 +264,8 @@ portfolio/
 
 ## 9. Pendências & decisões abertas
 
-- **Formulário:** qual estratégia de envio? (API route + Resend / Formspree / mailto)
+- **Área de Admin (`/admin`):** Concluída com suporte a projetos manuais/privados, destaques, edição de skills, estante e capítulos. A senha mestra configurada no ambiente é `ADMIN_PASSWORD` (fallback `rf290407`).
+- **Formulário de Contato:** qual estratégia de envio? (API route + Resend / Formspree / mailto)
 - **Mobile:** fallback sem pin ou layout alternativo abaixo de `md`?
-- **Dados reais:** trocar placeholders (projetos, links, e-mail) pelos reais?
+- **Dados reais de Contato:** trocar placeholders (`Contato.tsx:65`, `:75`, `:85`) pelos links reais de redes sociais.
 - **SEO:** domínio final para `metadataBase` / `sitemap`.
