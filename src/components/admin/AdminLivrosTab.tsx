@@ -534,8 +534,8 @@ export default function AdminLivrosTab({
             </div>
 
             <p className="text-xs text-zinc-400 leading-relaxed">
-              O CrossPoint Sync consome a API do seu servidor e-reader ou KoSync (`/api/v1/documents`),
-              importando automaticamente títulos, progresso e capas resolvidas.
+              O CrossPoint Sync consome o endpoint canônico da sua conta (<code className="text-emerald-300">/api/v1/progress?include_history=1</code>),
+              importando automaticamente todos os livros com progresso, capas (<code className="text-emerald-300">cover_url</code>) e metadados.
             </p>
 
             <div className="space-y-3 text-xs">

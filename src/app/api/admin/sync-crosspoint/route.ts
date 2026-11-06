@@ -51,13 +51,15 @@ export async function POST(req: Request) {
         );
       }
 
+      console.log(`[CrossPoint Sync] Conectando a ${url} como usuário "${user}"...`);
       incomingBooks = await fetchCrosspointSyncData({ url, user, key });
+      console.log(`[CrossPoint Sync] ${incomingBooks.length} livro(s) retornado(s) pelo servidor.`);
     }
 
     if (!incomingBooks.length) {
       return NextResponse.json({
         ok: true,
-        message: "Nenhum livro novo encontrado no CrossPoint.",
+        message: "Conexão estabelecida com sucesso! Porém nenhum livro com progresso ou histórico foi encontrado no CrossPoint Sync.",
         books: currentBooks,
         count: currentBooks.length,
       });
