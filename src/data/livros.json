@@ -1,5 +1,124 @@
 [
   {
+    "id": "orv",
+    "title": "Omniscient Reader's Viewpoint",
+    "author": "sing N song (싱숑)",
+    "coverUrl": "https://covers.openlibrary.org/b/id/14321241-L.jpg",
+    "status": "LIDO",
+    "progressPercent": 100,
+    "totalPages": 2592,
+    "currentPage": 2592,
+    "completedAt": "2024-08-15",
+    "lastReadAt": "2026-11-06",
+    "rating": 5,
+    "quote": "“Toda grande história é construída a partir de pequenos fragmentos acumulados pelo caminho.”",
+    "review": "Em ORV, o universo inteiro é movido por histórias: cada desafio superado vira um fragmento narrativo que mantém os personagens de pé para o próximo cenário. Enxergo a TI do mesmo jeito — cada área que exploro, cada incidente resolvido e cada projeto que tiro do papel não são apenas códigos isolados, mas capítulos que vão construindo a minha própria história na tecnologia.",
+    "tags": [
+      "Webnovel",
+      "Ficção",
+      "Narrativa",
+      "Fantasia",
+      "E-book"
+    ],
+    "source": "crosspoint",
+    "visible": true,
+    "featured": true,
+    "filename": "Omniscient Reader’s Viewpoint - Sing-Shong.epub"
+  },
+  {
+    "id": "c2a0d77827c9cb06d4bd4e1a67b63932",
+    "title": "Memórias do Subsolo",
+    "author": "Fiódor Dostoiévski",
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Publication125/v4/89/72/2e/89722e48-94b0-9d99-8790-e096b6c8392f/1035131430.jpg/600x600bb.jpg",
+    "status": "LENDO",
+    "progressPercent": 16,
+    "totalPages": 199,
+    "currentPage": 32,
+    "lastReadAt": "2026-11-06",
+    "rating": 4,
+    "tags": [
+      "Classics",
+      "Philosophy",
+      "Literature & Fiction",
+      "Reflective",
+      "Dark"
+    ],
+    "source": "crosspoint",
+    "visible": true,
+    "featured": false,
+    "filename": "Memórias do Subsolo - Fiódor Dostoiévski.epub"
+  },
+  {
+    "id": "ced0b3935fafd34990f89c11c022836b",
+    "title": "PACHINKO",
+    "author": "Min Jin Lee",
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Publication125/v4/d9/4a/e5/d94ae54d-9529-c42f-93b5-bbb07d7aa948/9781455563913.jpg/600x600bb.jpg",
+    "status": "LIDO",
+    "progressPercent": 100,
+    "totalPages": 484,
+    "currentPage": 484,
+    "completedAt": "2026-11-06",
+    "lastReadAt": "2026-11-06",
+    "rating": 4,
+    "tags": [
+      "Historical Fiction",
+      "Literary Fiction",
+      "Family saga",
+      "Classics"
+    ],
+    "source": "crosspoint",
+    "visible": true,
+    "featured": false,
+    "filename": "PACHINKO - Min Jin Lee.epub"
+  },
+  {
+    "id": "d8ed19d9ed28bc911a3c4241b5c0be3d",
+    "title": "1984",
+    "author": "George Orwell",
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Publication116/v4/a4/6a/81/a46a81da-a5ed-e390-9840-79decabf6c5c/9780547249643.jpg/600x600bb.jpg",
+    "status": "LIDO",
+    "progressPercent": 100,
+    "totalPages": 240,
+    "currentPage": 240,
+    "completedAt": "2026-11-06",
+    "lastReadAt": "2026-11-06",
+    "rating": 4,
+    "quote": "“Guerra é Paz. Liberdade é Escravidão. Ignorância é Força.”",
+    "review": "Um dos retratos mais contundentes sobre vigilância estatal, manipulação da informação e controle de pensamento. Uma leitura essencial que ressoa diretamente com debates modernos sobre privacidade, criptografia e segurança digital.",
+    "tags": [
+      "Classics",
+      "Dystopian",
+      "Ficção Científica",
+      "Dark",
+      "Tense"
+    ],
+    "source": "crosspoint",
+    "visible": true,
+    "featured": true,
+    "filename": "1984 - George Orwell.epub"
+  },
+  {
+    "id": "3b583be6767092130b8c9055f8e6ea95",
+    "title": "Manifesto do Partido Comunista",
+    "author": "Karl Marx e Friedrich Engels",
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Publication125/v4/31/5e/f8/315ef8bc-ee53-389a-b71a-5acee7965b53/1022102519.jpg/600x600bb.jpg",
+    "status": "LENDO",
+    "progressPercent": 31,
+    "totalPages": 60,
+    "currentPage": 19,
+    "lastReadAt": "2026-11-06",
+    "tags": [
+      "Filosofia",
+      "História",
+      "Política",
+      "E-book"
+    ],
+    "source": "crosspoint",
+    "visible": true,
+    "featured": false,
+    "filename": "Manifesto do Partido Comunista - Karl Marx e Friedrich Engels.epub"
+  },
+  {
     "id": "one-piece",
     "title": "One Piece",
     "author": "Eiichiro Oda",
@@ -12,30 +131,15 @@
     "rating": 5,
     "quote": "“Enquanto eu estiver vivo, existem infinitas possibilidades!”",
     "review": "A maior aula sobre curiosidade, parceria e construção de mundo. Me lembra todos os dias que explorar o desconhecido — seja uma ilha nova ou uma área da TI que nunca testei antes — é muito melhor quando a gente mantém a mente aberta e valoriza quem caminha junto.",
-    "tags": ["Mangá", "Aventura", "Criatividade"],
+    "tags": [
+      "Mangá",
+      "Aventura",
+      "Criatividade"
+    ],
     "source": "crosspoint",
     "visible": true,
     "featured": true,
     "lastReadAt": "2026-11-01"
-  },
-  {
-    "id": "orv",
-    "title": "Omniscient Reader's Viewpoint",
-    "author": "sing N song",
-    "coverUrl": "https://m.media-amazon.com/images/I/81xG-Y4fJQL._AC_UF1000,1000_QL80_.jpg",
-    "status": "LIDO",
-    "progressPercent": 100,
-    "totalPages": 551,
-    "currentPage": 551,
-    "completedAt": "2024-08-15",
-    "rating": 5,
-    "quote": "“Toda grande história é construída a partir de pequenos fragmentos acumulados pelo caminho.”",
-    "review": "Em ORV, o universo inteiro é movido por histórias: cada desafio superado vira um fragmento narrativo que mantém os personagens de pé para o próximo cenário. Enxergo a TI do mesmo jeito — cada área que exploro, cada incidente resolvido e cada projeto que tiro do papel não são apenas códigos isolados, mas capítulos que vão construindo a minha própria história na tecnologia.",
-    "tags": ["Webnovel", "Ficção", "Narrativa"],
-    "source": "crosspoint",
-    "visible": true,
-    "featured": true,
-    "lastReadAt": "2024-08-15"
   },
   {
     "id": "neuromancer",
@@ -50,7 +154,11 @@
     "rating": 5,
     "quote": "“O céu sobre o porto tinha a cor de uma TV sintonizada em um canal fora do ar.”",
     "review": "O ponto de partida do cyberpunk e do próprio conceito de ciberespaço. A Trilogia Sprawl alimenta direto meu fascínio por redes, segurança, sistemas operacionais, inteligência artificial e essa fronteira onde o hardware, os dados e as pessoas se cruzam.",
-    "tags": ["Cyberpunk", "Ficção Científica", "Tecnologia"],
+    "tags": [
+      "Cyberpunk",
+      "Ficção Científica",
+      "Tecnologia"
+    ],
     "source": "crosspoint",
     "visible": true,
     "featured": true,
@@ -69,7 +177,11 @@
     "rating": 5,
     "quote": "“A qualidade dos seus pensamentos determina a qualidade da sua mente.”",
     "review": "Escrito como um caderno pessoal de reflexões, traz uma visão pé-no-chão sobre clareza mental, foco no que está ao nosso alcance e busca pela causa real das coisas. Na TI, quando tudo parece urgente, essa calma analítica faz toda a diferença para resolver problemas de verdade.",
-    "tags": ["Filosofia", "Estoicismo", "Desenvolvimento Pessoal"],
+    "tags": [
+      "Filosofia",
+      "Estoicismo",
+      "Desenvolvimento Pessoal"
+    ],
     "source": "manual",
     "visible": true,
     "featured": false,
@@ -88,7 +200,11 @@
     "rating": 5,
     "quote": "“Reliability, scalability, and maintainability are the true foundations of software architecture.”",
     "review": "A bíblia dos sistemas distribuídos e processamento de dados. Desmistifica replicação, particionamento, consenso e transações de forma prática. Fundamental para entender infraestrutura e engenharia de software de alta escala.",
-    "tags": ["TI", "Sistemas Distribuídos", "Arquitetura"],
+    "tags": [
+      "TI",
+      "Sistemas Distribuídos",
+      "Arquitetura"
+    ],
     "source": "crosspoint",
     "visible": true,
     "featured": true,
@@ -107,7 +223,11 @@
     "rating": 5,
     "quote": "“Não entre em pânico.”",
     "review": "O humor ácido britânico somado a paradoxos espaciais e computadores respondendo à pergunta fundamental da vida. Leitura leve e divertida que moldou muito o meu gosto por ficção e tecnologia.",
-    "tags": ["Ficção Científica", "Humor", "Clássico"],
+    "tags": [
+      "Ficção Científica",
+      "Humor",
+      "Clássico"
+    ],
     "source": "crosspoint",
     "visible": true,
     "featured": false,

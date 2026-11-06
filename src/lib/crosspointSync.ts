@@ -293,6 +293,30 @@ export function parseLocalCrosspointJson(rawJson: unknown): ReadingBook[] {
 }
 
 /**
+ * Gera chave canônica para mesclagem de volumes e obras conhecidas
+ */
+function getCanonicalBookKey(id: string, title: string): string {
+  const normTitle = title
+    .toLowerCase()
+    .replace(/[’‘]/g, "'")
+    .replace(/\s*\(ch\.\s*\d+[-–]\d+\)/i, "")
+    .replace(/\s*\(cap\.\s*\d+[-–]\d+\)/i, "")
+    .trim();
+
+  // Unifica qualquer versão ou hash de Omniscient Reader's Viewpoint
+  if (
+    id === "52b2da713286ac743e581926c90e0218" ||
+    id === "f68290972a633fdc8049a81547d3b33a" ||
+    id === "orv" ||
+    normTitle.includes("omniscient reader")
+  ) {
+    return "orv-canonical";
+  }
+
+  return normTitle;
+}
+
+/**
  * Mescla livros importados com a lista existente no sistema,
  * preservando todas as customizações manuais feitas pelo Ryan no Admin:
  * visibilidade (visible), destaque (featured), avaliação (rating), resenha (review) e citação (quote).
@@ -305,6 +329,7 @@ export function mergeBooks(
 
   for (const b of existingBooks) {
     existingMap.set(b.id, b);
+    existingMap.set(getCanonicalBookKey(b.id, b.title), b);
     const compoundKey = `${b.title.toLowerCase().trim()}|${b.author.toLowerCase().trim()}`;
     existingMap.set(compoundKey, b);
   }
@@ -314,31 +339,47 @@ export function mergeBooks(
 
   // Processa incomingBooks
   for (const incoming of incomingBooks) {
+    const canonicalKey = getCanonicalBookKey(incoming.id, incoming.title);
     const compoundKey = `${incoming.title.toLowerCase().trim()}|${incoming.author.toLowerCase().trim()}`;
-    const existing = existingMap.get(incoming.id) || existingMap.get(compoundKey);
+    const existing =
+      existingMap.get(incoming.id) ||
+      existingMap.get(canonicalKey) ||
+      existingMap.get(compoundKey);
 
     if (existing) {
+      if (processedKeys.has(existing.id) || processedKeys.has(canonicalKey)) {
+        // Já mesclou este livro canônico anteriormente
+        continue;
+      }
+
       // Mescla atualizações com prioridade de personalização do usuário
       merged.push({
         ...incoming,
         id: existing.id,
+        title: existing.id === "orv" ? "Omniscient Reader's Viewpoint" : existing.title || incoming.title,
         visible: existing.visible, // Mantém visibilidade customizada no Admin
         featured: existing.featured, // Mantém destaque customizado
         rating: existing.rating ?? incoming.rating,
         review: existing.review || incoming.review,
         quote: existing.quote || incoming.quote,
-        coverUrl: incoming.coverUrl || existing.coverUrl, // Atualiza capa se a nova trouxer capa
+        coverUrl: incoming.coverUrl || existing.coverUrl,
         tags: existing.tags && existing.tags.length > 0 ? existing.tags : incoming.tags,
         status: existing.status === "LIDO" ? "LIDO" : incoming.status,
         progressPercent:
           existing.status === "LIDO"
             ? 100
             : Math.max(existing.progressPercent || 0, incoming.progressPercent || 0),
+        totalPages: Math.max(existing.totalPages || 0, incoming.totalPages || 0) || undefined,
+        currentPage: Math.max(existing.currentPage || 0, incoming.currentPage || 0) || undefined,
       });
+
+      processedKeys.add(canonicalKey);
       processedKeys.add(compoundKey);
       processedKeys.add(existing.id);
+      processedKeys.add(incoming.id);
     } else {
       merged.push(incoming);
+      processedKeys.add(canonicalKey);
       processedKeys.add(compoundKey);
       processedKeys.add(incoming.id);
     }
@@ -346,9 +387,15 @@ export function mergeBooks(
 
   // Preserva livros que já existiam e não vieram na resposta atual (ex: manuais ou offline)
   for (const existing of existingBooks) {
+    const canonicalKey = getCanonicalBookKey(existing.id, existing.title);
     const compoundKey = `${existing.title.toLowerCase().trim()}|${existing.author.toLowerCase().trim()}`;
-    if (!processedKeys.has(existing.id) && !processedKeys.has(compoundKey)) {
+    if (
+      !processedKeys.has(existing.id) &&
+      !processedKeys.has(canonicalKey) &&
+      !processedKeys.has(compoundKey)
+    ) {
       merged.push(existing);
+      processedKeys.add(canonicalKey);
       processedKeys.add(existing.id);
       processedKeys.add(compoundKey);
     }
