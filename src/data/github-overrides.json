@@ -17,7 +17,14 @@
       "summary": "Projeto conectando desenvolvimento web, arquitetura de backend, segurança e infraestrutura. API em Node.js com TypeScript e JWT, frontend em React e ambiente isolado com Docker.",
       "liveUrl": "https://ecomerce-node-git-main-ferreiraryans-projects.vercel.app/",
       "status": "PUBLICADO [DOCKER & WEB]",
-      "stack": ["Node.js", "TypeScript", "React", "Docker", "JWT", "REST API"],
+      "stack": [
+        "Node.js",
+        "TypeScript",
+        "React",
+        "Docker",
+        "JWT",
+        "REST API"
+      ],
       "featured": true
     },
     "grene-project": {
@@ -26,7 +33,13 @@
       "summary": "Exploração na fronteira entre hardware, redes e dados. Firmware em C/C++ para ESP32 lendo sensores físicos e transmitindo dados estruturados via API REST orquestrada em Docker.",
       "liveUrl": "https://grene-production.up.railway.app/",
       "status": "EM PRODUÇÃO [IOT & EDGE]",
-      "stack": ["C/C++", "ESP32", "API REST", "Docker", "Edge Computing"],
+      "stack": [
+        "C/C++",
+        "ESP32",
+        "API REST",
+        "Docker",
+        "Edge Computing"
+      ],
       "featured": true
     },
     "portfolio": {
@@ -35,7 +48,13 @@
       "summary": "Jornada cinematográfica interativa em scroll único com 6 mundos temáticos, timelines sincronizadas no GSAP, inércia Lenis e corte de palco contínuo.",
       "liveUrl": "https://portfolio-three-bay-99.vercel.app",
       "status": "DEPLOYED [PROD]",
-      "stack": ["Next.js 16", "React 19", "Tailwind CSS v4", "GSAP", "Lenis"],
+      "stack": [
+        "Next.js 16",
+        "React 19",
+        "Tailwind CSS v4",
+        "GSAP",
+        "Lenis"
+      ],
       "featured": true
     },
     "HUB_AGENT": {
@@ -43,7 +62,12 @@
       "category": "AI & ENGINE",
       "summary": "Plataforma e hub central para orquestração de agentes autônomos, execução de tarefas assíncronas e integração com modelos neurais.",
       "status": "ACTIVE LINK",
-      "stack": ["Python", "FastAPI", "AI Agents", "Docker"],
+      "stack": [
+        "Python",
+        "FastAPI",
+        "AI Agents",
+        "Docker"
+      ],
       "featured": true
     },
     "boid_java": {
@@ -51,7 +75,12 @@
       "category": "CREATIVE WEB",
       "summary": "Simulação de comportamento emergente de enxames (algoritmo Boids de Craig Reynolds) com vetores físicos de separação, alinhamento e coesão em tempo real.",
       "status": "SIMULATION ACTIVE",
-      "stack": ["Java", "Computação Gráfica", "Física Vetorial", "Algoritmos"],
+      "stack": [
+        "Java",
+        "Computação Gráfica",
+        "Física Vetorial",
+        "Algoritmos"
+      ],
       "featured": true
     },
     "Detetive_Godot_Game": {
@@ -59,7 +88,12 @@
       "category": "CREATIVE WEB",
       "summary": "Jogo de investigação e mistério desenvolvido no motor Godot com mecânicas de pistas, diálogos dinâmicos, iluminação atmosférica e narrativa interativa.",
       "status": "PLAYABLE ALPHA",
-      "stack": ["Godot Engine", "GDScript", "Game Design", "Pixel Art"],
+      "stack": [
+        "Godot Engine",
+        "GDScript",
+        "Game Design",
+        "Pixel Art"
+      ],
       "featured": true
     },
     "Cronos": {
@@ -67,7 +101,12 @@
       "category": "AI & ENGINE",
       "summary": "Motor e utilitário multiplataforma de alta precisão para telemetria de tempo, tracking de produtividade e benchmarking construído em Dart e C++.",
       "status": "STABLE",
-      "stack": ["Dart", "C++", "CMake", "Desktop"],
+      "stack": [
+        "Dart",
+        "C++",
+        "CMake",
+        "Desktop"
+      ],
       "featured": true
     },
     "nvimconfigs": {
@@ -75,7 +114,12 @@
       "category": "FULL-STACK",
       "summary": "Ambiente de desenvolvimento modal customizado com Lua, LSP, Treesitter, snippets e workflow altamente otimizado para engenharia de software.",
       "status": "DAILY DRIVER",
-      "stack": ["Lua", "Neovim", "LSP", "Treesitter"],
+      "stack": [
+        "Lua",
+        "Neovim",
+        "LSP",
+        "Treesitter"
+      ],
       "featured": true
     }
   },
@@ -86,7 +130,14 @@
       "name": "Movie Queue — App Social Multiplataforma",
       "category": "FULL-STACK",
       "status": "PUBLICADO [ANDROID & PWA]",
-      "stack": ["Flutter", "Dart", "Firebase Auth", "Cloud Firestore", "PWA", "Android"],
+      "stack": [
+        "Flutter",
+        "Dart",
+        "Firebase Auth",
+        "Cloud Firestore",
+        "PWA",
+        "Android"
+      ],
       "summary": "Desenvolvido em Flutter e Dart para Android e navegador como PWA, com Firebase Authentication e Cloud Firestore sincronizando filmes em tempo real.",
       "metrics": "Mobile & Web (PWA) • Sincronização em Tempo Real • Cloud BaaS",
       "repoUrl": "https://github.com/ferreiraryan",
@@ -103,7 +154,13 @@
       "name": "Visualisit — Visualizador de Algoritmos",
       "category": "CREATIVE WEB",
       "status": "MVP PUBLICADO [ALGORITMOS]",
-      "stack": ["React", "TypeScript", "Algoritmos", "Estruturas de Dados", "Vite"],
+      "stack": [
+        "React",
+        "TypeScript",
+        "Algoritmos",
+        "Estruturas de Dados",
+        "Vite"
+      ],
       "summary": "Aplicação interativa em React e TypeScript que anima passo a passo algoritmos clássicos de ordenação como Selection Sort e Insertion Sort.",
       "metrics": "Ciência da Computação • Lógica Visual Passo a Passo • Interface Reativa",
       "repoUrl": "https://github.com/ferreiraryan",

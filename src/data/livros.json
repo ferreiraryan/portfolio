@@ -122,7 +122,7 @@
     "id": "one-piece",
     "title": "One Piece",
     "author": "Eiichiro Oda",
-    "coverUrl": "https://m.media-amazon.com/images/I/81B4W1n6r0L._AC_UF1000,1000_QL80_.jpg",
+    "coverUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR90UWnvFNOAdBtPcbHC0rHd5h2IsTb1s_Ml9bCIM1b22O1jp0x6OTNWRA&s=10",
     "status": "LENDO",
     "progressPercent": 85,
     "totalPages": 1100,
@@ -145,7 +145,7 @@
     "id": "neuromancer",
     "title": "Neuromancer",
     "author": "William Gibson",
-    "coverUrl": "https://m.media-amazon.com/images/I/81eP7Z8tS4L._AC_UF1000,1000_QL80_.jpg",
+    "coverUrl": "https://quintacapa.com.br/wp-content/uploads/2019/01/neuromancer.jpg",
     "status": "LIDO",
     "progressPercent": 100,
     "totalPages": 320,
@@ -168,7 +168,7 @@
     "id": "meditacoes",
     "title": "Meditações",
     "author": "Marco Aurélio",
-    "coverUrl": "https://m.media-amazon.com/images/I/71Y-oR79p6L._AC_UF1000,1000_QL80_.jpg",
+    "coverUrl": "https://m.media-amazon.com/images/I/612B0id4gNL.jpg",
     "status": "LIDO",
     "progressPercent": 100,
     "totalPages": 192,
@@ -206,7 +206,7 @@
       "Arquitetura"
     ],
     "source": "crosspoint",
-    "visible": true,
+    "visible": false,
     "featured": true,
     "lastReadAt": "2024-09-05"
   },
@@ -229,7 +229,7 @@
       "Clássico"
     ],
     "source": "crosspoint",
-    "visible": true,
+    "visible": false,
     "featured": false,
     "lastReadAt": "2023-05-18"
   }

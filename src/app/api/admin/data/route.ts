@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { isAuthenticated } from "@/lib/adminAuth";
+import { persistJsonFiles, type FileToPersist } from "@/lib/dataStorage";
 
 const DATA_DIR = path.join(process.cwd(), "src/data");
 
@@ -51,32 +52,56 @@ export async function POST(req: Request) {
 
   try {
     const body = await req.json();
+    const filesToPersist: FileToPersist[] = [];
 
     if (body.overrides) {
-      await fs.writeFile(PATHS.overrides, JSON.stringify(body.overrides, null, 2), "utf-8");
+      filesToPersist.push({
+        relativePath: "src/data/github-overrides.json",
+        content: JSON.stringify(body.overrides, null, 2),
+      });
     }
 
     if (body.projects) {
-      await fs.writeFile(PATHS.projects, JSON.stringify(body.projects, null, 2), "utf-8");
+      filesToPersist.push({
+        relativePath: "src/data/github-projects.json",
+        content: JSON.stringify(body.projects, null, 2),
+      });
     }
 
     if (body.skills) {
-      await fs.writeFile(PATHS.skills, JSON.stringify(body.skills, null, 2), "utf-8");
+      filesToPersist.push({
+        relativePath: "src/data/github-skills.json",
+        content: JSON.stringify(body.skills, null, 2),
+      });
     }
 
     if (body.estante) {
-      await fs.writeFile(PATHS.estante, JSON.stringify(body.estante, null, 2), "utf-8");
+      filesToPersist.push({
+        relativePath: "src/data/estante.json",
+        content: JSON.stringify(body.estante, null, 2),
+      });
     }
 
     if (body.chapters) {
-      await fs.writeFile(PATHS.chapters, JSON.stringify(body.chapters, null, 2), "utf-8");
+      filesToPersist.push({
+        relativePath: "src/data/chapters.json",
+        content: JSON.stringify(body.chapters, null, 2),
+      });
     }
 
     if (body.livros) {
-      await fs.writeFile(PATHS.livros, JSON.stringify(body.livros, null, 2), "utf-8");
+      filesToPersist.push({
+        relativePath: "src/data/livros.json",
+        content: JSON.stringify(body.livros, null, 2),
+      });
     }
 
-    return NextResponse.json({ ok: true, message: "Dados atualizados com sucesso no servidor." });
+    if (filesToPersist.length > 0) {
+      const result = await persistJsonFiles(filesToPersist, "admin: atualizar dados via painel");
+      return NextResponse.json({ ok: true, message: result.message, mode: result.mode });
+    }
+
+    return NextResponse.json({ ok: true, message: "Nenhum dado modificado para salvar." });
   } catch (err: unknown) {
     const errorMsg = err instanceof Error ? err.message : "Erro desconhecido";
     return NextResponse.json({ ok: false, error: errorMsg }, { status: 500 });

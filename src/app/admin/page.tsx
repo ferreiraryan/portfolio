@@ -134,7 +134,7 @@ export default function AdminPage() {
       const d = await res.json();
       if (res.ok && d.ok) {
         setHasUnsavedChanges(false);
-        showToast("Alterações salvas com sucesso em todos os mundos!");
+        showToast(d.message || "Alterações salvas com sucesso em todos os mundos!");
       } else {
         showToast(d.error || "Erro ao salvar alterações.", "error");
       }

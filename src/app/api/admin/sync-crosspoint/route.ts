@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { isAuthenticated } from "@/lib/adminAuth";
+import { persistJsonFiles } from "@/lib/dataStorage";
 import {
   fetchCrosspointSyncData,
   parseLocalCrosspointJson,
@@ -67,13 +68,22 @@ export async function POST(req: Request) {
 
     const merged = mergeBooks(currentBooks, incomingBooks);
 
-    await fs.writeFile(LIVROS_FILE, JSON.stringify(merged, null, 2), "utf-8");
+    const persistResult = await persistJsonFiles(
+      [
+        {
+          relativePath: "src/data/livros.json",
+          content: JSON.stringify(merged, null, 2),
+        },
+      ],
+      `admin: sincronizar ${incomingBooks.length} livro(s) do CrossPoint`
+    );
 
     return NextResponse.json({
       ok: true,
-      message: `Sincronização concluída com sucesso! ${incomingBooks.length} livro(s) processado(s).`,
+      message: `${persistResult.message} (${incomingBooks.length} livro(s) sincronizados).`,
       count: merged.length,
       books: merged,
+      mode: persistResult.mode,
     });
   } catch (err: unknown) {
     const errorMsg = err instanceof Error ? err.message : "Erro desconhecido ao sincronizar";
