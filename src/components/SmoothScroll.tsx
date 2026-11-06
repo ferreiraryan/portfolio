@@ -15,9 +15,9 @@ function LenisWrapper({ children }: { children: ReactNode }) {
 
 export default function SmoothScroll({ children }: SmoothScrollProps) {
   const pathname = usePathname();
-  const isAdmin = pathname?.startsWith("/admin");
+  const isExcluded = pathname?.startsWith("/admin") || pathname?.startsWith("/livros");
 
-  if (isAdmin) {
+  if (isExcluded) {
     return <>{children}</>;
   }
 

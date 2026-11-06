@@ -7,6 +7,7 @@ import AdminProjectsTab from "@/components/admin/AdminProjectsTab";
 import AdminSkillsTab from "@/components/admin/AdminSkillsTab";
 import AdminEstanteTab from "@/components/admin/AdminEstanteTab";
 import AdminChaptersTab from "@/components/admin/AdminChaptersTab";
+import AdminLivrosTab from "@/components/admin/AdminLivrosTab";
 import type {
   ProjectItem,
   OverridesConfig,
@@ -15,6 +16,7 @@ import type {
   SkillTrees,
   AttributeNode,
 } from "@/types/github";
+import type { ReadingBook } from "@/types/books";
 
 interface SkillsData {
   skillTrees: SkillTrees;
@@ -23,7 +25,7 @@ interface SkillsData {
   totalRepos?: number;
 }
 
-type TabType = "PROJECTS" | "SKILLS" | "ESTANTE" | "CHAPTERS";
+type TabType = "PROJECTS" | "SKILLS" | "ESTANTE" | "CHAPTERS" | "LIVROS";
 
 export default function AdminPage() {
   const [authenticated, setAuthenticated] = useState<boolean | null>(null);
@@ -47,6 +49,7 @@ export default function AdminPage() {
   });
   const [estante, setEstante] = useState<MangaVolume[]>([]);
   const [chapters, setChapters] = useState<ChapterItem[]>([]);
+  const [livros, setLivros] = useState<ReadingBook[]>([]);
 
   const showToast = (message: string, type: "success" | "error" = "success") => {
     setToast({ message, type });
@@ -64,6 +67,7 @@ export default function AdminPage() {
         setSkills(d.skills || { skillTrees: {}, baseAttributes: [] });
         setEstante(d.estante || []);
         setChapters(d.chapters || []);
+        setLivros(d.livros || []);
         setHasUnsavedChanges(false);
       }
     } catch {
@@ -93,6 +97,7 @@ export default function AdminPage() {
             setSkills(data.skills || { skillTrees: {}, baseAttributes: [] });
             setEstante(data.estante || []);
             setChapters(data.chapters || []);
+            setLivros(data.livros || []);
             setHasUnsavedChanges(false);
           }
         }
@@ -122,6 +127,7 @@ export default function AdminPage() {
           skills,
           estante,
           chapters,
+          livros,
         }),
       });
 
@@ -252,6 +258,14 @@ export default function AdminPage() {
           </button>
 
           <Link
+            href="/livros"
+            target="_blank"
+            className="px-3.5 py-2 rounded-lg bg-emerald-950/80 text-emerald-200 border border-emerald-500/40 hover:bg-emerald-900/60 text-xs font-semibold transition"
+          >
+            Ver /livros ↗
+          </Link>
+
+          <Link
             href="/"
             target="_blank"
             className="px-3.5 py-2 rounded-lg bg-fuchsia-950/80 text-fuchsia-200 border border-fuchsia-500/40 hover:bg-fuchsia-900/60 text-xs font-semibold transition"
@@ -324,6 +338,19 @@ export default function AdminPage() {
             <span>📖</span>
             <span>Mundo 02: Capítulos do Livro ({chapters.length})</span>
           </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveTab("LIVROS")}
+            className={`px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 border ${
+              activeTab === "LIVROS"
+                ? "bg-emerald-400 text-black border-emerald-300 shadow-[0_0_15px_rgba(52,211,153,0.5)]"
+                : "bg-[#140826] text-emerald-300 border-emerald-500/30 hover:border-emerald-400/50"
+            }`}
+          >
+            <span>📱</span>
+            <span>CrossPoint: Leituras &amp; E-reader ({livros.length})</span>
+          </button>
         </div>
 
         {/* Renderização da Aba Ativa */}
@@ -372,6 +399,17 @@ export default function AdminPage() {
                   setChapters(nextChapters);
                   setHasUnsavedChanges(true);
                 }}
+              />
+            )}
+
+            {activeTab === "LIVROS" && (
+              <AdminLivrosTab
+                livros={livros}
+                onChange={(nextLivros) => {
+                  setLivros(nextLivros);
+                  setHasUnsavedChanges(true);
+                }}
+                showToast={showToast}
               />
             )}
           </div>

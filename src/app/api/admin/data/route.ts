@@ -11,6 +11,7 @@ const PATHS = {
   skills: path.join(DATA_DIR, "github-skills.json"),
   estante: path.join(DATA_DIR, "estante.json"),
   chapters: path.join(DATA_DIR, "chapters.json"),
+  livros: path.join(DATA_DIR, "livros.json"),
 };
 
 async function readJsonFile<T>(filePath: string, fallback: T): Promise<T> {
@@ -23,12 +24,13 @@ async function readJsonFile<T>(filePath: string, fallback: T): Promise<T> {
 }
 
 export async function GET() {
-  const [projects, overrides, skills, estante, chapters] = await Promise.all([
+  const [projects, overrides, skills, estante, chapters, livros] = await Promise.all([
     readJsonFile(PATHS.projects, []),
     readJsonFile(PATHS.overrides, { excludedRepos: [], overrides: {}, manualProjects: [] }),
     readJsonFile(PATHS.skills, { skillTrees: {}, baseAttributes: [] }),
     readJsonFile(PATHS.estante, []),
     readJsonFile(PATHS.chapters, []),
+    readJsonFile(PATHS.livros, []),
   ]);
 
   return NextResponse.json({
@@ -37,6 +39,7 @@ export async function GET() {
     skills,
     estante,
     chapters,
+    livros,
   });
 }
 
@@ -67,6 +70,10 @@ export async function POST(req: Request) {
 
     if (body.chapters) {
       await fs.writeFile(PATHS.chapters, JSON.stringify(body.chapters, null, 2), "utf-8");
+    }
+
+    if (body.livros) {
+      await fs.writeFile(PATHS.livros, JSON.stringify(body.livros, null, 2), "utf-8");
     }
 
     return NextResponse.json({ ok: true, message: "Dados atualizados com sucesso no servidor." });

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import estanteData from "@/data/estante.json";
 import SectionScrollPrompt from "@/components/navigation/SectionScrollPrompt";
 
@@ -153,9 +154,15 @@ export default function Estante() {
               {selectedVol.review}
             </p>
 
-            <div className="mt-6 pt-4 border-t-2 border-dashed border-black flex items-center justify-between text-xs font-mono font-bold">
+            <div className="mt-6 pt-4 border-t-2 border-dashed border-black flex flex-wrap items-center justify-between gap-3 text-xs font-mono font-bold">
               <span>IMPACTO CRIATIVO: MÁXIMO</span>
-              <span className="bg-black text-white px-2 py-0.5">CONTINUA... ➔</span>
+              <Link
+                href="/livros"
+                className="bg-black text-white hover:bg-neutral-800 px-3 py-1 font-mono uppercase tracking-wider transition inline-flex items-center gap-1.5 shadow-[2px_2px_0px_#000]"
+              >
+                <span>VER TODAS AS LEITURAS (/livros)</span>
+                <span>➔</span>
+              </Link>
             </div>
           </div>
         </div>
