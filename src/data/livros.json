@@ -1,40 +1,14 @@
 [
   {
-    "id": "orv",
-    "title": "Omniscient Reader's Viewpoint",
-    "author": "sing N song (싱숑)",
-    "coverUrl": "https://covers.openlibrary.org/b/id/14321241-L.jpg",
-    "status": "LIDO",
-    "progressPercent": 100,
-    "totalPages": 2592,
-    "currentPage": 2592,
-    "completedAt": "2024-08-15",
-    "lastReadAt": "2026-11-06",
-    "rating": 5,
-    "quote": "“Toda grande história é construída a partir de pequenos fragmentos acumulados pelo caminho.”",
-    "review": "Em ORV, o universo inteiro é movido por histórias: cada desafio superado vira um fragmento narrativo que mantém os personagens de pé para o próximo cenário. Enxergo a TI do mesmo jeito — cada área que exploro, cada incidente resolvido e cada projeto que tiro do papel não são apenas códigos isolados, mas capítulos que vão construindo a minha própria história na tecnologia.",
-    "tags": [
-      "Webnovel",
-      "Ficção",
-      "Narrativa",
-      "Fantasia",
-      "E-book"
-    ],
-    "source": "crosspoint",
-    "visible": true,
-    "featured": true,
-    "filename": "Omniscient Reader’s Viewpoint - Sing-Shong.epub"
-  },
-  {
     "id": "c2a0d77827c9cb06d4bd4e1a67b63932",
     "title": "Memórias do Subsolo",
     "author": "Fiódor Dostoiévski",
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Publication125/v4/89/72/2e/89722e48-94b0-9d99-8790-e096b6c8392f/1035131430.jpg/600x600bb.jpg",
     "status": "LENDO",
-    "progressPercent": 16,
+    "progressPercent": 55,
     "totalPages": 199,
-    "currentPage": 32,
-    "lastReadAt": "2026-11-06",
+    "currentPage": 109,
+    "lastReadAt": "2026-11-07",
     "rating": 4,
     "tags": [
       "Classics",
@@ -47,6 +21,32 @@
     "visible": true,
     "featured": false,
     "filename": "Memórias do Subsolo - Fiódor Dostoiévski.epub"
+  },
+  {
+    "id": "orv",
+    "title": "Omniscient Reader's Viewpoint",
+    "author": "Sing-shong (싱숑)",
+    "coverUrl": "https://covers.openlibrary.org/b/id/14321241-L.jpg",
+    "status": "LIDO",
+    "progressPercent": 100,
+    "totalPages": 2592,
+    "currentPage": 2592,
+    "completedAt": "2026-11-06",
+    "lastReadAt": "2026-11-06",
+    "rating": 5,
+    "tags": [
+      "Webnovel",
+      "Ficção",
+      "Narrativa",
+      "Fantasia",
+      "E-book"
+    ],
+    "source": "crosspoint",
+    "visible": true,
+    "featured": true,
+    "filename": "Omniscient Reader's Viewpoint (Ch. 501-551) - Sing-shong (싱숑).epub",
+    "review": "Em ORV, o universo inteiro é movido por histórias: cada desafio superado vira um fragmento narrativo que mantém os personagens de pé para o próximo cenário. Enxergo a TI do mesmo jeito — cada área que exploro, cada incidente resolvido e cada projeto que tiro do papel não são apenas códigos isolados, mas capítulos que vão construindo a minha própria história na tecnologia.",
+    "quote": "“Toda grande história é construída a partir de pequenos fragmentos acumulados pelo caminho.”"
   },
   {
     "id": "ced0b3935fafd34990f89c11c022836b",
@@ -83,8 +83,6 @@
     "completedAt": "2026-11-06",
     "lastReadAt": "2026-11-06",
     "rating": 4,
-    "quote": "“Guerra é Paz. Liberdade é Escravidão. Ignorância é Força.”",
-    "review": "Um dos retratos mais contundentes sobre vigilância estatal, manipulação da informação e controle de pensamento. Uma leitura essencial que ressoa diretamente com debates modernos sobre privacidade, criptografia e segurança digital.",
     "tags": [
       "Classics",
       "Dystopian",
@@ -95,7 +93,9 @@
     "source": "crosspoint",
     "visible": true,
     "featured": true,
-    "filename": "1984 - George Orwell.epub"
+    "filename": "1984 - George Orwell.epub",
+    "review": "Um dos retratos mais contundentes sobre vigilância estatal, manipulação da informação e controle de pensamento. Uma leitura essencial que ressoa diretamente com debates modernos sobre privacidade, criptografia e segurança digital.",
+    "quote": "“Guerra é Paz. Liberdade é Escravidão. Ignorância é Força.”"
   },
   {
     "id": "3b583be6767092130b8c9055f8e6ea95",
